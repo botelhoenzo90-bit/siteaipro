@@ -10,6 +10,7 @@ function AuthenticatedLayout() {
   const menuItems = [
     { label: 'Dashboard', icon: LayoutDashboard, to: '/dashboard' },
     { label: 'AI Builder', icon: Wand2, to: '/ai-builder' },
+    { label: 'Calculadora', icon: TrendingUp, to: '/pricing-calculator' },
     { label: 'CRM', icon: Users, to: '/crm' },
     { label: 'Propostas', icon: FileText, to: '/proposals' },
     { label: 'Academy', icon: GraduationCap, to: '/academy' },
