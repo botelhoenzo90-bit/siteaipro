@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import { Zap, LayoutDashboard, Wand2, Users, FileText, GraduationCap, Library, User } from "lucide-react";
+import { Zap, LayoutDashboard, Wand2, Users, FileText, GraduationCap, Library, User, TrendingUp } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated")({
@@ -10,6 +10,7 @@ function AuthenticatedLayout() {
   const menuItems = [
     { label: 'Dashboard', icon: LayoutDashboard, to: '/dashboard' },
     { label: 'AI Builder', icon: Wand2, to: '/ai-builder' },
+    { label: 'Calculadora', icon: TrendingUp, to: '/pricing-calculator' },
     { label: 'CRM', icon: Users, to: '/crm' },
     { label: 'Propostas', icon: FileText, to: '/proposals' },
     { label: 'Academy', icon: GraduationCap, to: '/academy' },
@@ -20,7 +21,7 @@ function AuthenticatedLayout() {
   return (
     <div className="flex min-h-screen bg-background text-foreground">
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r border-border bg-card/50 backdrop-blur-xl hidden md:block">
+      <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r border-border bg-card/40 backdrop-blur-2xl hidden md:block">
         <div className="flex h-16 items-center border-b border-border px-6 gap-2">
           <Zap className="h-6 w-6 text-primary" />
           <span className="text-lg font-bold">SiteAI Pro</span>

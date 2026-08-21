@@ -17,6 +17,7 @@ import { Route as AuthenticatedAiBuilderRouteImport } from './routes/_authentica
 import { Route as AuthenticatedCrmRouteImport } from './routes/_authenticated.crm'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated.dashboard'
 import { Route as AuthenticatedLibraryRouteImport } from './routes/_authenticated.library'
+import { Route as AuthenticatedPricingCalculatorRouteImport } from './routes/_authenticated.pricing-calculator'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated.profile'
 import { Route as AuthenticatedProposalsRouteImport } from './routes/_authenticated.proposals'
 
@@ -59,6 +60,12 @@ const AuthenticatedLibraryRoute = AuthenticatedLibraryRouteImport.update({
   path: '/library',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedPricingCalculatorRoute =
+  AuthenticatedPricingCalculatorRouteImport.update({
+    id: '/pricing-calculator',
+    path: '/pricing-calculator',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -78,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/crm': typeof AuthenticatedCrmRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/library': typeof AuthenticatedLibraryRoute
+  '/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/proposals': typeof AuthenticatedProposalsRoute
 }
@@ -89,6 +97,7 @@ export interface FileRoutesByTo {
   '/crm': typeof AuthenticatedCrmRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/library': typeof AuthenticatedLibraryRoute
+  '/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/proposals': typeof AuthenticatedProposalsRoute
 }
@@ -102,6 +111,7 @@ export interface FileRoutesById {
   '/_authenticated/crm': typeof AuthenticatedCrmRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/library': typeof AuthenticatedLibraryRoute
+  '/_authenticated/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/proposals': typeof AuthenticatedProposalsRoute
 }
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
     | '/crm'
     | '/dashboard'
     | '/library'
+    | '/pricing-calculator'
     | '/profile'
     | '/proposals'
   fileRoutesByTo: FileRoutesByTo
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '/crm'
     | '/dashboard'
     | '/library'
+    | '/pricing-calculator'
     | '/profile'
     | '/proposals'
   id:
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
     | '/_authenticated/crm'
     | '/_authenticated/dashboard'
     | '/_authenticated/library'
+    | '/_authenticated/pricing-calculator'
     | '/_authenticated/profile'
     | '/_authenticated/proposals'
   fileRoutesById: FileRoutesById
@@ -206,6 +219,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLibraryRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/pricing-calculator': {
+      id: '/_authenticated/pricing-calculator'
+      path: '/pricing-calculator'
+      fullPath: '/pricing-calculator'
+      preLoaderRoute: typeof AuthenticatedPricingCalculatorRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/profile': {
       id: '/_authenticated/profile'
       path: '/profile'
@@ -229,6 +249,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedCrmRoute: typeof AuthenticatedCrmRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedLibraryRoute: typeof AuthenticatedLibraryRoute
+  AuthenticatedPricingCalculatorRoute: typeof AuthenticatedPricingCalculatorRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedProposalsRoute: typeof AuthenticatedProposalsRoute
 }
@@ -239,6 +260,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedCrmRoute: AuthenticatedCrmRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedLibraryRoute: AuthenticatedLibraryRoute,
+  AuthenticatedPricingCalculatorRoute: AuthenticatedPricingCalculatorRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedProposalsRoute: AuthenticatedProposalsRoute,
 }

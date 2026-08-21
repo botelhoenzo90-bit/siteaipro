@@ -9,7 +9,8 @@ export const Route = createFileRoute("/")({
 
 function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30">
+    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 relative">
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.03] pointer-events-none" />
       {/* Header */}
       <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -47,8 +48,8 @@ function LandingPage() {
               <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary mb-6">
                 🚀 A revolução da criação de sites chegou
               </div>
-              <h1 className="mx-auto max-w-4xl text-5xl font-extrabold tracking-tight sm:text-7xl">
-                Crie sites profissionais com IA e <span className="text-transparent bg-clip-text gradient-brand">conquiste seus primeiros clientes</span>
+              <h1 className="mx-auto max-w-4xl text-5xl font-extrabold tracking-tight sm:text-7xl leading-tight">
+                Crie sites profissionais com IA e <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple">conquiste seus primeiros clientes</span>
               </h1>
               <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
                 Transforme ideias em sites completos usando prompts inteligentes, estratégias de venda e ferramentas profissionais.
@@ -67,6 +68,7 @@ function LandingPage() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -5 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mt-20 overflow-hidden rounded-2xl border border-border/50 bg-card/50 shadow-2xl shadow-primary/10"
             >
