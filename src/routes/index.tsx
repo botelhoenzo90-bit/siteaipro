@@ -9,7 +9,8 @@ export const Route = createFileRoute("/")({
 
 function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30">
+    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 relative">
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.03] pointer-events-none" />
       {/* Header */}
       <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
