@@ -68,6 +68,7 @@ function LandingPage() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -5 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mt-20 overflow-hidden rounded-2xl border border-border/50 bg-card/50 shadow-2xl shadow-primary/10"
             >
