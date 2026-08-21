@@ -49,7 +49,7 @@ function LandingPage() {
                 🚀 A revolução da criação de sites chegou
               </div>
               <h1 className="mx-auto max-w-4xl text-5xl font-extrabold tracking-tight sm:text-7xl leading-tight">
-                Crie sites profissionais com IA e <span className="text-transparent bg-clip-text gradient-brand inline-block">conquiste seus primeiros clientes</span>
+                Crie sites profissionais com IA e <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple">conquiste seus primeiros clientes</span>
               </h1>
               <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
                 Transforme ideias em sites completos usando prompts inteligentes, estratégias de venda e ferramentas profissionais.
