@@ -55,7 +55,7 @@ function PricingCalculatorPage() {
                 </div>
                 <Slider 
                   value={[pages]} 
-                  onValueChange={(v) => setPages(v[0])} 
+                  onValueChange={(v) => v[0] !== undefined && setPages(v[0])} 
                   max={20} 
                   min={1} 
                   step={1} 
@@ -111,7 +111,7 @@ function PricingCalculatorPage() {
                 </div>
                 <Slider 
                   value={[hourlyRate]} 
-                  onValueChange={(v) => setHourlyRate(v[0])} 
+                  onValueChange={(v) => v[0] !== undefined && setHourlyRate(v[0])} 
                   max={300} 
                   min={30} 
                   step={5} 
