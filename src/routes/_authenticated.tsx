@@ -21,7 +21,7 @@ function AuthenticatedLayout() {
   return (
     <div className="flex min-h-screen bg-background text-foreground">
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r border-border bg-card/50 backdrop-blur-xl hidden md:block">
+      <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r border-border bg-card/40 backdrop-blur-2xl hidden md:block">
         <div className="flex h-16 items-center border-b border-border px-6 gap-2">
           <Zap className="h-6 w-6 text-primary" />
           <span className="text-lg font-bold">SiteAI Pro</span>
