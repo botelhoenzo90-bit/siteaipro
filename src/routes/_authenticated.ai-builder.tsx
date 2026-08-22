@@ -18,11 +18,12 @@ function AIBuilderPage() {
 
   const handleGenerate = () => {
     setLoading(true);
+    // Simulação de geração ultra detalhada baseada no contexto
     setTimeout(() => {
-      setResult("PROMPT PROFISSIONAL GERADO:\n\nCrie uma landing page premium para uma Clínica de Estética em São Paulo. O design deve ser luxuoso, usando tons de dourado e branco. Inclua seções de hero, serviços, depoimentos e agendamento via WhatsApp. O público-alvo são mulheres de classe A...");
+      setResult("PROMPT ULTRA DETALHADO (MODO EXPERT):\n\n[CONTEXTO DO NEGÓCIO ATIVADO]\nCrie uma landing page de conversão extrema para [NOME DA EMPRESA].\n\nESTRUTURA TÉCNICA:\n1. Hero: Headline com foco na dor do cliente, CTA em destaque.\n2. Prova Social: Grid de depoimentos e logos de parceiros.\n3. Oferta Irresistível: Seção de preços ancorada com bônus exclusivos.\n4. Design: Estilo moderno, animações em scroll, paleta de cores [CORES].\n\nCOPIA E ESTRATÉGIA:\nUse gatilhos de escassez e autoridade baseados no contexto do negócio fornecido. O tom de voz deve ser persuasivo e profissional...");
       setLoading(false);
-      toast.success("Prompt gerado com sucesso!");
-    }, 1500);
+      toast.success("Prompt ultra detalhado gerado!");
+    }, 2000);
   };
 
   return (

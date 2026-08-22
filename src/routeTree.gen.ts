@@ -14,7 +14,6 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedAcademyRouteImport } from './routes/_authenticated.academy'
 import { Route as AuthenticatedAiBuilderRouteImport } from './routes/_authenticated.ai-builder'
-import { Route as AuthenticatedCrmRouteImport } from './routes/_authenticated.crm'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated.dashboard'
 import { Route as AuthenticatedLibraryRouteImport } from './routes/_authenticated.library'
 import { Route as AuthenticatedPricingCalculatorRouteImport } from './routes/_authenticated.pricing-calculator'
@@ -43,11 +42,6 @@ const AuthenticatedAcademyRoute = AuthenticatedAcademyRouteImport.update({
 const AuthenticatedAiBuilderRoute = AuthenticatedAiBuilderRouteImport.update({
   id: '/ai-builder',
   path: '/ai-builder',
-  getParentRoute: () => AuthenticatedRoute,
-} as any)
-const AuthenticatedCrmRoute = AuthenticatedCrmRouteImport.update({
-  id: '/crm',
-  path: '/crm',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
@@ -82,7 +76,6 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/academy': typeof AuthenticatedAcademyRoute
   '/ai-builder': typeof AuthenticatedAiBuilderRoute
-  '/crm': typeof AuthenticatedCrmRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/library': typeof AuthenticatedLibraryRoute
   '/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
@@ -94,7 +87,6 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/academy': typeof AuthenticatedAcademyRoute
   '/ai-builder': typeof AuthenticatedAiBuilderRoute
-  '/crm': typeof AuthenticatedCrmRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/library': typeof AuthenticatedLibraryRoute
   '/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
@@ -108,7 +100,6 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/_authenticated/academy': typeof AuthenticatedAcademyRoute
   '/_authenticated/ai-builder': typeof AuthenticatedAiBuilderRoute
-  '/_authenticated/crm': typeof AuthenticatedCrmRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/library': typeof AuthenticatedLibraryRoute
   '/_authenticated/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
@@ -122,7 +113,6 @@ export interface FileRouteTypes {
     | '/auth'
     | '/academy'
     | '/ai-builder'
-    | '/crm'
     | '/dashboard'
     | '/library'
     | '/pricing-calculator'
@@ -134,7 +124,6 @@ export interface FileRouteTypes {
     | '/auth'
     | '/academy'
     | '/ai-builder'
-    | '/crm'
     | '/dashboard'
     | '/library'
     | '/pricing-calculator'
@@ -147,7 +136,6 @@ export interface FileRouteTypes {
     | '/auth'
     | '/_authenticated/academy'
     | '/_authenticated/ai-builder'
-    | '/_authenticated/crm'
     | '/_authenticated/dashboard'
     | '/_authenticated/library'
     | '/_authenticated/pricing-calculator'
@@ -198,13 +186,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAiBuilderRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/crm': {
-      id: '/_authenticated/crm'
-      path: '/crm'
-      fullPath: '/crm'
-      preLoaderRoute: typeof AuthenticatedCrmRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -246,7 +227,6 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteChildren {
   AuthenticatedAcademyRoute: typeof AuthenticatedAcademyRoute
   AuthenticatedAiBuilderRoute: typeof AuthenticatedAiBuilderRoute
-  AuthenticatedCrmRoute: typeof AuthenticatedCrmRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedLibraryRoute: typeof AuthenticatedLibraryRoute
   AuthenticatedPricingCalculatorRoute: typeof AuthenticatedPricingCalculatorRoute
@@ -257,7 +237,6 @@ interface AuthenticatedRouteChildren {
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedAcademyRoute: AuthenticatedAcademyRoute,
   AuthenticatedAiBuilderRoute: AuthenticatedAiBuilderRoute,
-  AuthenticatedCrmRoute: AuthenticatedCrmRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedLibraryRoute: AuthenticatedLibraryRoute,
   AuthenticatedPricingCalculatorRoute: AuthenticatedPricingCalculatorRoute,

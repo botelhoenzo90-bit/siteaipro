@@ -189,17 +189,25 @@ function PricingCalculatorPage() {
 
               <div className="pt-4 space-y-2">
                 <div className="flex justify-between text-xs text-white/60">
+                  <span>Valor de Venda (Cliente)</span>
+                  <span>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calculatedPrice.total)}</span>
+                </div>
+                <div className="flex justify-between text-xs text-white/60">
                   <span>Impostos Estimados</span>
                   <span>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calculatedPrice.total * (taxRate/100))}</span>
                 </div>
                 <div className="flex justify-between text-xs text-white/60">
-                  <span>Custos Operacionais</span>
+                  <span>Custos Fixos / Ferramentas</span>
                   <span>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(toolCosts)}</span>
+                </div>
+                <div className="flex justify-between text-xs text-white/60">
+                  <span>Seu Custo de Mão de Obra</span>
+                  <span>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calculatedPrice.hours * hourlyRate)}</span>
                 </div>
               </div>
 
               <Button className="w-full bg-white text-primary hover:bg-white/90 font-bold h-12">
-                Gerar Proposta PDF
+                Gerar Orçamento Detalhado
               </Button>
             </CardContent>
           </Card>
