@@ -173,9 +173,14 @@ O site deve ter:
 - Espaçamento profissional.
 - Excelente experiência visual.
 
+DIRETRIZ OBRIGATÓRIA DE CONVERSÃO:
+- O site DEVE possuir botões de chamada para ação (CTA) em TODAS as seções sem exceção.
+- Todos os botões do site devem direcionar o usuário para o WhatsApp da empresa.
+- As chamadas nos botões devem ser persuasivas e variadas (ex: "Falar com Especialista", "Solicitar Orçamento", "Agendar agora").
+
 Evitar qualquer aparência de template pronto.
 O resultado deve parecer um projeto desenvolvido por uma agência profissional de criação de sites.
-Priorizar: Conversão, Confiança, Autoridade, Clareza da oferta, Experiência do usuário.`;
+Priorizar: Conversão via WhatsApp, Confiança, Autoridade, Clareza da oferta, Experiência do usuário.`;
 
       setResult(generatedPrompt);
       setLoading(false);
