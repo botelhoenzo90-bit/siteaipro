@@ -23,6 +23,29 @@ function AIBuilderPage() {
   const [objective, setObjective] = useState("");
   const [style, setStyle] = useState("");
   const [colors, setColors] = useState("");
+  const [targetAudience, setTargetAudience] = useState("");
+  const [mainBenefit, setMainBenefit] = useState("");
+  const [toneVoice, setToneVoice] = useState("");
+
+  const niches = [
+    'Clínica Médica', 'Restaurante', 'Advogado', 'Academia', 'Imobiliária', 
+    'Estética', 'Pet Shop', 'E-commerce', 'Consultoria', 'Arquitetura', 
+    'Educação', 'Eventos', 'Software/SaaS', 'Finanças', 'Construção'
+  ];
+
+  const objectives = [
+    'Gerar Clientes', 'Agendamento Direto', 'Venda de Produto', 'Capturar Leads (Newsletter)', 
+    'Autoridade de Marca', 'Portfólio', 'Educação do Público', 'Suporte ao Cliente'
+  ];
+
+  const styles = [
+    'Luxuoso/Premium', 'Minimalista', 'Moderno/Tech', 'Corporativo/Sério', 
+    'Vibrante/Criativo', 'Rústico/Acolhedor', 'Futurista', 'Clean/Médico'
+  ];
+
+  const tones = [
+    'Profissional', 'Amigável', 'Autoritário', 'Inspirador', 'Descontraído', 'Persuasivo'
+  ];
 
   const handleGenerate = () => {
     if (!context || !niche) {
@@ -33,21 +56,27 @@ function AIBuilderPage() {
     setLoading(true);
     
     setTimeout(() => {
-      const generatedPrompt = `PROMPT ULTRA DETALHADO (MODO EXPERT) - SITEAI PRO v2.0
+      const generatedPrompt = `PROMPT ULTRA DETALHADO (MODO EXPERT) - SITEAI PRO v3.0
 ==========================================================
 ESTRATÉGIA PARA: ${companyName || 'Empresa Local'} (${niche}) em ${city || 'Localização Não Definida'}
 OBJETIVO: ${objective || 'Conversão Máxima'}
 ESTILO VISUAL: ${style || 'Moderno'} | CORES: ${colors || 'Brand Colors'}
+PÚBLICO-ALVO: ${targetAudience || 'Geral'}
+TOM DE VOZ: ${toneVoice || 'Profissional'}
 
 CONTEXTO DO NEGÓCIO (INPUT DO USUÁRIO):
 "${context}"
 
+DIFERENCIAL PRINCIPAL:
+"${mainBenefit}"
+
 DIRETRIZES DE DESIGN E CÓPIA:
-1. HEADER: Focar no diferencial competitivo mencionado no contexto.
-2. HERO SECTION: Headline ultra-específica para o nicho ${niche}, usando o tom de voz adequado para o público-alvo.
-3. SEÇÃO DE VALOR: Transformar o contexto fornecido ("${context.substring(0, 100)}...") em 3 pilares de benefícios tangíveis.
+1. HEADER: Focar no diferencial competitivo mencionado: ${mainBenefit}.
+2. HERO SECTION: Headline ultra-específica para ${niche}, focada em ${targetAudience} usando tom ${toneVoice}.
+3. SEÇÃO DE VALOR: Transformar o contexto fornecido em 5 pilares de benefícios tangíveis.
 4. PROVA SOCIAL: Posicionamento estratégico baseado na autoridade local de ${city}.
-5. CTA: Chamada para ação focada em ${objective}.
+5. CTA: Chamada para ação focada em ${objective} com gatilhos mentais de escassez.
+6. ESTRUTURA TÉCNICA: Seções de FAQ, Depoimentos, Galeria de Projetos e Rodapé completo.
 
 TÉCNICO: Layout responsivo, animações Framer Motion, Clean UI, tipografia premium.`;
 
@@ -58,14 +87,14 @@ TÉCNICO: Layout responsivo, animações Framer Motion, Clean UI, tipografia pre
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-4xl mx-auto space-y-8 pb-20">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">AI Site Builder</h1>
-        <p className="text-muted-foreground">Crie prompts ultra-profissionais para gerar sites em ferramentas de IA.</p>
+        <h1 className="text-3xl font-bold tracking-tight">AI Site Builder Pro</h1>
+        <p className="text-muted-foreground">Crie prompts ultra-detalhados com tópicos avançados de conversão.</p>
       </div>
 
       <div className="rounded-2xl border border-border bg-card p-8 space-y-6">
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <Label>Tipo de Negócio</Label>
             <Select onValueChange={setNiche}>
@@ -73,7 +102,7 @@ TÉCNICO: Layout responsivo, animações Framer Motion, Clean UI, tipografia pre
                 <SelectValue placeholder="Selecione o nicho" />
               </SelectTrigger>
               <SelectContent>
-                {['Clínica', 'Restaurante', 'Advogado', 'Academia', 'Imobiliária'].map(n => (
+                {niches.map(n => (
                   <SelectItem key={n} value={n.toLowerCase()}>{n}</SelectItem>
                 ))}
               </SelectContent>
@@ -94,7 +123,7 @@ TÉCNICO: Layout responsivo, animações Framer Motion, Clean UI, tipografia pre
                 <SelectValue placeholder="Selecione o objetivo" />
               </SelectTrigger>
               <SelectContent>
-                {['Gerar clientes', 'Agendamento', 'Venda online', 'Capturar leads'].map(o => (
+                {objectives.map(o => (
                   <SelectItem key={o} value={o.toLowerCase()}>{o}</SelectItem>
                 ))}
               </SelectContent>
@@ -102,17 +131,28 @@ TÉCNICO: Layout responsivo, animações Framer Motion, Clean UI, tipografia pre
           </div>
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <Label>Público-Alvo</Label>
+            <Input placeholder="Ex: Mulheres de 25-45 anos interessadas em estética" value={targetAudience} onChange={(e) => setTargetAudience(e.target.value)} />
+          </div>
+          <div className="space-y-2">
+            <Label>Diferencial Principal</Label>
+            <Input placeholder="Ex: Atendimento humanizado e tecnologia exclusiva" value={mainBenefit} onChange={(e) => setMainBenefit(e.target.value)} />
+          </div>
+        </div>
+
         <div className="space-y-2">
           <Label>Explique seu Negócio (Contexto para a IA)</Label>
           <Textarea 
-            placeholder="Descreva seu negócio, diferenciais, público-alvo e o que torna sua oferta única..." 
+            placeholder="Descreva seu negócio, diferenciais e o que torna sua oferta única..." 
             className="min-h-[120px]"
             value={context}
             onChange={(e) => setContext(e.target.value)}
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="space-y-2">
             <Label>Estilo Visual</Label>
             <Select onValueChange={setStyle}>
@@ -120,8 +160,21 @@ TÉCNICO: Layout responsivo, animações Framer Motion, Clean UI, tipografia pre
                 <SelectValue placeholder="Selecione o estilo" />
               </SelectTrigger>
               <SelectContent>
-                {['Luxuoso', 'Minimalista', 'Moderno', 'Corporativo'].map(s => (
+                {styles.map(s => (
                   <SelectItem key={s} value={s.toLowerCase()}>{s}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label>Tom de Voz</Label>
+            <Select onValueChange={setToneVoice}>
+              <SelectTrigger>
+                <SelectValue placeholder="Selecione o tom" />
+              </SelectTrigger>
+              <SelectContent>
+                {tones.map(t => (
+                  <SelectItem key={t} value={t.toLowerCase()}>{t}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -137,14 +190,14 @@ TÉCNICO: Layout responsivo, animações Framer Motion, Clean UI, tipografia pre
           disabled={loading}
           className="w-full h-12 gradient-brand border-0"
         >
-          {loading ? "Gerando..." : <>Gerar Prompt Profissional <Wand2 className="ml-2 h-5 w-5" /></>}
+          {loading ? "Gerando Prompt Estratégico..." : <>Gerar Prompt Ultra-Detalhado <Wand2 className="ml-2 h-5 w-5" /></>}
         </Button>
       </div>
 
       {result && (
         <div className="rounded-2xl border border-primary/30 bg-primary/5 p-8 space-y-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-bold">Resultado do Prompt</h3>
+            <h3 className="text-lg font-bold">Resultado do Prompt Premium</h3>
             <div className="flex gap-2">
               <Button size="icon" variant="outline" onClick={() => { navigator.clipboard.writeText(result); toast.info("Prompt copiado!"); }}>
                 <Copy className="h-4 w-4" />
