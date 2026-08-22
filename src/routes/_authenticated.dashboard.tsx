@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { LayoutDashboard, Wand2, Users, FileText, Library, TrendingUp, Rocket, CheckCircle2, AlertCircle } from "lucide-react";
+import { LayoutDashboard, Wand2, Users, FileText, Library, TrendingUp, Rocket, CheckCircle2, AlertCircle, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
