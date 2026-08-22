@@ -24,8 +24,8 @@ function AuthenticatedLayout() {
     { label: 'Perfil', icon: User, to: '/profile' },
   ];
 
-  const SidebarContent = () => (
-    <div className="flex flex-col h-full">
+  const SidebarContent = ({ isMobile = false }) => (
+    <div className="flex flex-col h-full bg-card/40 backdrop-blur-2xl">
       <div className="flex h-16 items-center border-b border-border px-6 gap-2">
         <Zap className="h-6 w-6 text-primary" />
         <span className="text-lg font-bold">SiteAI Pro</span>
@@ -64,8 +64,8 @@ function AuthenticatedLayout() {
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="p-0 w-64 border-r border-border bg-card/40 backdrop-blur-2xl border-none">
-                <SidebarContent />
+              <SheetContent side="left" className="p-0 w-64 border-none">
+                <SidebarContent isMobile />
               </SheetContent>
             </Sheet>
 
