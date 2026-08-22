@@ -71,8 +71,11 @@ function AIBuilderPage() {
         </div>
 
         <div className="space-y-2">
-          <Label>Serviços Oferecidos</Label>
-          <Textarea placeholder="Descreva os serviços..." />
+          <Label>Explique seu Negócio (Contexto para a IA)</Label>
+          <Textarea 
+            placeholder="Descreva seu negócio, diferenciais, público-alvo e o que torna sua oferta única..." 
+            className="min-h-[120px]"
+          />
         </div>
 
         <div className="grid grid-cols-2 gap-6">

@@ -102,8 +102,8 @@ function LandingPage() {
             <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">O que você recebe no SiteAI Pro</h2>
             <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { icon: Zap, title: "Gerador de Sites IA", desc: "Crie prompts ultra-profissionais para Lovable, Bolt e Framer." },
-                { icon: Target, title: "Prospecção Inteligente", desc: "CRM completo para gerenciar e conquistar novos clientes." },
+                { icon: Zap, title: "Gerador de Sites IA", desc: "Crie prompts ultra-profissionais com contexto real do negócio." },
+                { icon: Target, title: "Calculadora de Lucro", desc: "Calcule quanto cobrar e veja seu lucro real por projeto." },
                 { icon: Shield, title: "Propostas Express", desc: "Gere propostas comerciais irrecusáveis em segundos." },
                 { icon: Rocket, title: "SiteAI Academy", desc: "Aprenda a vender sites de R$2.000 a R$5.000." }
               ].map((feature, i) => (

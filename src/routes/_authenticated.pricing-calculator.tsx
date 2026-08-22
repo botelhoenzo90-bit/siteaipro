@@ -168,12 +168,12 @@ function PricingCalculatorPage() {
               <TrendingUp className="h-40 w-40" />
             </div>
             <CardHeader>
-              <CardTitle>Orçamento Final</CardTitle>
-              <CardDescription className="text-white/70">Preço sugerido para o cliente.</CardDescription>
+              <CardTitle>Lucro Estimado</CardTitle>
+              <CardDescription className="text-white/70">Quanto sobrará no seu bolso.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6 relative">
               <div className="text-5xl font-black tracking-tight">
-                {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calculatedPrice.total)}
+                {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calculatedPrice.total - (calculatedPrice.total * (taxRate/100)) - toolCosts)}
               </div>
               
               <div className="grid grid-cols-2 gap-4">
