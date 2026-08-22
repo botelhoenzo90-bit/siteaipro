@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Search, MapPin, Globe, Info, Target, MessageSquare, Lightbulb } from "lucide-react";
+import { Search, MapPin, Globe, Info, Target, MessageSquare, Lightbulb, Zap, TrendingUp, BarChart3, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/_authenticated/prospecting")({
@@ -27,159 +26,117 @@ function ProspectingPage() {
     window.open(`https://www.instagram.com/explore/tags/${query}`, '_blank');
   };
 
-  const strategyCards = [
-    {
-      title: "Google Maps (Local)",
-      icon: MapPin,
-      desc: "A melhor fonte para negócios locais sem site ou com sites antigos.",
-      tips: ["Busque por: 'Restaurantes', 'Clínicas', 'Advogados'", "Olhe a 2ª ou 3ª página de resultados", "Verifique se o site é responsivo"]
-    },
-    {
-      title: "Instagram (Visual)",
-      icon: Globe,
-      desc: "Ideal para nichos de estética, gastronomia e moda.",
-      tips: ["Busque por hashtags locais (#dentistasp)", "Analise a bio e o link da bio", "Dê um 'curtir' em posts recentes antes de chamar"]
-    },
-    {
-      title: "LinkedIn (B2B)",
-      icon: Target,
-      desc: "Foco em empresas de tecnologia, consultoria e serviços corporativos.",
-      tips: ["Filtre por decisores (CEO, Marketing, Fundador)", "Use o Sales Navigator se possível", "Personalize a conexão com um elogio"]
-    }
-  ];
+  const niches = ["Odontologia", "Advocacia", "Arquitetura", "Restaurantes", "Clínicas de Estética", "Consultoria", "Imobiliárias", "Lojas de Roupa", "Academias", "Oficinas", "Pet Shops", "Hotéis", "Fotografia", "Engenharia", "Contabilidade"];
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8 pb-20">
+    <div className="max-w-6xl mx-auto space-y-12 pb-20">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex flex-col md:flex-row md:items-center justify-between gap-4"
       >
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Prospecção Ativa</h1>
-          <p className="text-muted-foreground mt-1">Encontre seus próximos clientes usando ferramentas inteligentes.</p>
-        </div>
-        <div className="flex gap-2">
-           <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse mt-2.5" />
-           <span className="text-sm font-medium text-green-500">Radar de Oportunidades Ativo</span>
+          <h1 className="text-4xl font-bold tracking-tight">Prospecção Ativa</h1>
+          <p className="text-muted-foreground mt-2">Encontre e aborde clientes de alto valor com nossas ferramentas de prospecção.</p>
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Search Panel */}
-        <Card className="lg:col-span-2 p-8 glass border-primary/20 space-y-6">
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold flex items-center gap-2">
-              <Search className="h-5 w-5 text-primary" /> 
-              Busca Rápida de Leads
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Nicho / Categoria</label>
-                <Input 
-                  placeholder="Ex: Clínica Odontológica" 
-                  value={niche}
-                  onChange={(e) => setNiche(e.target.value)}
-                  className="bg-background/50"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Cidade / Região</label>
-                <Input 
-                  placeholder="Ex: São Paulo, SP" 
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  className="bg-background/50"
-                />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-              <Button onClick={handleMapsSearch} className="h-12 gradient-brand border-0">
-                <MapPin className="mr-2 h-4 w-4" /> Pesquisar no Google Maps
-              </Button>
-              <Button onClick={handleInstagramSearch} variant="outline" className="h-12 border-primary/30 hover:bg-primary/5">
-                <Globe className="mr-2 h-4 w-4" /> Explorar no Instagram
-              </Button>
-            </div>
+      {/* Main Search Panel */}
+      <Card className="p-8 glass border-primary/20 space-y-6">
+        <h3 className="text-xl font-bold flex items-center gap-2">
+          <Search className="h-6 w-6 text-primary" /> 
+          Gerador de Oportunidades
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">Selecione o Nicho ou Digite</label>
+            <Input 
+              placeholder="Ex: Clínica Odontológica" 
+              value={niche}
+              onChange={(e) => setNiche(e.target.value)}
+              className="h-12 bg-background/50"
+              list="niches-list"
+            />
+            <datalist id="niches-list">
+                {niches.map(n => <option key={n} value={n} />)}
+            </datalist>
           </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">Cidade / Região</label>
+            <Input 
+              placeholder="Ex: São Paulo, SP" 
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className="h-12 bg-background/50"
+            />
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Button onClick={handleMapsSearch} className="h-14 gradient-brand border-0 text-lg">
+            <MapPin className="mr-2 h-5 w-5" /> Pesquisar no Google Maps
+          </Button>
+          <Button onClick={handleInstagramSearch} variant="outline" className="h-14 border-primary/30 hover:bg-primary/5 text-lg">
+            <Globe className="mr-2 h-5 w-5" /> Explorar no Instagram
+          </Button>
+        </div>
+      </Card>
 
-          <div className="pt-6 border-t border-border/50">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">Atalhos Estratégicos</h4>
-            <div className="flex flex-wrap gap-3">
-              <Button variant="secondary" size="sm" className="bg-muted/30" onClick={() => window.open('https://www.linkedin.com', '_blank')}>
-                <Target className="mr-2 h-3.5 w-3.5" /> LinkedIn Jobs
-              </Button>
-              <Button variant="secondary" size="sm" className="bg-muted/30" onClick={() => window.open('https://app.apollo.io', '_blank')}>
-                <Globe className="mr-2 h-3.5 w-3.5" /> Apollo.io
-              </Button>
-              <Button variant="secondary" size="sm" className="bg-muted/30" onClick={() => window.open('https://registro.br/2/whois', '_blank')}>
-                <Info className="mr-2 h-3.5 w-3.5" /> Whois (Verificar Domínio)
-              </Button>
-            </div>
-          </div>
+      {/* Dicas de Prospecção */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <Card className="p-8 border-border bg-card">
+           <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
+             <Lightbulb className="h-5 w-5 text-yellow-500" />
+             Dicas Profissionais de Prospecção
+           </h4>
+           <div className="space-y-4 text-sm text-muted-foreground">
+             <p>• <strong>Filtre por avaliações:</strong> Leads com avaliações entre 3.0 e 4.0 costumam investir para melhorar a imagem online.</p>
+             <p>• <strong>Site antigo/lento:</strong> Se o site não abre no celular, é o seu argumento nº 1 de venda.</p>
+             <p>• <strong>Instagram parado:</strong> Se não postam há semanas, o negócio está estagnado e precisa de renovação visual.</p>
+             <p>• <strong>Horário de postagem:</strong> Aborde leads logo pela manhã (09h-10h), quando estão planejando o dia.</p>
+             <p>• <strong>Google My Business:</strong> Se não possuem, a empresa é praticamente invisível localmente.</p>
+           </div>
         </Card>
 
-        {/* Stats/Status */}
-        <div className="space-y-6">
-          <Card className="p-6 bg-primary/5 border-primary/20">
-             <div className="flex items-center gap-3 mb-4">
-                <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Lightbulb className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-bold">Dica de Ouro</h4>
-                  <p className="text-xs text-muted-foreground">Oportunidade detectada</p>
-                </div>
-             </div>
-             <p className="text-sm text-foreground/80 leading-relaxed italic">
-               "Empresas que aparecem no Maps mas não têm ícone de 'Site' são suas maiores oportunidades. O site delas pode não estar indexado ou simplesmente não existir."
-             </p>
-          </Card>
-          
-          <Card className="p-6 border-border bg-card">
-            <h4 className="font-bold mb-4 flex items-center gap-2">
-              <MessageSquare className="h-4 w-4 text-primary" /> Script de Abordagem
-            </h4>
-            <div className="text-xs space-y-3 text-muted-foreground">
-              <p>"Olá [Nome], notei que sua empresa [Nome da Empresa] é destaque em [Cidade], mas o site atual não está convertendo visitantes em clientes no celular."</p>
-              <p>"Sou especialista em sites de alta conversão para [Nicho] e criei uma demonstração de como seu novo site poderia ser..."</p>
-              <Button variant="link" size="sm" className="p-0 h-auto text-primary">Copiar script completo</Button>
-            </div>
-          </Card>
-        </div>
+        <Card className="p-8 border-border bg-card">
+           <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
+             <Target className="h-5 w-5 text-primary" />
+             OndeProspectar (Ideas VIP)
+           </h4>
+           <div className="space-y-4">
+               {[
+                   "Eventos locais de networking (ACIP, SEBRAE).",
+                   "Páginas de anúncios do Facebook (verifique se estão investindo).",
+                   "Listas de novas empresas abertas no portal do governo.",
+                   "Diretórios de sindicatos setoriais.",
+                   "Feiras setoriais (mesmo que online)."
+               ].map((item, i) => (
+                   <div key={i} className="flex gap-3 text-sm p-3 bg-muted/30 rounded-lg">
+                       <Zap className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                       {item}
+                   </div>
+               ))}
+           </div>
+        </Card>
       </div>
 
-      <div className="space-y-6">
-        <h2 className="text-2xl font-bold">Onde Prospectar Hoje?</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {strategyCards.map((card, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -5 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
-            >
-              <Card className="h-full p-6 border-border/50 hover:border-primary/50 transition-colors">
-                <div className="h-12 w-12 rounded-xl bg-muted/50 flex items-center justify-center mb-4">
-                  <card.icon className="h-6 w-6 text-foreground" />
-                </div>
-                <h3 className="text-lg font-bold mb-2">{card.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{card.desc}</p>
-                <ul className="space-y-2">
-                  {card.tips.map((tip, i) => (
-                    <li key={i} className="text-xs flex items-start gap-2">
-                      <div className="h-1.5 w-1.5 rounded-full bg-primary mt-1 flex-shrink-0" />
-                      <span>{tip}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </motion.div>
-          ))}
+      {/* Script Section */}
+      <Card className="p-8 border-primary/20 bg-primary/5">
+        <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+            <MessageSquare className="h-5 w-5 text-primary" />
+            Sessão de Scripts de Abordagem
+        </h4>
+        <div className="text-sm space-y-6">
+            <div className="bg-white/5 p-6 rounded-xl border border-white/5">
+                <p className="font-bold mb-2">Abordagem para Google Maps:</p>
+                <p className="text-muted-foreground italic">"Olá [Nome], vi sua empresa em destaque no Maps, mas notei que o site de vocês não está otimizado para celulares. Sou especialista em sites rápidos que aumentam as vendas locais. Posso te enviar uma breve análise?"</p>
+            </div>
+            <div className="bg-white/5 p-6 rounded-xl border border-white/5">
+                <p className="font-bold mb-2">Abordagem para Instagram:</p>
+                <p className="text-muted-foreground italic">"Oi [Nome], acompanho o trabalho da [Empresa] e vejo um potencial enorme para atrair mais clientes com um site que conecte seus posts diretamente ao WhatsApp. Topa ver um modelo de site focado no seu nicho?"</p>
+            </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
