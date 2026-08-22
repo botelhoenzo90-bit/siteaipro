@@ -142,3 +142,7 @@
 @utility gradient-brand {
   background: linear-gradient(135deg, var(--color-brand-blue), var(--color-brand-purple));
 }
+
+#lovable-badge {
+  display: none !important;
+}
