@@ -20,6 +20,7 @@ import { Route as AuthenticatedPricingCalculatorRouteImport } from './routes/_au
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated.profile'
 import { Route as AuthenticatedProposalsRouteImport } from './routes/_authenticated.proposals'
 import { Route as AuthenticatedProspectingRouteImport } from './routes/_authenticated.prospecting'
+import { Route as AuthenticatedScriptsRouteImport } from './routes/_authenticated.scripts'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -77,6 +78,11 @@ const AuthenticatedProspectingRoute =
     path: '/prospecting',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedScriptsRoute = AuthenticatedScriptsRouteImport.update({
+  id: '/scripts',
+  path: '/scripts',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileRoute
   '/proposals': typeof AuthenticatedProposalsRoute
   '/prospecting': typeof AuthenticatedProspectingRoute
+  '/scripts': typeof AuthenticatedScriptsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileRoute
   '/proposals': typeof AuthenticatedProposalsRoute
   '/prospecting': typeof AuthenticatedProspectingRoute
+  '/scripts': typeof AuthenticatedScriptsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/proposals': typeof AuthenticatedProposalsRoute
   '/_authenticated/prospecting': typeof AuthenticatedProspectingRoute
+  '/_authenticated/scripts': typeof AuthenticatedScriptsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/proposals'
     | '/prospecting'
+    | '/scripts'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/proposals'
     | '/prospecting'
+    | '/scripts'
   id:
     | '__root__'
     | '/'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/_authenticated/profile'
     | '/_authenticated/proposals'
     | '/_authenticated/prospecting'
+    | '/_authenticated/scripts'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -241,6 +253,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProspectingRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/scripts': {
+      id: '/_authenticated/scripts'
+      path: '/scripts'
+      fullPath: '/scripts'
+      preLoaderRoute: typeof AuthenticatedScriptsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
@@ -253,6 +272,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedProposalsRoute: typeof AuthenticatedProposalsRoute
   AuthenticatedProspectingRoute: typeof AuthenticatedProspectingRoute
+  AuthenticatedScriptsRoute: typeof AuthenticatedScriptsRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -264,6 +284,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedProposalsRoute: AuthenticatedProposalsRoute,
   AuthenticatedProspectingRoute: AuthenticatedProspectingRoute,
+  AuthenticatedScriptsRoute: AuthenticatedScriptsRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
