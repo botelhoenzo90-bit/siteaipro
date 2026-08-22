@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { LayoutDashboard, Wand2, Users, FileText, Library, TrendingUp, Rocket, CheckCircle2, AlertCircle } from "lucide-react";
+import { LayoutDashboard, Wand2, Users, FileText, Library, TrendingUp, Rocket, CheckCircle2, AlertCircle, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
@@ -15,11 +15,10 @@ function DashboardPage() {
     { label: 'Propostas Criadas', value: '24', icon: FileText },
   ];
 
-  const checklistItems = [
-    { label: 'Conectar domínio customizado', completed: false },
-    { label: 'Configurar gateway de pagamento', completed: false },
-    { label: 'Personalizar branding do painel', completed: true },
-    { label: 'Importar primeiros leads', completed: true },
+  const notes = [
+    { label: 'Follow-up com cliente de estética', date: 'Hoje, 14:00' },
+    { label: 'Finalizar proposta advocacia', date: 'Amanhã' },
+    { label: 'Reunião de briefing - Clínica Harmony', date: '24 Ago' },
   ];
 
   return (
@@ -29,32 +28,29 @@ function DashboardPage() {
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-muted-foreground">Bem-vindo de volta, aqui está o resumo do seu SaaS.</p>
         </div>
-        <Button className="gradient-brand border-0">
-          <Rocket className="mr-2 h-4 w-4" /> Publicar App
-        </Button>
       </div>
 
-      {/* Launch Checklist */}
+      {/* Quick Notes / Summary */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-2xl border border-primary/20 bg-primary/5 p-6"
+        className="rounded-2xl border border-border bg-card p-6"
       >
         <div className="flex items-center gap-2 mb-4">
-          <Rocket className="h-5 w-5 text-primary" />
-          <h2 className="text-lg font-bold">Checklist de Lançamento</h2>
+          <FileText className="h-5 w-5 text-primary" />
+          <h2 className="text-lg font-bold">Resumo & Notas Rápidas</h2>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {checklistItems.map((item, i) => (
-            <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-background/50 border border-border">
-              {item.completed ? (
-                <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0" />
-              ) : (
-                <AlertCircle className="h-5 w-5 text-yellow-500 shrink-0" />
-              )}
-              <span className="text-sm font-medium">{item.label}</span>
+        <div className="grid gap-4 md:grid-cols-3">
+          {notes.map((note, i) => (
+            <div key={i} className="flex flex-col gap-1 p-3 rounded-xl bg-muted/30 border border-border/50">
+              <span className="text-sm font-medium">{note.label}</span>
+              <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">{note.date}</span>
             </div>
           ))}
+          <Button variant="outline" className="h-full border-dashed border-2 hover:border-primary/50 hover:bg-primary/5 flex flex-col gap-1 py-4">
+             <Plus className="h-4 w-4" />
+             <span className="text-xs">Nova Anotação</span>
+          </Button>
         </div>
       </motion.div>
 
