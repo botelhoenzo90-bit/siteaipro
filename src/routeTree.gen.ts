@@ -19,6 +19,7 @@ import { Route as AuthenticatedLibraryRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedPricingCalculatorRouteImport } from './routes/_authenticated.pricing-calculator'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated.profile'
 import { Route as AuthenticatedProposalsRouteImport } from './routes/_authenticated.proposals'
+import { Route as AuthenticatedProspectingRouteImport } from './routes/_authenticated.prospecting'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +71,12 @@ const AuthenticatedProposalsRoute = AuthenticatedProposalsRouteImport.update({
   path: '/proposals',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedProspectingRoute =
+  AuthenticatedProspectingRouteImport.update({
+    id: '/prospecting',
+    path: '/prospecting',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/proposals': typeof AuthenticatedProposalsRoute
+  '/prospecting': typeof AuthenticatedProspectingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -92,6 +100,7 @@ export interface FileRoutesByTo {
   '/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/proposals': typeof AuthenticatedProposalsRoute
+  '/prospecting': typeof AuthenticatedProspectingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -105,6 +114,7 @@ export interface FileRoutesById {
   '/_authenticated/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/proposals': typeof AuthenticatedProposalsRoute
+  '/_authenticated/prospecting': typeof AuthenticatedProspectingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -118,6 +128,7 @@ export interface FileRouteTypes {
     | '/pricing-calculator'
     | '/profile'
     | '/proposals'
+    | '/prospecting'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -129,6 +140,7 @@ export interface FileRouteTypes {
     | '/pricing-calculator'
     | '/profile'
     | '/proposals'
+    | '/prospecting'
   id:
     | '__root__'
     | '/'
@@ -141,6 +153,7 @@ export interface FileRouteTypes {
     | '/_authenticated/pricing-calculator'
     | '/_authenticated/profile'
     | '/_authenticated/proposals'
+    | '/_authenticated/prospecting'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -221,6 +234,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProposalsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/prospecting': {
+      id: '/_authenticated/prospecting'
+      path: '/prospecting'
+      fullPath: '/prospecting'
+      preLoaderRoute: typeof AuthenticatedProspectingRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
@@ -232,6 +252,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedPricingCalculatorRoute: typeof AuthenticatedPricingCalculatorRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedProposalsRoute: typeof AuthenticatedProposalsRoute
+  AuthenticatedProspectingRoute: typeof AuthenticatedProspectingRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -242,6 +263,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedPricingCalculatorRoute: AuthenticatedPricingCalculatorRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedProposalsRoute: AuthenticatedProposalsRoute,
+  AuthenticatedProspectingRoute: AuthenticatedProspectingRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
