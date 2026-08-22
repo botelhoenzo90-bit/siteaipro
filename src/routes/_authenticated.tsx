@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import { Zap, LayoutDashboard, Wand2, Users, FileText, GraduationCap, Library, User, TrendingUp } from "lucide-react";
+import { Zap, LayoutDashboard, Wand2, Users, FileText, GraduationCap, Library, User, TrendingUp, Search } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated")({
@@ -10,6 +10,7 @@ function AuthenticatedLayout() {
   const menuItems = [
     { label: 'Dashboard', icon: LayoutDashboard, to: '/dashboard' },
     { label: 'AI Builder', icon: Wand2, to: '/ai-builder' },
+    { label: 'Prospecção', icon: Search, to: '/prospecting' },
     { label: 'Calculadora', icon: TrendingUp, to: '/pricing-calculator' },
     { label: 'Propostas', icon: FileText, to: '/proposals' },
     { label: 'Academy', icon: GraduationCap, to: '/academy' },

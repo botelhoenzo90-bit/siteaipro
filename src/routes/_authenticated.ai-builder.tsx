@@ -16,13 +16,44 @@ function AIBuilderPage() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
 
+  const [context, setContext] = useState("");
+  const [niche, setNiche] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [city, setCity] = useState("");
+  const [objective, setObjective] = useState("");
+  const [style, setStyle] = useState("");
+  const [colors, setColors] = useState("");
+
   const handleGenerate = () => {
+    if (!context || !niche) {
+      toast.error("Por favor, preencha pelo menos o nicho e a explicação do negócio.");
+      return;
+    }
+
     setLoading(true);
-    // Simulação de geração ultra detalhada baseada no contexto
+    
     setTimeout(() => {
-      setResult("PROMPT ULTRA DETALHADO (MODO EXPERT):\n\n[CONTEXTO DO NEGÓCIO ATIVADO]\nCrie uma landing page de conversão extrema para [NOME DA EMPRESA].\n\nESTRUTURA TÉCNICA:\n1. Hero: Headline com foco na dor do cliente, CTA em destaque.\n2. Prova Social: Grid de depoimentos e logos de parceiros.\n3. Oferta Irresistível: Seção de preços ancorada com bônus exclusivos.\n4. Design: Estilo moderno, animações em scroll, paleta de cores [CORES].\n\nCOPIA E ESTRATÉGIA:\nUse gatilhos de escassez e autoridade baseados no contexto do negócio fornecido. O tom de voz deve ser persuasivo e profissional...");
+      const generatedPrompt = `PROMPT ULTRA DETALHADO (MODO EXPERT) - SITEAI PRO v2.0
+==========================================================
+ESTRATÉGIA PARA: ${companyName || 'Empresa Local'} (${niche}) em ${city || 'Localização Não Definida'}
+OBJETIVO: ${objective || 'Conversão Máxima'}
+ESTILO VISUAL: ${style || 'Moderno'} | CORES: ${colors || 'Brand Colors'}
+
+CONTEXTO DO NEGÓCIO (INPUT DO USUÁRIO):
+"${context}"
+
+DIRETRIZES DE DESIGN E CÓPIA:
+1. HEADER: Focar no diferencial competitivo mencionado no contexto.
+2. HERO SECTION: Headline ultra-específica para o nicho ${niche}, usando o tom de voz adequado para o público-alvo.
+3. SEÇÃO DE VALOR: Transformar o contexto fornecido ("${context.substring(0, 100)}...") em 3 pilares de benefícios tangíveis.
+4. PROVA SOCIAL: Posicionamento estratégico baseado na autoridade local de ${city}.
+5. CTA: Chamada para ação focada em ${objective}.
+
+TÉCNICO: Layout responsivo, animações Framer Motion, Clean UI, tipografia premium.`;
+
+      setResult(generatedPrompt);
       setLoading(false);
-      toast.success("Prompt ultra detalhado gerado!");
+      toast.success("Prompt estratégico gerado com sucesso!");
     }, 2000);
   };
 
@@ -37,7 +68,7 @@ function AIBuilderPage() {
         <div className="grid grid-cols-2 gap-6">
           <div className="space-y-2">
             <Label>Tipo de Negócio</Label>
-            <Select>
+            <Select onValueChange={setNiche}>
               <SelectTrigger>
                 <SelectValue placeholder="Selecione o nicho" />
               </SelectTrigger>
@@ -50,15 +81,15 @@ function AIBuilderPage() {
           </div>
           <div className="space-y-2">
             <Label>Nome da Empresa</Label>
-            <Input placeholder="Ex: Clínica Harmony" />
+            <Input placeholder="Ex: Clínica Harmony" value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
           </div>
           <div className="space-y-2">
             <Label>Cidade</Label>
-            <Input placeholder="Ex: São Paulo" />
+            <Input placeholder="Ex: São Paulo" value={city} onChange={(e) => setCity(e.target.value)} />
           </div>
           <div className="space-y-2">
             <Label>Objetivo do Site</Label>
-            <Select>
+            <Select onValueChange={setObjective}>
               <SelectTrigger>
                 <SelectValue placeholder="Selecione o objetivo" />
               </SelectTrigger>
@@ -76,13 +107,15 @@ function AIBuilderPage() {
           <Textarea 
             placeholder="Descreva seu negócio, diferenciais, público-alvo e o que torna sua oferta única..." 
             className="min-h-[120px]"
+            value={context}
+            onChange={(e) => setContext(e.target.value)}
           />
         </div>
 
         <div className="grid grid-cols-2 gap-6">
           <div className="space-y-2">
             <Label>Estilo Visual</Label>
-            <Select>
+            <Select onValueChange={setStyle}>
               <SelectTrigger>
                 <SelectValue placeholder="Selecione o estilo" />
               </SelectTrigger>
@@ -95,7 +128,7 @@ function AIBuilderPage() {
           </div>
           <div className="space-y-2">
             <Label>Cores Desejadas</Label>
-            <Input placeholder="Ex: Dourado e Branco" />
+            <Input placeholder="Ex: Dourado e Branco" value={colors} onChange={(e) => setColors(e.target.value)} />
           </div>
         </div>
 

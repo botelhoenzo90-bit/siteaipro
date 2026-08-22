@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Search, MapPin, Instagram, Globe, Info, Target, MessageSquare, Lightbulb, ExternalLink } from "lucide-react";
+import { Search, MapPin, Globe, Info, Target, MessageSquare, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -36,7 +36,7 @@ function ProspectingPage() {
     },
     {
       title: "Instagram (Visual)",
-      icon: Instagram,
+      icon: Globe,
       desc: "Ideal para nichos de estética, gastronomia e moda.",
       tips: ["Busque por hashtags locais (#dentistasp)", "Analise a bio e o link da bio", "Dê um 'curtir' em posts recentes antes de chamar"]
     },
@@ -99,7 +99,7 @@ function ProspectingPage() {
                 <MapPin className="mr-2 h-4 w-4" /> Pesquisar no Google Maps
               </Button>
               <Button onClick={handleInstagramSearch} variant="outline" className="h-12 border-primary/30 hover:bg-primary/5">
-                <Instagram className="mr-2 h-4 w-4" /> Explorar no Instagram
+                <Globe className="mr-2 h-4 w-4" /> Explorar no Instagram
               </Button>
             </div>
           </div>
