@@ -29,7 +29,7 @@ function AuthPage() {
             Entrar com Google
           </Button>
           <Button variant="outline" className="h-12 border-border hover:bg-muted">
-            <Github className="mr-2 h-5 w-5" />
+            <Mail className="mr-2 h-5 w-5" />
             Entrar com GitHub
           </Button>
         </div>
