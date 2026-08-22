@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import { Zap, LayoutDashboard, Wand2, Users, FileText, GraduationCap, Library, User, TrendingUp, Search } from "lucide-react";
+import { Zap, LayoutDashboard, Wand2, Users, FileText, GraduationCap, Library, User, TrendingUp, Search, MessageSquare } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated")({

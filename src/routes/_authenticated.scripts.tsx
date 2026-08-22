@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MessageSquare, Copy, Check, Send, Phone, Instagram, Linkedin, Globe } from "lucide-react";
+import { MessageSquare, Copy, Check, Send, Phone, Camera, Briefcase, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
@@ -13,7 +13,7 @@ function ScriptsPage() {
   const scripts = [
     {
       category: "Instagram (Direct)",
-      icon: Instagram,
+      icon: Camera,
       color: "text-pink-500",
       items: [
         {
@@ -43,7 +43,7 @@ function ScriptsPage() {
     },
     {
       category: "LinkedIn (B2B)",
-      icon: Linkedin,
+      icon: Briefcase,
       color: "text-blue-600",
       items: [
         {
