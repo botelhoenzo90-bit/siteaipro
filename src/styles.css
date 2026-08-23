@@ -146,3 +146,25 @@
 #lovable-badge {
   display: none !important;
 }
+@utility grid-bg {
+  background-image: 
+    linear-gradient(to right, oklch(1 0 0 / 5%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 5%) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@utility scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--color-primary), transparent);
+  opacity: 0.3;
+  animation: scanline 8s linear infinite;
+}
