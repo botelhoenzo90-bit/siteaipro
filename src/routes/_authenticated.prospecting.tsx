@@ -101,17 +101,17 @@ function ProspectingPage() {
         <Card className="p-8 border-border bg-card">
            <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
              <Target className="h-5 w-5 text-primary" />
-             OndeProspectar (Ideas VIP)
+             Estratégias Avançadas (Ideas VIP)
            </h4>
            <div className="space-y-4">
                {[
-                   "Eventos locais de networking (ACIP, SEBRAE).",
-                   "Páginas de anúncios do Facebook (verifique se estão investindo).",
-                   "Listas de novas empresas abertas no portal do governo.",
-                   "Diretórios de sindicatos setoriais.",
-                   "Feiras setoriais (mesmo que online)."
+                   "LinkedIn: Filtre por 'Decisor' em empresas de 11-50 funcionários.",
+                   "E-mail Frio: Use o script de análise gratuita para quebrar o gelo.",
+                   "Facebook Ads Library: Veja se o cliente já investe em tráfego.",
+                   "Google My Business: Aborde quem não tem fotos atualizadas.",
+                   "Portais de Notícias Locais: Veja quem está expandindo o negócio."
                ].map((item, i) => (
-                   <div key={i} className="flex gap-3 text-sm p-3 bg-muted/30 rounded-lg">
+                   <div key={i} className="flex gap-3 text-sm p-3 bg-muted/30 rounded-lg border border-border/50 hover:border-primary/30 transition-colors">
                        <Zap className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                        {item}
                    </div>
