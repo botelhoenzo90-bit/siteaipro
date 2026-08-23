@@ -339,8 +339,8 @@ function LandingPage() {
         }
         .animate-marquee {
           display: flex;
-          width: 200%;
-          animation: marquee 40s linear infinite;
+          width: fit-content;
+          animation: marquee 30s linear infinite;
         }
         .animate-marquee:hover {
           animation-play-state: paused;
