@@ -18,8 +18,7 @@ function AuthenticatedLayout() {
     { label: 'Prospecção', icon: Search, to: '/prospecting' },
     { label: 'Scripts', icon: MessageSquare, to: '/scripts' },
     { label: 'Calculadora', icon: TrendingUp, to: '/pricing-calculator' },
-    { label: 'Propostas', icon: FileText, to: '/proposals' },
-    { label: 'Academy', icon: GraduationCap, to: '/academy' },
+    { label: 'Calculadora', icon: TrendingUp, to: '/pricing-calculator' },
     { label: 'Biblioteca', icon: Library, to: '/library' },
     { label: 'Perfil', icon: User, to: '/profile' },
   ];
