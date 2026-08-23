@@ -7,6 +7,18 @@ import { Card } from "@/components/ui/card";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
+  head: () => ({
+    title: "SiteAI Pro | Criador de Sites Corporativos com IA",
+    meta: [
+      {
+        name: "description",
+        content: "A maior plataforma futurista de criação estratégica de sites com Inteligência Artificial para agências e freelancers. Design premium em minutos.",
+      },
+      { property: "og:title", content: "SiteAI Pro | Design Futurista e IA" },
+      { property: "og:description", content: "Crie sites corporativos de alta conversão com nossa inteligência artificial de elite." },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
 });
 
 function LandingPage() {
@@ -18,8 +30,14 @@ function LandingPage() {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 relative overflow-x-hidden">
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.03] pointer-events-none" />
+    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 relative overflow-x-hidden grid-bg">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="scanline" />
+        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
+        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
+        <div className="absolute top-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="absolute bottom-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      </div>
       
       {/* Urgent Top Banner */}
       <div className="bg-primary py-2.5 text-center text-[10px] sm:text-xs font-black text-primary-foreground uppercase tracking-widest px-4">
@@ -57,13 +75,40 @@ function LandingPage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative px-4 pt-24 pb-32 text-center overflow-hidden">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.2),transparent_60%)]" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_70%)]" />
+          <motion.div 
+            animate={{ 
+              opacity: [0.1, 0.3, 0.1],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] -z-20 pointer-events-none" 
+          />
           <motion.div 
             initial={{ opacity: 0, y: 30 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8 }}
             className="container mx-auto"
           >
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10">
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  animate={{
+                    x: ["-100%", "200%"],
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 5 + i * 2,
+                    repeat: Infinity,
+                    delay: i * 3,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute h-[1px] w-64 bg-gradient-to-r from-transparent via-primary to-transparent"
+                  style={{ top: `${15 + i * 15}%`, left: 0 }}
+                />
+              ))}
+            </div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-black uppercase tracking-widest mb-8">
               <Sparkles className="h-3 w-3" /> Inteligência Artificial de Elite
             </div>
@@ -176,7 +221,8 @@ function LandingPage() {
 
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 {/* Mensal */}
-                <div className="p-10 rounded-[2.5rem] border border-border bg-card/50 glass flex flex-col justify-between group hover:border-primary/30 transition-all relative overflow-hidden">
+                <div className="p-10 rounded-[2.5rem] border border-border bg-card/20 glass flex flex-col justify-between group hover:border-primary/30 transition-all relative overflow-hidden">
+                    <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                     <div>
                         <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">Mensal</h3>
                         <p className="text-muted-foreground text-sm font-medium mb-8">Acesso completo com flexibilidade total.</p>
@@ -204,6 +250,7 @@ function LandingPage() {
 
                 {/* Vitalício */}
                 <div className="p-10 rounded-[2.5rem] border-2 border-primary bg-primary/5 glass flex flex-col justify-between group relative overflow-hidden shadow-2xl shadow-primary/20">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.2),transparent_70%)]" />
                     <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-black uppercase px-4 py-2 rounded-bl-2xl tracking-widest z-10">Melhor custo-benefício</div>
                     <div className="absolute -top-24 -right-24 h-64 w-64 bg-primary/10 rounded-full blur-3xl" />
                     
