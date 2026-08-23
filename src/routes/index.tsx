@@ -91,21 +91,26 @@ function LandingPage() {
             className="container mx-auto"
           >
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10">
-              {[...Array(6)].map((_, i) => (
+              {[...Array(12)].map((_, i) => (
                 <motion.div
                   key={i}
                   animate={{
                     x: ["-100%", "200%"],
                     opacity: [0, 1, 0],
+                    scaleX: [1, 1.5, 1],
                   }}
                   transition={{
-                    duration: 5 + i * 2,
+                    duration: 3 + Math.random() * 5,
                     repeat: Infinity,
-                    delay: i * 3,
+                    delay: i * 2,
                     ease: "easeInOut",
                   }}
-                  className="absolute h-[1px] w-64 bg-gradient-to-r from-transparent via-primary to-transparent"
-                  style={{ top: `${15 + i * 15}%`, left: 0 }}
+                  className="absolute h-[2px] w-96 bg-gradient-to-r from-transparent via-primary to-transparent"
+                  style={{ 
+                    top: `${10 + i * 8}%`, 
+                    left: 0,
+                    filter: "blur(1px) drop-shadow(0 0 10px rgba(59, 130, 246, 0.8))"
+                  }}
                 />
               ))}
             </div>
