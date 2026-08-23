@@ -63,7 +63,15 @@ function LandingPage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative px-4 pt-24 pb-32 text-center overflow-hidden">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.2),transparent_60%)]" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_70%)]" />
+          <motion.div 
+            animate={{ 
+              opacity: [0.1, 0.3, 0.1],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] -z-20 pointer-events-none" 
+          />
           <motion.div 
             initial={{ opacity: 0, y: 30 }} 
             animate={{ opacity: 1, y: 0 }} 
