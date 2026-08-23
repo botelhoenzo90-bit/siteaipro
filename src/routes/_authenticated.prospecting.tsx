@@ -121,19 +121,28 @@ function ProspectingPage() {
       </div>
 
       {/* Script Section */}
-      <Card className="p-8 border-primary/20 bg-primary/5">
-        <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
-            <MessageSquare className="h-5 w-5 text-primary" />
-            Sessão de Scripts de Abordagem
-        </h4>
-        <div className="text-sm space-y-6">
-            <div className="bg-white/5 p-6 rounded-xl border border-white/5">
-                <p className="font-bold mb-2">Abordagem para Google Maps:</p>
-                <p className="text-muted-foreground italic">"Olá [Nome], vi sua empresa em destaque no Maps, mas notei que o site de vocês não está otimizado para celulares. Sou especialista em sites rápidos que aumentam as vendas locais. Posso te enviar uma breve análise?"</p>
+      <Card className="p-8 border-primary/20 bg-primary/5 rounded-3xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+            <h4 className="text-xl font-black flex items-center gap-2 uppercase tracking-tighter">
+                <MessageSquare className="h-6 w-6 text-primary" />
+                Sessão de Scripts Rápidos
+            </h4>
+            <Button variant="outline" className="text-xs font-black uppercase tracking-widest border-primary/20" asChild>
+                <Link to="/scripts">Ver Todos os Scripts <ChevronRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-background/40 p-6 rounded-2xl border border-border/50 glass hover:border-primary/30 transition-colors">
+                <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-3">Google Maps (Cold)</p>
+                <p className="text-sm text-foreground italic leading-relaxed">
+                    "Olá [Nome], vi sua empresa em destaque no Maps, mas notei que o site de vocês não está otimizado para celulares. Sou especialista em sites rápidos que aumentam as vendas locais. Posso te enviar uma breve análise?"
+                </p>
             </div>
-            <div className="bg-white/5 p-6 rounded-xl border border-white/5">
-                <p className="font-bold mb-2">Abordagem para Instagram:</p>
-                <p className="text-muted-foreground italic">"Oi [Nome], acompanho o trabalho da [Empresa] e vejo um potencial enorme para atrair mais clientes com um site que conecte seus posts diretamente ao WhatsApp. Topa ver um modelo de site focado no seu nicho?"</p>
+            <div className="bg-background/40 p-6 rounded-2xl border border-border/50 glass hover:border-primary/30 transition-colors">
+                <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-3">Instagram (Direct)</p>
+                <p className="text-sm text-foreground italic leading-relaxed">
+                    "Oi [Nome], acompanho o trabalho da [Empresa] e vejo um potencial enorme para atrair mais clientes com um site que conecte seus posts diretamente ao WhatsApp. Topa ver um modelo de site focado no seu nicho?"
+                </p>
             </div>
         </div>
       </Card>
