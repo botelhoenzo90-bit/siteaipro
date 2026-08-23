@@ -56,131 +56,104 @@ function AIBuilderPage() {
     setLoading(true);
     
     setTimeout(() => {
-      const generatedPrompt = `Crie um site profissional, moderno e de alta conversão para:
+      const generatedPrompt = `Crie o MELHOR SITE POSSÍVEL para a empresa abaixo, interpretando todas as informações fornecidas e transformando-as em um projeto único, profissional e altamente personalizado.
 
-Nome da empresa:
-${companyName}
+INFORMAÇÕES:
+Empresa: ${companyName}
+Nicho: ${niche}
+Cidade: ${city || 'Brasil'}
+Objetivo: ${objective || 'Conversão'}
+Público-alvo: ${targetAudience || 'Clientes em potencial'}
+Diferencial: ${mainBenefit || 'Qualidade e Profissionalismo'}
+Contexto: ${context}
+Estilo visual: ${style || 'Moderno'}
+Tom de voz: ${toneVoice || 'Profissional'}
+Cores desejadas: ${colors || 'A definir'}
 
-Segmento:
-${niche}
+IMPORTANTE:
+Não apenas preencha um template. Analise e CRUZE todas essas informações antes de definir o site.
 
-Localização:
-${city || 'Brasil'}
+O nicho escolhido, o público, o objetivo, o contexto, o diferencial, o estilo e as cores devem determinar a aparência, estrutura, imagens, copy, componentes e experiência do site.
 
-Objetivo principal do site:
-${objective || 'Conversão'}
+Crie um projeto que pareça ter sido desenvolvido exclusivamente para essa empresa por uma agência digital premium.
 
-Público-alvo:
-${targetAudience || 'Clientes em potencial'}
+DESIGN:
+O site deve ser extremamente bonito, moderno, sofisticado, elegante e visualmente impressionante.
 
-Diferencial principal:
-${mainBenefit || 'Qualidade e Profissionalismo'}
+Crie uma direção de arte própria para o nicho escolhido. Escolha cuidadosamente:
+- tipografia
+- hierarquia visual
+- espaçamento
+- composição
+- proporções
+- formas
+- ícones
+- bordas
+- sombras
+- contrastes
+- elementos decorativos
+- animações
 
-Contexto completo da empresa:
-${context}
+As CORES INFORMADAS devem ser utilizadas como base da identidade visual, criando uma paleta profissional e harmoniosa. Não espalhe as cores aleatoriamente.
 
-Direção visual:
+O estilo visual informado deve ser respeitado em todo o projeto.
 
-Estilo:
-${style || 'Moderno'}
+IMAGENS:
+Utilize imagens grandes, bonitas, profissionais e diretamente relacionadas ao nicho. Não faça um site somente com textos e cards.
 
-Tom de comunicação:
-${toneVoice || 'Profissional'}
+As imagens devem aparecer principalmente no Hero e nas seções onde ajudam a apresentar serviços, produtos, ambiente, profissionais, projetos ou resultados.
 
-Cores:
-${colors || 'A definir'}
+Escolha imagens que combinem com o público e com o posicionamento da empresa. Nunca utilize imagens aleatórias apenas para preencher espaço.
 
-Crie um site com aparência premium, como se tivesse sido desenvolvido por uma agência profissional especializada.
+ESTRUTURA:
+Não use sempre a mesma estrutura.
 
-O site deve transmitir confiança, autoridade, profissionalismo e incentivar o visitante a entrar em contato.
+Escolha as melhores seções para aquele negócio, podendo utilizar:
+Hero, Sobre, Benefícios, Serviços, Produtos, Como Funciona, Diferenciais, Portfólio, Galeria, Resultados, Depoimentos, FAQ, Contato e CTA final.
 
-ESTRUTURA DO SITE:
+A estrutura deve contar uma história e conduzir o visitante de:
+ATENÇÃO → INTERESSE → CONFIANÇA → DESEJO → AÇÃO.
 
-1. HERO SECTION
-Criar uma primeira tela extremamente impactante.
-Adicionar:
-- Título principal forte e persuasivo.
-- Subtítulo explicando claramente a solução.
-- Botão de ação principal.
-- Imagem profissional relacionada ao negócio.
-- Elementos visuais modernos.
-A primeira dobra deve explicar rapidamente:
-Quem é a empresa.
-O que ela oferece.
-Por que escolher essa empresa.
+SERVIÇOS:
+Apresente os serviços de maneira visual e sofisticada. Use cards, imagens, carrosséis, sliders, tabs ou outros componentes quando fizer sentido. Evite uma página cheia de cards iguais.
 
-2. SOBRE A EMPRESA
-Criar uma apresentação estratégica.
-Adicionar:
-- História da empresa.
-- Missão.
-- Valores.
-- Experiência.
-- Autoridade.
+HERO:
+Crie uma primeira dobra excepcional, com headline específica, subheadline, CTA forte e imagem/composição visual relacionada ao negócio. O visitante deve entender imediatamente o que a empresa faz e por que deveria continuar navegando.
 
-3. SERVIÇOS
-Criar uma seção profissional apresentando os serviços.
-Usar cards modernos ou carrossel horizontal.
-Cada serviço deve possuir:
-- Nome.
-- Descrição.
-- Benefício para o cliente.
-- Ícone ou imagem.
+COPY:
+Crie textos específicos utilizando o contexto fornecido. O conteúdo deve combinar com o tom de voz e público. Não use frases genéricas e não invente informações.
 
-4. BENEFÍCIOS E DIFERENCIAIS
-Criar uma seção mostrando:
-- Principais vantagens.
-- Diferenciais competitivos.
-- Motivos para escolher a empresa.
-
-5. COMO FUNCIONA
-Criar uma seção em etapas:
-Etapa 1: Primeiro contato.
-Etapa 2: Análise da necessidade.
-Etapa 3: Execução do serviço.
-Etapa 4: Entrega do resultado.
-Usar design visual moderno.
-
-6. PROVA SOCIAL
-Criar uma seção de depoimentos.
-Adicionar: Carrossel de depoimentos deslizante.
-Cada card: Foto, Nome, Avaliação, Comentário.
-Criar movimento suave e elegante.
-
-7. PORTFÓLIO / RESULTADOS
-Criar uma área visual mostrando: Projetos, Trabalhos realizados, Resultados, Antes e depois quando aplicável.
-
-8. FAQ
-Criar uma seção de perguntas frequentes.
-Adicionar perguntas estratégicas para eliminar dúvidas e objeções.
-Criar aproximadamente 6 perguntas com respostas profissionais.
-
-9. CTA FINAL
-Criar uma chamada forte para conversão.
-Adicionar: Frase persuasiva, Botão WhatsApp, Incentivo para solicitar orçamento ou agendamento.
-
-10. FOOTER
-Criar rodapé profissional com: Logo, Contatos, Redes sociais, Endereço.
-
-REQUISITOS DE DESIGN:
-O site deve ter:
-- Design premium.
-- Aparência exclusiva.
-- Responsividade completa.
-- Mobile first.
-- Animações suaves.
-- Tipografia moderna.
-- Espaçamento profissional.
-- Excelente experiência visual.
+CONVERSÃO:
+O site deve ser bonito E estratégico. Destaque benefícios, diferenciais, confiança e CTAs de acordo com o objetivo informado.
 
 DIRETRIZ OBRIGATÓRIA DE CONVERSÃO:
 - O site DEVE possuir botões de chamada para ação (CTA) em TODAS as seções sem exceção.
 - Todos os botões do site devem direcionar o usuário para o WhatsApp da empresa.
-- As chamadas nos botões devem ser persuasivas e variadas (ex: "Falar com Especialista", "Solicitar Orçamento", "Agendar agora").
 
-Evitar qualquer aparência de template pronto.
-O resultado deve parecer um projeto desenvolvido por uma agência profissional de criação de sites.
-Priorizar: Conversão via WhatsApp, Confiança, Autoridade, Clareza da oferta, Experiência do usuário.`;
+FAQ:
+Quando fizer sentido, criar 5–8 perguntas relevantes ao negócio em um accordion elegante.
+
+DEPOIMENTOS:
+Quando existirem informações reais, apresentar em um carrossel moderno e elegante. Nunca inventar clientes ou avaliações.
+
+UX E RESPONSIVIDADE:
+Criar experiência excelente em desktop e mobile. Navegação intuitiva, botões claros, carrosséis funcionais, espaçamento adequado e nenhum elemento quebrado ou cortado.
+
+ANIMAÇÕES:
+Adicionar microinterações, hover effects, transições e animações suaves ao scroll quando agregarem qualidade. Nada exagerado.
+
+REGRA FINAL:
+Não entregue um site apenas funcional.
+
+Entregue uma experiência digital IMPECÁVEL, bonita, sofisticada, moderna, personalizada e memorável.
+
+Se o resultado parecer um template genérico, REFAÇA a direção visual.
+
+O objetivo é que o cliente veja o site e pense:
+"Isso parece ter sido feito especificamente para a minha empresa."
+
+PRIORIDADE:
+PERSONALIZAÇÃO + DIREÇÃO DE ARTE + IMAGENS + DESIGN + UX + CONVERSÃO.`;
 
       setResult(generatedPrompt);
       setLoading(false);
