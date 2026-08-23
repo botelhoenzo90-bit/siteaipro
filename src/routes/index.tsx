@@ -7,6 +7,18 @@ import { Card } from "@/components/ui/card";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
+  head: () => ({
+    title: "SiteAI Pro | Criador de Sites Corporativos com IA",
+    meta: [
+      {
+        name: "description",
+        content: "A maior plataforma futurista de criação estratégica de sites com Inteligência Artificial para agências e freelancers. Design premium em minutos.",
+      },
+      { property: "og:title", content: "SiteAI Pro | Design Futurista e IA" },
+      { property: "og:description", content: "Crie sites corporativos de alta conversão com nossa inteligência artificial de elite." },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
 });
 
 function LandingPage() {
