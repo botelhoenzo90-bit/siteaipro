@@ -36,14 +36,14 @@ function ProspectingPage() {
         className="flex flex-col md:flex-row md:items-center justify-between gap-4"
       >
         <div>
-          <h1 className="text-4xl font-bold tracking-tight">Prospecção Ativa</h1>
-          <p className="text-muted-foreground mt-2">Encontre e aborde clientes de alto valor com nossas ferramentas de prospecção.</p>
+          <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Prospecção Ativa</h1>
+          <p className="text-muted-foreground mt-2 text-sm font-medium">Encontre e aborde clientes de alto valor com nossas ferramentas de prospecção.</p>
         </div>
       </motion.div>
 
       {/* Main Search Panel */}
       <Card className="p-8 glass border-primary/20 space-y-6">
-        <h3 className="text-xl font-bold flex items-center gap-2">
+        <h3 className="text-xl font-black flex items-center gap-2 uppercase tracking-tighter">
           <Search className="h-6 w-6 text-primary" /> 
           Gerador de Oportunidades
         </h3>
@@ -73,11 +73,11 @@ function ProspectingPage() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Button onClick={handleMapsSearch} className="h-14 gradient-brand border-0 text-lg">
-            <MapPin className="mr-2 h-5 w-5" /> Pesquisar no Google Maps
+          <Button onClick={handleMapsSearch} className="h-16 gradient-brand border-0 text-lg font-black uppercase tracking-widest shadow-xl shadow-primary/20">
+            <MapPin className="mr-2 h-6 w-6" /> Pesquisar no Google Maps
           </Button>
-          <Button onClick={handleInstagramSearch} variant="outline" className="h-14 border-primary/30 hover:bg-primary/5 text-lg">
-            <Globe className="mr-2 h-5 w-5" /> Explorar no Instagram
+          <Button onClick={handleInstagramSearch} variant="outline" className="h-16 border-border/60 hover:bg-primary/5 text-lg font-black uppercase tracking-widest">
+            <Globe className="mr-2 h-6 w-6" /> Explorar no Instagram
           </Button>
         </div>
       </Card>

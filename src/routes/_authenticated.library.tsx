@@ -7,8 +7,8 @@ export const Route = createFileRoute("/_authenticated/library")({
   component: () => (
     <div className="space-y-10">
       <div>
-        <h1 className="text-4xl font-bold tracking-tight text-foreground">Biblioteca Premium</h1>
-        <p className="text-muted-foreground mt-2">Templates, blocos de código e prompts testados para converter mais.</p>
+        <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Biblioteca Premium</h1>
+        <p className="text-muted-foreground mt-2 text-sm font-medium">Templates, blocos de código e prompts testados para converter mais.</p>
       </div>
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
