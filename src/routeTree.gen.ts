@@ -18,7 +18,6 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedLibraryRouteImport } from './routes/_authenticated.library'
 import { Route as AuthenticatedPricingCalculatorRouteImport } from './routes/_authenticated.pricing-calculator'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated.profile'
-import { Route as AuthenticatedProposalsRouteImport } from './routes/_authenticated.proposals'
 import { Route as AuthenticatedProspectingRouteImport } from './routes/_authenticated.prospecting'
 import { Route as AuthenticatedScriptsRouteImport } from './routes/_authenticated.scripts'
 
@@ -67,11 +66,6 @@ const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
-const AuthenticatedProposalsRoute = AuthenticatedProposalsRouteImport.update({
-  id: '/proposals',
-  path: '/proposals',
-  getParentRoute: () => AuthenticatedRoute,
-} as any)
 const AuthenticatedProspectingRoute =
   AuthenticatedProspectingRouteImport.update({
     id: '/prospecting',
@@ -93,7 +87,6 @@ export interface FileRoutesByFullPath {
   '/library': typeof AuthenticatedLibraryRoute
   '/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/profile': typeof AuthenticatedProfileRoute
-  '/proposals': typeof AuthenticatedProposalsRoute
   '/prospecting': typeof AuthenticatedProspectingRoute
   '/scripts': typeof AuthenticatedScriptsRoute
 }
@@ -106,7 +99,6 @@ export interface FileRoutesByTo {
   '/library': typeof AuthenticatedLibraryRoute
   '/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/profile': typeof AuthenticatedProfileRoute
-  '/proposals': typeof AuthenticatedProposalsRoute
   '/prospecting': typeof AuthenticatedProspectingRoute
   '/scripts': typeof AuthenticatedScriptsRoute
 }
@@ -121,7 +113,6 @@ export interface FileRoutesById {
   '/_authenticated/library': typeof AuthenticatedLibraryRoute
   '/_authenticated/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
-  '/_authenticated/proposals': typeof AuthenticatedProposalsRoute
   '/_authenticated/prospecting': typeof AuthenticatedProspectingRoute
   '/_authenticated/scripts': typeof AuthenticatedScriptsRoute
 }
@@ -136,7 +127,6 @@ export interface FileRouteTypes {
     | '/library'
     | '/pricing-calculator'
     | '/profile'
-    | '/proposals'
     | '/prospecting'
     | '/scripts'
   fileRoutesByTo: FileRoutesByTo
@@ -149,7 +139,6 @@ export interface FileRouteTypes {
     | '/library'
     | '/pricing-calculator'
     | '/profile'
-    | '/proposals'
     | '/prospecting'
     | '/scripts'
   id:
@@ -163,7 +152,6 @@ export interface FileRouteTypes {
     | '/_authenticated/library'
     | '/_authenticated/pricing-calculator'
     | '/_authenticated/profile'
-    | '/_authenticated/proposals'
     | '/_authenticated/prospecting'
     | '/_authenticated/scripts'
   fileRoutesById: FileRoutesById
@@ -239,13 +227,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/proposals': {
-      id: '/_authenticated/proposals'
-      path: '/proposals'
-      fullPath: '/proposals'
-      preLoaderRoute: typeof AuthenticatedProposalsRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
     '/_authenticated/prospecting': {
       id: '/_authenticated/prospecting'
       path: '/prospecting'
@@ -270,7 +251,6 @@ interface AuthenticatedRouteChildren {
   AuthenticatedLibraryRoute: typeof AuthenticatedLibraryRoute
   AuthenticatedPricingCalculatorRoute: typeof AuthenticatedPricingCalculatorRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
-  AuthenticatedProposalsRoute: typeof AuthenticatedProposalsRoute
   AuthenticatedProspectingRoute: typeof AuthenticatedProspectingRoute
   AuthenticatedScriptsRoute: typeof AuthenticatedScriptsRoute
 }
@@ -282,7 +262,6 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedLibraryRoute: AuthenticatedLibraryRoute,
   AuthenticatedPricingCalculatorRoute: AuthenticatedPricingCalculatorRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
-  AuthenticatedProposalsRoute: AuthenticatedProposalsRoute,
   AuthenticatedProspectingRoute: AuthenticatedProspectingRoute,
   AuthenticatedScriptsRoute: AuthenticatedScriptsRoute,
 }
