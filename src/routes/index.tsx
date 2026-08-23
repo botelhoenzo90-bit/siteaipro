@@ -303,6 +303,17 @@ function LandingPage() {
                     <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mx-auto md:mx-0">
                         A maior plataforma de criação estratégica de sites com Inteligência Artificial para agências e freelancers do Brasil.
                     </p>
+                    <div className="flex justify-center md:justify-start gap-4">
+                        <a href="#" className="h-12 w-12 rounded-xl bg-card border border-border/50 flex items-center justify-center hover:bg-primary/10 transition-colors group">
+                            <Camera className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
+                        </a>
+                        <a href="#" className="h-12 w-12 rounded-xl bg-card border border-border/50 flex items-center justify-center hover:bg-primary/10 transition-colors group">
+                            <MessageSquare className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
+                        </a>
+                        <a href="#" className="h-12 w-12 rounded-xl bg-card border border-border/50 flex items-center justify-center hover:bg-primary/10 transition-colors group">
+                            <Zap className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
+                        </a>
+                    </div>
                 </div>
                 <div className="space-y-6">
                     <h4 className="text-xs font-black uppercase tracking-widest text-foreground">Menu</h4>
