@@ -33,14 +33,19 @@ function LandingPage() {
     <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 relative overflow-x-hidden grid-bg">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="scanline" />
-        <div className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-primary/30 to-transparent blur-[1px]" />
-        <div className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-primary/30 to-transparent blur-[1px]" />
-        <div className="absolute top-1/4 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-[1px]" />
-        <div className="absolute bottom-1/4 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-[1px]" />
+        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/10 to-transparent" />
+        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/10 to-transparent" />
+        <div className="absolute top-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
+        <div className="absolute bottom-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
+        
+        {/* Glowing Orbs */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 blur-[120px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+        
         <motion.div 
-          animate={{ opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 4, repeat: Infinity }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.1),transparent_50%),radial-gradient(circle_at_80%_70%,rgba(168,85,247,0.1),transparent_50%)]"
+          animate={{ opacity: [0.05, 0.15, 0.05] }}
+          transition={{ duration: 6, repeat: Infinity }}
+          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.05),transparent_50%),radial-gradient(circle_at_80%_70%,rgba(168,85,247,0.05),transparent_50%)]"
         />
       </div>
       
@@ -172,21 +177,21 @@ function LandingPage() {
                 </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                 {[
-                    { title: "AI Builder Pro", desc: "Gere sites completos, copy e estrutura em segundos com prompts expert v3.0.", icon: Wand2, color: "from-blue-500/20 to-cyan-500/20" },
-                    { title: "Prospecção VIP", desc: "Localize empresas que precisam de um site agora e aborde com scripts validados.", icon: Search, color: "from-purple-500/20 to-pink-500/20" },
-                    { title: "Pricing Engine", desc: "Calcule orçamentos precisos com margem de lucro real e preços sugeridos.", icon: Calculator, color: "from-orange-500/20 to-yellow-500/20" },
-                    { title: "Library Premium", desc: "Acesse centenas de templates e blocos de código prontos para conversão.", icon: Library, color: "from-green-500/20 to-emerald-500/20" },
-                    { title: "Academy", desc: "Aprenda a escalar sua agência para faturar 5 dígitos por mês com nossa metodologia.", icon: GraduationCap, color: "from-red-500/20 to-rose-500/20" },
-                    { title: "White Label", desc: "Apresente os resultados com sua marca e encante seus clientes.", icon: Shield, color: "from-indigo-500/20 to-blue-500/20" },
+                    { title: "AI Builder Pro", desc: "Gere sites completos, copy e estrutura em segundos com prompts expert v3.0.", icon: Wand2, color: "from-blue-500/10 to-cyan-500/10" },
+                    { title: "Prospecção VIP", desc: "Localize empresas que precisam de um site agora e aborde com scripts validados.", icon: Search, color: "from-purple-500/10 to-pink-500/10" },
+                    { title: "Pricing Engine", desc: "Calcule orçamentos precisos com margem de lucro real e preços sugeridos.", icon: Calculator, color: "from-orange-500/10 to-yellow-500/10" },
+                    { title: "Library Premium", desc: "Acesse centenas de templates e blocos de código prontos para conversão.", icon: Library, color: "from-green-500/10 to-emerald-500/10" },
+                    { title: "Academy", desc: "Aprenda a escalar sua agência para faturar 5 dígitos por mês com nossa metodologia.", icon: GraduationCap, color: "from-red-500/10 to-rose-500/10" },
+                    { title: "White Label", desc: "Apresente os resultados com sua marca e encante seus clientes.", icon: Shield, color: "from-indigo-500/10 to-blue-500/10" },
                 ].map((f, i) => (
-                    <Card key={i} className="group p-10 min-h-[320px] border-border/50 bg-card/50 hover:border-primary/50 transition-all glass relative overflow-hidden flex flex-col justify-center">
-                        <div className={`absolute -top-24 -right-24 h-48 w-48 bg-gradient-to-br ${f.color} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`} />
+                    <Card key={i} className="group p-12 min-h-[400px] border-border/30 bg-card/20 hover:border-primary/50 transition-all glass relative overflow-hidden flex flex-col justify-center shadow-2xl hover:shadow-primary/5">
+                        <div className={`absolute -top-24 -right-24 h-64 w-64 bg-gradient-to-br ${f.color} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`} />
                         <div className="relative z-10">
-                            <f.icon className="h-14 w-14 text-primary mb-8 group-hover:scale-110 transition-transform group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
-                            <h3 className="text-2xl font-black uppercase mb-6 tracking-tighter">{f.title}</h3>
-                            <p className="text-muted-foreground text-base leading-relaxed">{f.desc}</p>
+                            <f.icon className="h-16 w-16 text-primary mb-10 group-hover:scale-110 transition-transform group-hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.6)]" />
+                            <h3 className="text-3xl font-black uppercase mb-8 tracking-tighter leading-none">{f.title}</h3>
+                            <p className="text-muted-foreground text-lg leading-relaxed">{f.desc}</p>
                         </div>
                     </Card>
                 ))}
