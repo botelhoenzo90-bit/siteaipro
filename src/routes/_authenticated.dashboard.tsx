@@ -118,8 +118,8 @@ function DashboardPage() {
           </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="p-6 border-border/50 glass hover:border-primary/20 transition-colors cursor-pointer group" asChild>
-              <Link to="/prospecting">
+          <Card className="p-6 border-border/50 glass hover:border-primary/20 transition-colors cursor-pointer group">
+              <Link to="/prospecting" className="block">
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="font-bold">Prospecção Ativa</h4>
                   <Users className="h-5 w-5 text-primary" />
@@ -130,8 +130,8 @@ function DashboardPage() {
                 </div>
               </Link>
             </Card>
-            <Card className="p-6 border-border/50 glass hover:border-primary/20 transition-colors cursor-pointer group" asChild>
-              <Link to="/library">
+            <Card className="p-6 border-border/50 glass hover:border-primary/20 transition-colors cursor-pointer group">
+              <Link to="/library" className="block">
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="font-bold">Biblioteca Premium</h4>
                   <Library className="h-5 w-5 text-purple-500" />
