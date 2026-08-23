@@ -134,13 +134,34 @@ function PricingCalculatorPage() {
             </CardContent>
           </Card>
           
-          <div className="p-6 rounded-2xl border border-primary/20 bg-primary/5 flex gap-4">
-            <Info className="h-6 w-6 text-primary shrink-0" />
-            <div className="text-sm space-y-2">
-              <p className="font-bold text-primary">Preço Sugerido (Mercado)</p>
-              <p className="text-muted-foreground leading-relaxed">
-                Para um projeto padrão de 5 páginas com complexidade média, o valor sugerido de **R$ 550** é excelente para ganhar volume, mas lembre-se de ajustar conforme seu custo de vida e ferramentas.
-              </p>
+          <div className="p-6 rounded-2xl border border-primary/20 bg-primary/5 space-y-4">
+            <div className="flex gap-4">
+              <Info className="h-6 w-6 text-primary shrink-0" />
+              <div className="text-sm space-y-2">
+                <p className="font-bold text-primary">Preços Sugeridos por Ocasião</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                  <div className="p-3 bg-background rounded-xl border border-border">
+                    <p className="font-bold text-xs uppercase text-muted-foreground">Iniciante / Portfólio</p>
+                    <p className="text-lg font-black text-foreground">R$ 550 - R$ 900</p>
+                    <p className="text-[10px] text-muted-foreground">Ideal para Landing Pages simples e ganhar autoridade.</p>
+                  </div>
+                  <div className="p-3 bg-background rounded-xl border border-border">
+                    <p className="font-bold text-xs uppercase text-muted-foreground">Profissional / Agência</p>
+                    <p className="text-lg font-black text-foreground">R$ 1.500 - R$ 3.500</p>
+                    <p className="text-[10px] text-muted-foreground">Projetos com copy, SEO e integração de leads.</p>
+                  </div>
+                  <div className="p-3 bg-background rounded-xl border border-border">
+                    <p className="font-bold text-xs uppercase text-muted-foreground">Premium / Custom</p>
+                    <p className="text-lg font-black text-foreground">R$ 5.000+</p>
+                    <p className="text-[10px] text-muted-foreground">Sistemas complexos, dashboards ou e-commerce robusto.</p>
+                  </div>
+                  <div className="p-3 bg-background rounded-xl border border-primary/20 bg-primary/5">
+                    <p className="font-bold text-xs uppercase text-primary">Manutenção Mensal</p>
+                    <p className="text-lg font-black text-primary">R$ 150 - R$ 450</p>
+                    <p className="text-[10px] text-primary/70">Receita recorrente vitalícia por projeto.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
