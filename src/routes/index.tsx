@@ -33,10 +33,15 @@ function LandingPage() {
     <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 relative overflow-x-hidden grid-bg">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="scanline" />
-        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
-        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
-        <div className="absolute top-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-        <div className="absolute bottom-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-primary/30 to-transparent blur-[1px]" />
+        <div className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-primary/30 to-transparent blur-[1px]" />
+        <div className="absolute top-1/4 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-[1px]" />
+        <div className="absolute bottom-1/4 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-[1px]" />
+        <motion.div 
+          animate={{ opacity: [0.1, 0.2, 0.1] }}
+          transition={{ duration: 4, repeat: Infinity }}
+          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.1),transparent_50%),radial-gradient(circle_at_80%_70%,rgba(168,85,247,0.1),transparent_50%)]"
+        />
       </div>
       
       {/* Urgent Top Banner */}
