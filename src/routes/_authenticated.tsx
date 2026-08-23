@@ -26,8 +26,10 @@ function AuthenticatedLayout() {
   const SidebarContent = ({ isMobile = false }) => (
     <div className="flex flex-col h-full bg-card/40 backdrop-blur-2xl">
       <div className="flex h-16 items-center border-b border-border px-6 gap-2">
-        <Zap className="h-6 w-6 text-primary" />
-        <span className="text-lg font-bold">SiteAI Pro</span>
+        <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+          <Zap className="h-5 w-5 text-white" />
+        </div>
+        <span className="text-xl font-black uppercase tracking-tighter">SiteAI Pro</span>
       </div>
       <nav className="p-4 space-y-2 overflow-y-auto flex-1">
         {menuItems.map((item) => (
@@ -35,8 +37,8 @@ function AuthenticatedLayout() {
             key={item.to}
             to={item.to}
             onClick={() => setOpen(false)}
-            activeProps={{ className: "bg-primary/10 text-primary border-primary/20" }}
-            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:bg-muted"
+            activeProps={{ className: "bg-primary/10 text-primary border-primary/20 font-black shadow-sm" }}
+            className="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-black uppercase tracking-widest text-muted-foreground transition-all hover:text-foreground hover:bg-muted"
           >
             <item.icon className="h-5 w-5" />
             {item.label}
@@ -69,8 +71,10 @@ function AuthenticatedLayout() {
             </Sheet>
 
             <div className="flex items-center gap-2">
-              <Zap className="h-5 w-5 text-primary" />
-              <span className="font-bold">SiteAI Pro</span>
+              <div className="h-7 w-7 rounded-lg bg-primary flex items-center justify-center">
+                <Zap className="h-4 w-4 text-white" />
+              </div>
+              <span className="font-black uppercase tracking-tighter text-sm">SiteAI Pro</span>
             </div>
           </div>
           

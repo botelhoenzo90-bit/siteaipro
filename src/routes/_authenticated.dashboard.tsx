@@ -40,10 +40,10 @@ function DashboardPage() {
     <div className="space-y-10 pb-20">
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-4xl font-extrabold tracking-tight">Dashboard Central</h1>
-          <p className="text-muted-foreground mt-1">Bem-vindo de volta! Aqui está o pulso do seu negócio hoje.</p>
+          <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Dashboard Central</h1>
+          <p className="text-muted-foreground mt-2 text-sm font-medium">Bem-vindo de volta! Aqui está o pulso do seu negócio hoje.</p>
         </div>
-        <Button className="gradient-brand border-0 h-11 px-6 shadow-lg shadow-primary/20" asChild>
+        <Button className="gradient-brand border-0 h-12 px-8 shadow-xl shadow-primary/20 font-black uppercase text-xs tracking-widest" asChild>
           <Link to="/ai-builder">
             <Plus className="mr-2 h-5 w-5" /> Novo Projeto IA
           </Link>
@@ -61,11 +61,11 @@ function DashboardPage() {
           >
             <Card className="p-6 border-border/50 hover:border-primary/30 transition-all group glass overflow-hidden relative">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-bold text-muted-foreground uppercase tracking-wider">{kpi.label}</span>
+                <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">{kpi.label}</span>
                 <kpi.icon className={`h-5 w-5 ${kpi.color}`} />
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-3xl font-black">{kpi.value}</span>
+                <span className="text-4xl font-black tracking-tighter">{kpi.value}</span>
                 {kpi.progress ? (
                   <div className="mt-2 space-y-1.5">
                     <div className="flex justify-between text-[10px] font-bold text-muted-foreground">
