@@ -78,6 +78,25 @@ function LandingPage() {
             transition={{ duration: 0.8 }}
             className="container mx-auto"
           >
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10">
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  animate={{
+                    x: ["-100%", "200%"],
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 5 + i * 2,
+                    repeat: Infinity,
+                    delay: i * 3,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute h-[1px] w-64 bg-gradient-to-r from-transparent via-primary to-transparent"
+                  style={{ top: `${15 + i * 15}%`, left: 0 }}
+                />
+              ))}
+            </div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-black uppercase tracking-widest mb-8">
               <Sparkles className="h-3 w-3" /> Inteligência Artificial de Elite
             </div>
