@@ -85,7 +85,7 @@ function PricingCalculatorPage() {
                           key={lvl.val}
                           variant={complexity === lvl.val ? "default" : "outline"}
                           onClick={() => setComplexity(lvl.val)}
-                          className="h-10 text-xs"
+                          className="h-12 text-xs font-black uppercase tracking-widest transition-all"
                         >
                           {lvl.label}
                         </Button>
@@ -167,13 +167,13 @@ function PricingCalculatorPage() {
         </div>
 
         <div className="space-y-6">
-          <Card className="gradient-brand border-0 text-white overflow-hidden relative shadow-2xl">
+          <Card className="gradient-brand border-0 text-white overflow-hidden relative shadow-2xl rounded-3xl">
             <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
               <TrendingUp className="h-40 w-40" />
             </div>
-            <CardHeader>
-              <CardTitle>Resumo Financeiro</CardTitle>
-              <CardDescription className="text-white/70">Lucro líquido estimado.</CardDescription>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-xl font-black uppercase tracking-widest">Resumo Financeiro</CardTitle>
+              <CardDescription className="text-white/70 font-medium">Lucro líquido estimado após impostos e custos.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6 relative">
               <div className="text-5xl font-black tracking-tight">
@@ -210,8 +210,8 @@ function PricingCalculatorPage() {
                 </div>
               </div>
 
-              <Button className="w-full bg-white text-primary hover:bg-white/90 font-bold h-12 mt-4 shadow-lg shadow-black/20">
-                Gerar Orçamento
+              <Button className="w-full bg-white text-primary hover:bg-white/90 font-black h-14 mt-4 shadow-xl shadow-black/20 uppercase tracking-widest text-xs">
+                Gerar Orçamento PDF
               </Button>
             </CardContent>
           </Card>
