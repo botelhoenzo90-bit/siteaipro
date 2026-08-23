@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Zap, Target, Rocket, Shield, ArrowRight } from "lucide-react";
+import { Zap, ArrowRight, Check, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -11,6 +11,7 @@ function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 relative">
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.03] pointer-events-none" />
+      
       {/* Header */}
       <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -29,114 +30,56 @@ function LandingPage() {
               <Link to="/auth">Entrar</Link>
             </Button>
             <Button className="gradient-brand border-0" asChild>
-              <Link to="/auth">Criar conta grátis</Link>
+              <Link to="/auth">Criar conta</Link>
             </Button>
           </div>
         </div>
       </header>
 
       <main className="flex-1 pt-16">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden px-4 pt-20 pb-32 md:pt-32">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
-          <div className="container mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary mb-6">
-                🚀 A revolução da criação de sites chegou
-              </div>
-              <h1 className="mx-auto max-w-4xl text-5xl font-extrabold tracking-tight sm:text-7xl leading-tight">
-                Crie sites profissionais com IA e <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple pb-2">conquiste seus primeiros clientes</span>
-              </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-                Transforme ideias em sites completos usando prompts inteligentes, estratégias de venda e ferramentas profissionais.
-              </p>
-              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <Button size="lg" className="h-12 px-8 text-base gradient-brand border-0" asChild>
-                  <Link to="/auth">Começar Agora <ArrowRight className="ml-2 h-5 w-5" /></Link>
-                </Button>
-                <Button size="lg" variant="outline" className="h-12 px-8 text-base">
-                  Ver Demonstração
-                </Button>
-              </div>
-            </motion.div>
-
-            {/* Mockup Preview */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-20 overflow-hidden rounded-2xl border border-border/50 bg-card/50 shadow-2xl shadow-primary/10"
-            >
-              <div className="border-b border-border/50 bg-muted/30 px-4 py-2 flex items-center gap-2">
-                <div className="flex gap-1.5">
-                  <div className="h-3 w-3 rounded-full bg-red-500/50" />
-                  <div className="h-3 w-3 rounded-full bg-yellow-500/50" />
-                  <div className="h-3 w-3 rounded-full bg-green-500/50" />
-                </div>
-                <div className="mx-auto h-5 w-64 rounded-md bg-muted/50" />
-              </div>
-              <div className="aspect-[16/9] bg-gradient-to-br from-card to-background p-8">
-                 <div className="grid grid-cols-12 gap-6 h-full">
-                    <div className="col-span-3 space-y-4">
-                      <div className="h-8 w-full rounded-lg bg-primary/20 animate-pulse" />
-                      <div className="h-4 w-3/4 rounded-lg bg-muted/50" />
-                      <div className="h-4 w-1/2 rounded-lg bg-muted/50" />
-                    </div>
-                    <div className="col-span-9 rounded-xl border border-dashed border-border flex items-center justify-center">
-                      <span className="text-muted-foreground font-mono text-sm tracking-widest">DASHBOARD PREVIEW</span>
-                    </div>
-                 </div>
-              </div>
-            </motion.div>
-          </div>
+        {/* Hero */}
+        <section className="relative overflow-hidden px-4 pt-20 pb-32 text-center">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.15),transparent_60%)]" />
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="container mx-auto">
+            <h1 className="mx-auto max-w-5xl text-6xl font-extrabold tracking-tight sm:text-8xl leading-tight">
+              Crie sites de alta conversão <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">em segundos</span> com IA.
+            </h1>
+            <p className="mx-auto mt-8 max-w-2xl text-xl text-muted-foreground">
+              A plataforma definitiva para agências e freelancers que buscam escala, design premium e resultados financeiros reais.
+            </p>
+            <div className="mt-10 flex gap-4 justify-center">
+              <Button size="lg" className="h-14 px-10 text-lg gradient-brand border-0" asChild>
+                <Link to="/auth">Começar Agora Grátis <ArrowRight className="ml-2 h-5 w-5" /></Link>
+              </Button>
+            </div>
+          </motion.div>
         </section>
 
-        {/* Features Section */}
-        <section id="features" className="py-24 bg-card/30">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">O que você recebe no SiteAI Pro</h2>
-            <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                { icon: Zap, title: "Gerador de Sites IA", desc: "Crie prompts ultra-profissionais com contexto real do negócio." },
-                { icon: Target, title: "Calculadora de Lucro", desc: "Calcule quanto cobrar e veja seu lucro real por projeto." },
-                { icon: Shield, title: "Propostas Express", desc: "Gere propostas comerciais irrecusáveis em segundos." },
-                { icon: Rocket, title: "SiteAI Academy", desc: "Aprenda a vender sites de R$2.000 a R$5.000." }
-              ].map((feature, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -5 }}
-                  className="rounded-2xl border border-border bg-card p-8 text-left transition-colors hover:border-primary/50"
-                >
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                    <feature.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold">{feature.title}</h3>
-                  <p className="mt-2 text-muted-foreground">{feature.desc}</p>
-                </motion.div>
-              ))}
+        {/* Pricing */}
+        <section id="pricing" className="py-24 container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-16">Planos que acompanham seu crescimento</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+                {[
+                    { name: 'Starter', price: 'Grátis', features: ['1 Projeto/mês', 'Prompt Básico', 'Calculadora Simples'] },
+                    { name: 'Pro', price: 'R$ 97/mês', features: ['Projetos Ilimitados', 'Prompt Expert v3.0', 'Calculadora Avançada', 'Biblioteca Premium'], highlight: true },
+                    { name: 'Agency', price: 'R$ 297/mês', features: ['Tudo do Pro', 'White Label', 'Suporte Prioritário', 'Estratégias de Venda'] }
+                ].map((plan, i) => (
+                    <div key={i} className={`p-8 rounded-3xl border ${plan.highlight ? 'border-primary bg-primary/5' : 'border-border bg-card'} relative`}>
+                        {plan.highlight && <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold uppercase px-3 py-1 rounded-full tracking-wider">Mais Popular</div>}
+                        <h3 className="text-xl font-bold">{plan.name}</h3>
+                        <p className="text-4xl font-black mt-4">{plan.price}</p>
+                        <ul className="mt-8 space-y-4">
+                            {plan.features.map(f => <li key={f} className="flex items-center gap-2 text-sm"><Check className="h-4 w-4 text-primary" /> {f}</li>)}
+                        </ul>
+                        <Button className="w-full mt-8" variant={plan.highlight ? 'default' : 'outline'}>Assinar agora</Button>
+                    </div>
+                ))}
             </div>
-          </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border/40 py-12">
-        <div className="container mx-auto px-4 flex flex-col items-center justify-between gap-6 md:flex-row">
-          <div className="flex items-center gap-2">
-            <Zap className="h-5 w-5 text-primary" />
-            <span className="font-bold">SiteAI Pro</span>
-          </div>
-          <p className="text-sm text-muted-foreground">© 2026 SiteAI Pro. Todos os direitos reservados.</p>
-          <div className="flex gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground">Privacidade</a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground">Termos</a>
-          </div>
-        </div>
+      <footer className="border-t border-border py-12 text-center text-sm text-muted-foreground">
+        © 2026 SiteAI Pro. Todos os direitos reservados.
       </footer>
     </div>
   );
