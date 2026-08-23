@@ -45,8 +45,8 @@ function PricingCalculatorPage() {
     <div className="max-w-6xl mx-auto space-y-10 pb-20">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight">Calculadora de Precificação</h1>
-          <p className="text-muted-foreground mt-2">Defina seus preços com base no esforço real e custos fixos.</p>
+          <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Calculadora de Precificação</h1>
+          <p className="text-muted-foreground mt-2 text-sm font-medium">Defina seus preços com base no esforço real e custos fixos.</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm"><Download className="mr-2 h-4 w-4" /> PDF</Button>
