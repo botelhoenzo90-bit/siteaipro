@@ -209,7 +209,8 @@ function LandingPage() {
 
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 {/* Mensal */}
-                <div className="p-10 rounded-[2.5rem] border border-border bg-card/50 glass flex flex-col justify-between group hover:border-primary/30 transition-all relative overflow-hidden">
+                <div className="p-10 rounded-[2.5rem] border border-border bg-card/20 glass flex flex-col justify-between group hover:border-primary/30 transition-all relative overflow-hidden">
+                    <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                     <div>
                         <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">Mensal</h3>
                         <p className="text-muted-foreground text-sm font-medium mb-8">Acesso completo com flexibilidade total.</p>
