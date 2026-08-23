@@ -21,7 +21,10 @@ export const Route = createFileRoute("/_authenticated/library")({
             { title: 'Estética Avançada', tag: 'Visual', img: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&q=80&w=400' },
             { title: 'SaaS Tech', tag: 'Moderno', img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=400' },
             { title: 'Consultoria B2B', tag: 'Profissional', img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=400' },
-            { title: 'Landing Page Eventos', tag: 'Urgência', img: 'https://images.unsplash.com/photo-1505373630562-402923ad9901?auto=format&fit=crop&q=80&w=400' }
+            { title: 'Landing Page Eventos', tag: 'Urgência', img: 'https://images.unsplash.com/photo-1505373630562-402923ad9901?auto=format&fit=crop&q=80&w=400' },
+            { title: 'Pet Shop Premium', tag: 'Acolhedor', img: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=400' },
+            { title: 'E-commerce Moda', tag: 'Vendas', img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=400' },
+            { title: 'Agência de Marketing', tag: 'Moderno', img: 'https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=400' }
         ].map((item) => (
           <Card key={item.title} className="group overflow-hidden border-border hover:border-primary/50 transition-all glass shadow-lg">
             <div className="aspect-video relative overflow-hidden">

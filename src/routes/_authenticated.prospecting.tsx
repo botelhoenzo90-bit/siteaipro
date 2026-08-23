@@ -26,7 +26,7 @@ function ProspectingPage() {
     window.open(`https://www.instagram.com/explore/tags/${query}`, '_blank');
   };
 
-  const niches = ["Odontologia", "Advocacia", "Arquitetura", "Restaurantes", "Clínicas de Estética", "Consultoria", "Imobiliárias", "Lojas de Roupa", "Academias", "Oficinas", "Pet Shops", "Hotéis", "Fotografia", "Engenharia", "Contabilidade"];
+  const niches = ["Odontologia", "Advocacia", "Arquitetura", "Restaurantes", "Clínicas de Estética", "Consultoria", "Imobiliárias", "Lojas de Roupa", "Academias", "Oficinas", "Pet Shops", "Hotéis", "Fotografia", "Engenharia", "Contabilidade", "Marketing Digital", "E-commerce", "Educação"];
 
   return (
     <div className="max-w-6xl mx-auto space-y-12 pb-20">

@@ -33,6 +33,7 @@ function DashboardPage() {
     { type: 'AI', content: 'Novo prompt gerado: Clínica Odontológica Harmony', time: 'Há 15 min' },
     { type: 'PROSPECT', content: 'Lead qualificado encontrado em São Paulo', time: 'Há 1h' },
     { type: 'PRICE', content: 'Orçamento de R$ 3.500 calculado', time: 'Há 3h' },
+    { type: 'NOTE', content: 'Lembrete: Retornar proposta para Dr. Marcos', time: 'Há 5h' },
   ];
 
   return (

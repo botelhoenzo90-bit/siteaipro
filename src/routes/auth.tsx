@@ -34,7 +34,11 @@ function AuthPage() {
         </div>
 
         <div className="grid gap-4 relative z-10">
-          <Button variant="outline" className="h-12 border-border/50 hover:bg-primary/5 hover:border-primary/30 transition-all rounded-xl">
+          <Button 
+            variant="outline" 
+            className="h-12 border-border/50 hover:bg-primary/5 hover:border-primary/30 transition-all rounded-xl"
+            onClick={() => toast.info("Integração com Google em breve!")}
+          >
             <img src="https://www.google.com/favicon.ico" className="mr-3 h-4 w-4" alt="Google" />
             Entrar com Google
           </Button>

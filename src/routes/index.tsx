@@ -93,10 +93,10 @@ function LandingPage() {
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-center text-muted-foreground">Empresas parceiras na plataforma</p>
             </div>
             <div className="flex animate-marquee gap-12 whitespace-nowrap">
-                {[...Array(10)].map((_, i) => (
-                    <div key={i} className="flex gap-12 items-center">
+                {[...Array(2)].map((_, groupIdx) => (
+                    <div key={groupIdx} className="flex gap-12 items-center">
                         {partners.map(p => (
-                            <span key={p.name} className={`text-2xl font-black tracking-tighter opacity-40 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 cursor-default ${p.color}`}>
+                            <span key={`${groupIdx}-${p.name}`} className={`text-2xl font-black tracking-tighter opacity-40 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 cursor-default ${p.color}`}>
                                 {p.name}
                             </span>
                         ))}
