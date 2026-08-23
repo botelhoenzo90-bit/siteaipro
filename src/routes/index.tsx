@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Zap, ArrowRight, Check, Play, Shield, Sparkles, Star } from "lucide-react";
+import { Zap, ArrowRight, Check, Play, Shield, Sparkles, Star, Wand2, Search, Calculator, Library, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Card } from "@/components/ui/card";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -348,6 +349,3 @@ function LandingPage() {
     </div>
   );
 }
-
-// Missing imports in first attempt
-import { Wand2, Search, Calculator, Library, GraduationCap } from "lucide-react";
