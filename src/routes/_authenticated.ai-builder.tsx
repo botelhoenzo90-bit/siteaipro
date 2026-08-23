@@ -164,14 +164,14 @@ PERSONALIZAÇÃO + DIREÇÃO DE ARTE + IMAGENS + DESIGN + UX + CONVERSÃO.`;
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-20">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">AI Site Builder Pro</h1>
-        <p className="text-muted-foreground text-sm">Gere prompts profissionais de alta conversão para criar sites incríveis com IA.</p>
+        <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">AI Site Builder Pro</h1>
+        <p className="text-muted-foreground mt-2 text-sm font-medium">Gere prompts profissionais de alta conversão para criar sites incríveis com IA.</p>
       </div>
 
       <div className="rounded-2xl border border-border bg-card p-8 space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <Label>Tipo de Negócio</Label>
+            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground">Tipo de Negócio</Label>
             <Select onValueChange={setNiche}>
               <SelectTrigger className="bg-background/50">
                 <SelectValue placeholder="Selecione o nicho" />
@@ -184,15 +184,15 @@ PERSONALIZAÇÃO + DIREÇÃO DE ARTE + IMAGENS + DESIGN + UX + CONVERSÃO.`;
             </Select>
           </div>
           <div className="space-y-2">
-            <Label>Nome da Empresa</Label>
+            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground">Nome da Empresa</Label>
             <Input placeholder="Ex: Clínica Harmony" value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="bg-background/50" />
           </div>
           <div className="space-y-2">
-            <Label>Cidade</Label>
+            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground">Cidade</Label>
             <Input placeholder="Ex: São Paulo" value={city} onChange={(e) => setCity(e.target.value)} className="bg-background/50" />
           </div>
           <div className="space-y-2">
-            <Label>Objetivo do Site</Label>
+            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground">Objetivo do Site</Label>
             <Select onValueChange={setObjective}>
               <SelectTrigger className="bg-background/50">
                 <SelectValue placeholder="Selecione o objetivo" />
@@ -300,7 +300,7 @@ PERSONALIZAÇÃO + DIREÇÃO DE ARTE + IMAGENS + DESIGN + UX + CONVERSÃO.`;
         <Button 
           onClick={handleGenerate} 
           disabled={loading}
-          className="w-full h-14 gradient-brand border-0 text-lg font-bold shadow-lg shadow-primary/20"
+          className="w-full h-16 gradient-brand border-0 text-lg font-black uppercase tracking-widest shadow-xl shadow-primary/20"
         >
           {loading ? "Processando Inteligência..." : <>Gerar Prompt Profissional <Wand2 className="ml-2 h-5 w-5" /></>}
         </Button>

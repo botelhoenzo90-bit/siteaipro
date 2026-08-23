@@ -18,8 +18,8 @@ function ProfilePage() {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div>
-        <h1 className="text-4xl font-bold tracking-tight">Meu Perfil</h1>
-        <p className="text-muted-foreground mt-2">Dados profissionais, configurações e sua conta.</p>
+        <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Meu Perfil</h1>
+        <p className="text-muted-foreground mt-2 text-sm font-medium">Dados profissionais, configurações e sua conta.</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-8">

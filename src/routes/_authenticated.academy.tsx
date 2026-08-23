@@ -6,15 +6,15 @@ export const Route = createFileRoute("/_authenticated/academy")({
   component: () => (
     <div className="space-y-10">
       <div>
-        <h1 className="text-4xl font-bold tracking-tight text-foreground">SiteAI Academy</h1>
-        <p className="text-muted-foreground mt-2">O treinamento completo para dominar o mercado de criação de sites.</p>
+        <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">SiteAI Academy</h1>
+        <p className="text-muted-foreground mt-2 text-sm font-medium">O treinamento completo para dominar o mercado de criação de sites.</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
         <Card className="p-6 bg-primary/10 border-primary/20">
             <BookOpen className="h-8 w-8 text-primary mb-4" />
-            <p className="text-xs font-bold uppercase tracking-wider text-primary">Progresso</p>
-            <p className="text-2xl font-bold mt-1">45% Completo</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-primary">Progresso</p>
+            <p className="text-3xl font-black tracking-tighter mt-1">45% Completo</p>
         </Card>
         <Card className="p-6 border-border">
             <Clock className="h-8 w-8 text-muted-foreground mb-4" />

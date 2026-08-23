@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Search, MapPin, Globe, Info, Target, MessageSquare, Lightbulb, Zap, TrendingUp, BarChart3, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -26,7 +26,7 @@ function ProspectingPage() {
     window.open(`https://www.instagram.com/explore/tags/${query}`, '_blank');
   };
 
-  const niches = ["Odontologia", "Advocacia", "Arquitetura", "Restaurantes", "Clínicas de Estética", "Consultoria", "Imobiliárias", "Lojas de Roupa", "Academias", "Oficinas", "Pet Shops", "Hotéis", "Fotografia", "Engenharia", "Contabilidade"];
+  const niches = ["Odontologia", "Advocacia", "Arquitetura", "Restaurantes", "Clínicas de Estética", "Consultoria", "Imobiliárias", "Lojas de Roupa", "Academias", "Oficinas", "Pet Shops", "Hotéis", "Fotografia", "Engenharia", "Contabilidade", "Marketing Digital", "E-commerce", "Educação"];
 
   return (
     <div className="max-w-6xl mx-auto space-y-12 pb-20">
@@ -36,14 +36,14 @@ function ProspectingPage() {
         className="flex flex-col md:flex-row md:items-center justify-between gap-4"
       >
         <div>
-          <h1 className="text-4xl font-bold tracking-tight">Prospecção Ativa</h1>
-          <p className="text-muted-foreground mt-2">Encontre e aborde clientes de alto valor com nossas ferramentas de prospecção.</p>
+          <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Prospecção Ativa</h1>
+          <p className="text-muted-foreground mt-2 text-sm font-medium">Encontre e aborde clientes de alto valor com nossas ferramentas de prospecção.</p>
         </div>
       </motion.div>
 
       {/* Main Search Panel */}
       <Card className="p-8 glass border-primary/20 space-y-6">
-        <h3 className="text-xl font-bold flex items-center gap-2">
+        <h3 className="text-xl font-black flex items-center gap-2 uppercase tracking-tighter">
           <Search className="h-6 w-6 text-primary" /> 
           Gerador de Oportunidades
         </h3>
@@ -73,11 +73,11 @@ function ProspectingPage() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Button onClick={handleMapsSearch} className="h-14 gradient-brand border-0 text-lg">
-            <MapPin className="mr-2 h-5 w-5" /> Pesquisar no Google Maps
+          <Button onClick={handleMapsSearch} className="h-16 gradient-brand border-0 text-lg font-black uppercase tracking-widest shadow-xl shadow-primary/20">
+            <MapPin className="mr-2 h-6 w-6" /> Pesquisar no Google Maps
           </Button>
-          <Button onClick={handleInstagramSearch} variant="outline" className="h-14 border-primary/30 hover:bg-primary/5 text-lg">
-            <Globe className="mr-2 h-5 w-5" /> Explorar no Instagram
+          <Button onClick={handleInstagramSearch} variant="outline" className="h-16 border-border/60 hover:bg-primary/5 text-lg font-black uppercase tracking-widest">
+            <Globe className="mr-2 h-6 w-6" /> Explorar no Instagram
           </Button>
         </div>
       </Card>
@@ -121,19 +121,28 @@ function ProspectingPage() {
       </div>
 
       {/* Script Section */}
-      <Card className="p-8 border-primary/20 bg-primary/5">
-        <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
-            <MessageSquare className="h-5 w-5 text-primary" />
-            Sessão de Scripts de Abordagem
-        </h4>
-        <div className="text-sm space-y-6">
-            <div className="bg-white/5 p-6 rounded-xl border border-white/5">
-                <p className="font-bold mb-2">Abordagem para Google Maps:</p>
-                <p className="text-muted-foreground italic">"Olá [Nome], vi sua empresa em destaque no Maps, mas notei que o site de vocês não está otimizado para celulares. Sou especialista em sites rápidos que aumentam as vendas locais. Posso te enviar uma breve análise?"</p>
+      <Card className="p-8 border-primary/20 bg-primary/5 rounded-3xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+            <h4 className="text-xl font-black flex items-center gap-2 uppercase tracking-tighter">
+                <MessageSquare className="h-6 w-6 text-primary" />
+                Sessão de Scripts Rápidos
+            </h4>
+            <Button variant="outline" className="text-xs font-black uppercase tracking-widest border-primary/20" asChild>
+                <Link to="/scripts">Ver Todos os Scripts <ChevronRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-background/40 p-6 rounded-2xl border border-border/50 glass hover:border-primary/30 transition-colors">
+                <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-3">Google Maps (Cold)</p>
+                <p className="text-sm text-foreground italic leading-relaxed">
+                    "Olá [Nome], vi sua empresa em destaque no Maps, mas notei que o site de vocês não está otimizado para celulares. Sou especialista em sites rápidos que aumentam as vendas locais. Posso te enviar uma breve análise?"
+                </p>
             </div>
-            <div className="bg-white/5 p-6 rounded-xl border border-white/5">
-                <p className="font-bold mb-2">Abordagem para Instagram:</p>
-                <p className="text-muted-foreground italic">"Oi [Nome], acompanho o trabalho da [Empresa] e vejo um potencial enorme para atrair mais clientes com um site que conecte seus posts diretamente ao WhatsApp. Topa ver um modelo de site focado no seu nicho?"</p>
+            <div className="bg-background/40 p-6 rounded-2xl border border-border/50 glass hover:border-primary/30 transition-colors">
+                <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-3">Instagram (Direct)</p>
+                <p className="text-sm text-foreground italic leading-relaxed">
+                    "Oi [Nome], acompanho o trabalho da [Empresa] e vejo um potencial enorme para atrair mais clientes com um site que conecte seus posts diretamente ao WhatsApp. Topa ver um modelo de site focado no seu nicho?"
+                </p>
             </div>
         </div>
       </Card>

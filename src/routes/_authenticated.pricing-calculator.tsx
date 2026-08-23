@@ -45,8 +45,8 @@ function PricingCalculatorPage() {
     <div className="max-w-6xl mx-auto space-y-10 pb-20">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight">Calculadora de Precificação</h1>
-          <p className="text-muted-foreground mt-2">Defina seus preços com base no esforço real e custos fixos.</p>
+          <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Calculadora de Precificação</h1>
+          <p className="text-muted-foreground mt-2 text-sm font-medium">Defina seus preços com base no esforço real e custos fixos.</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm"><Download className="mr-2 h-4 w-4" /> PDF</Button>
@@ -85,7 +85,7 @@ function PricingCalculatorPage() {
                           key={lvl.val}
                           variant={complexity === lvl.val ? "default" : "outline"}
                           onClick={() => setComplexity(lvl.val)}
-                          className="h-10 text-xs"
+                          className="h-12 text-xs font-black uppercase tracking-widest transition-all"
                         >
                           {lvl.label}
                         </Button>
@@ -167,13 +167,13 @@ function PricingCalculatorPage() {
         </div>
 
         <div className="space-y-6">
-          <Card className="gradient-brand border-0 text-white overflow-hidden relative shadow-2xl">
+          <Card className="gradient-brand border-0 text-white overflow-hidden relative shadow-2xl rounded-3xl">
             <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
               <TrendingUp className="h-40 w-40" />
             </div>
-            <CardHeader>
-              <CardTitle>Resumo Financeiro</CardTitle>
-              <CardDescription className="text-white/70">Lucro líquido estimado.</CardDescription>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-xl font-black uppercase tracking-widest">Resumo Financeiro</CardTitle>
+              <CardDescription className="text-white/70 font-medium">Lucro líquido estimado após impostos e custos.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6 relative">
               <div className="text-5xl font-black tracking-tight">
@@ -210,8 +210,8 @@ function PricingCalculatorPage() {
                 </div>
               </div>
 
-              <Button className="w-full bg-white text-primary hover:bg-white/90 font-bold h-12 mt-4 shadow-lg shadow-black/20">
-                Gerar Orçamento
+              <Button className="w-full bg-white text-primary hover:bg-white/90 font-black h-14 mt-4 shadow-xl shadow-black/20 uppercase tracking-widest text-xs">
+                Gerar Orçamento PDF
               </Button>
             </CardContent>
           </Card>
