@@ -18,8 +18,14 @@ function LandingPage() {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 relative overflow-x-hidden">
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.03] pointer-events-none" />
+    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 relative overflow-x-hidden grid-bg">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="scanline" />
+        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
+        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
+        <div className="absolute top-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="absolute bottom-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      </div>
       
       {/* Urgent Top Banner */}
       <div className="bg-primary py-2.5 text-center text-[10px] sm:text-xs font-black text-primary-foreground uppercase tracking-widest px-4">
