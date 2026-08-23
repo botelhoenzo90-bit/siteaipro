@@ -162,19 +162,22 @@ function LandingPage() {
                 </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {[
-                    { title: "AI Builder Pro", desc: "Gere sites completos, copy e estrutura em segundos com prompts expert v3.0.", icon: Wand2 },
-                    { title: "Prospecção VIP", desc: "Localize empresas que precisam de um site agora e aborde com scripts validados.", icon: Search },
-                    { title: "Pricing Engine", desc: "Calcule orçamentos precisos com margem de lucro real e preços sugeridos.", icon: Calculator },
-                    { title: "Library Premium", desc: "Acesse centenas de templates e blocos de código prontos para conversão.", icon: Library },
-                    { title: "Academy", desc: "Aprenda a escalar sua agência para faturar 5 dígitos por mês com nossa metodologia.", icon: GraduationCap },
-                    { title: "White Label", desc: "Apresente os resultados com sua marca e encante seus clientes.", icon: Shield },
+                    { title: "AI Builder Pro", desc: "Gere sites completos, copy e estrutura em segundos com prompts expert v3.0.", icon: Wand2, color: "from-blue-500/20 to-cyan-500/20" },
+                    { title: "Prospecção VIP", desc: "Localize empresas que precisam de um site agora e aborde com scripts validados.", icon: Search, color: "from-purple-500/20 to-pink-500/20" },
+                    { title: "Pricing Engine", desc: "Calcule orçamentos precisos com margem de lucro real e preços sugeridos.", icon: Calculator, color: "from-orange-500/20 to-yellow-500/20" },
+                    { title: "Library Premium", desc: "Acesse centenas de templates e blocos de código prontos para conversão.", icon: Library, color: "from-green-500/20 to-emerald-500/20" },
+                    { title: "Academy", desc: "Aprenda a escalar sua agência para faturar 5 dígitos por mês com nossa metodologia.", icon: GraduationCap, color: "from-red-500/20 to-rose-500/20" },
+                    { title: "White Label", desc: "Apresente os resultados com sua marca e encante seus clientes.", icon: Shield, color: "from-indigo-500/20 to-blue-500/20" },
                 ].map((f, i) => (
-                    <Card key={i} className="group p-8 border-border/50 bg-card/50 hover:border-primary/50 transition-all glass">
-                        <f.icon className="h-10 w-10 text-primary mb-6 group-hover:scale-110 transition-transform" />
-                        <h3 className="text-xl font-black uppercase mb-4 tracking-tighter">{f.title}</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
+                    <Card key={i} className="group p-10 min-h-[320px] border-border/50 bg-card/50 hover:border-primary/50 transition-all glass relative overflow-hidden flex flex-col justify-center">
+                        <div className={`absolute -top-24 -right-24 h-48 w-48 bg-gradient-to-br ${f.color} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`} />
+                        <div className="relative z-10">
+                            <f.icon className="h-14 w-14 text-primary mb-8 group-hover:scale-110 transition-transform group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
+                            <h3 className="text-2xl font-black uppercase mb-6 tracking-tighter">{f.title}</h3>
+                            <p className="text-muted-foreground text-base leading-relaxed">{f.desc}</p>
+                        </div>
                     </Card>
                 ))}
             </div>
