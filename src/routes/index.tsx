@@ -238,6 +238,7 @@ function LandingPage() {
 
                 {/* Vitalício */}
                 <div className="p-10 rounded-[2.5rem] border-2 border-primary bg-primary/5 glass flex flex-col justify-between group relative overflow-hidden shadow-2xl shadow-primary/20">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.2),transparent_70%)]" />
                     <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-black uppercase px-4 py-2 rounded-bl-2xl tracking-widest z-10">Melhor custo-benefício</div>
                     <div className="absolute -top-24 -right-24 h-64 w-64 bg-primary/10 rounded-full blur-3xl" />
                     
