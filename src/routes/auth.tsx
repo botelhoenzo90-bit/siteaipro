@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Zap, Mail } from "lucide-react";
+import { Zap } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -55,7 +56,7 @@ function AuthPage() {
           </div>
           <div className="space-y-2">
             <div className="flex justify-between items-center ml-1">
-              <Label htmlFor="password" name="password" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Senha</Label>
+              <Label htmlFor="password" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Senha</Label>
               <button type="button" className="text-[10px] font-bold text-primary hover:underline">Esqueceu a senha?</button>
             </div>
             <Input id="password" type="password" className="h-12 bg-background/50 border-border/50 rounded-xl focus:ring-primary/20" />
