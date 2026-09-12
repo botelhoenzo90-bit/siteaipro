@@ -1,192 +1,65 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  TrendingUp, 
-  Users, 
-  Target, 
-  BarChart3, 
-  ArrowUpRight, 
-  Clock, 
-  CheckCircle2, 
-  Plus, 
-  MessageSquare,
-  Wand2,
-  Library,
-  Zap
-} from "lucide-react";
+import { Activity, ArrowUpRight, BarChart3, Calculator, CheckCircle2, Clock3, Copy, DollarSign, MessageSquare, Plus, Search, Sparkles, Target, TrendingUp, Users, Wand2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
-export const Route = createFileRoute("/_authenticated/dashboard")({
-  component: DashboardPage,
-});
+export const Route = createFileRoute("/_authenticated/dashboard")({ component: DashboardPage });
+
+const bars = [42, 58, 47, 71, 63, 84, 76, 92, 88, 100];
+const activity = [
+  ["AI Builder", "Novo prompt criado para Clínica Prime", "agora", Wand2],
+  ["Prospecção", "Nova oportunidade adicionada ao radar", "há 18 min", Search],
+  ["Proposta", "Orçamento premium calculado", "há 43 min", Calculator],
+  ["Scripts", "Script de WhatsApp copiado", "há 1h", MessageSquare],
+];
 
 function DashboardPage() {
-  const kpis = [
-    { label: 'Meta Mensal', value: 'R$ 12.500', target: 'R$ 20.000', progress: 62.5, icon: Target, color: 'text-blue-500' },
-    { label: 'Prospecções Hoje', value: '14', trend: '+3 vs ontem', icon: Users, color: 'text-purple-500' },
-    { label: 'Conversão de Leads', value: '28%', trend: '+5%', icon: TrendingUp, color: 'text-green-500' },
-    { label: 'Projetos Ativos', value: '06', icon: Zap, color: 'text-yellow-500' },
-  ];
+  const [goal, setGoal] = useState(20000);
+  const [quickLead, setQuickLead] = useState("");
+  const current = 12500;
+  const progress = Math.min(100, (current / goal) * 100);
+  const remaining = Math.max(0, goal - current);
+  const avgTicket = 1850;
+  const dealsNeeded = Math.ceil(remaining / avgTicket);
+  const goalLabel = useMemo(() => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(goal), [goal]);
 
-  const activities = [
-    { type: 'AI', content: 'Novo prompt gerado: Clínica Odontológica Harmony', time: 'Há 15 min' },
-    { type: 'PROSPECT', content: 'Lead qualificado encontrado em São Paulo', time: 'Há 1h' },
-    { type: 'PRICE', content: 'Orçamento de R$ 3.500 calculado', time: 'Há 3h' },
-    { type: 'NOTE', content: 'Lembrete: Retornar proposta para Dr. Marcos', time: 'Há 5h' },
-  ];
+  const addLead = () => {
+    if (!quickLead.trim()) return toast.error("Digite o nome da empresa.");
+    toast.success(`${quickLead} adicionada ao seu radar.`);
+    setQuickLead("");
+  };
 
-  return (
-    <div className="space-y-10 pb-20">
-      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Dashboard Central</h1>
-          <p className="text-muted-foreground mt-2 text-sm font-medium">Bem-vindo de volta! Aqui está o pulso do seu negócio hoje.</p>
-        </div>
-        <Button className="gradient-brand border-0 h-12 px-8 shadow-xl shadow-primary/20 font-black uppercase text-xs tracking-widest" asChild>
-          <Link to="/ai-builder">
-            <Plus className="mr-2 h-5 w-5" /> Novo Projeto IA
-          </Link>
-        </Button>
+  return <div className="mx-auto max-w-[1500px] space-y-7 pb-20">
+    <motion.div initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
+      <div><div className="mb-2 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.25em] text-cyan-300"><span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#67e8f9]"/> Centro de comando</div><h1 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">Bom trabalho. Vamos vender <span className="text-cyan-300">mais sites.</span></h1><p className="mt-3 max-w-2xl text-sm text-white/40">Seu painel para transformar IA, prospecção e propostas em uma operação previsível.</p></div>
+      <div className="flex gap-2"><Link to="/prospecting"><Button variant="outline" className="h-11 border-white/10 bg-white/[0.03] text-white hover:bg-white/[0.07]"><Search className="h-4 w-4"/> Prospectar</Button></Link><Link to="/ai-builder"><Button className="h-11 bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-500 font-black text-[#05070d] hover:opacity-90"><Plus className="h-4 w-4"/> Novo projeto</Button></Link></div>
+    </motion.div>
+
+    <Card className="relative overflow-hidden border-cyan-300/10 bg-gradient-to-br from-cyan-300/[0.08] via-white/[0.025] to-violet-500/[0.08] p-6 md:p-7">
+      <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-cyan-300/[0.08] blur-3xl"/>
+      <div className="relative grid gap-7 lg:grid-cols-[1.2fr_.8fr] lg:items-center">
+        <div><div className="mb-4 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.22em] text-white/35"><Target className="h-3.5 w-3.5 text-cyan-300"/> Meta de faturamento</div><div className="flex flex-wrap items-end gap-3"><span className="text-4xl font-black tracking-tight text-white md:text-5xl">R$ 12.500</span><span className="mb-1 rounded-full border border-emerald-300/10 bg-emerald-300/[0.06] px-2 py-1 text-[9px] font-black text-emerald-300">+18,4% este mês</span></div><div className="mt-5 h-2 overflow-hidden rounded-full bg-white/[0.06]"><motion.div initial={{width:0}} animate={{width:`${progress}%`}} transition={{duration:1}} className="h-full rounded-full bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-500"/></div><div className="mt-2 flex justify-between text-[9px] font-bold uppercase tracking-wider text-white/30"><span>{progress.toFixed(0)}% da meta</span><span>{goalLabel}</span></div></div>
+        <div className="grid grid-cols-2 gap-3"><div className="rounded-2xl border border-white/[0.06] bg-black/20 p-4"><DollarSign className="h-4 w-4 text-cyan-300"/><p className="mt-3 text-[9px] font-black uppercase tracking-wider text-white/30">Falta</p><p className="mt-1 text-xl font-black text-white">R$ {remaining.toLocaleString("pt-BR")}</p></div><div className="rounded-2xl border border-white/[0.06] bg-black/20 p-4"><TrendingUp className="h-4 w-4 text-violet-300"/><p className="mt-3 text-[9px] font-black uppercase tracking-wider text-white/30">Projetos</p><p className="mt-1 text-xl font-black text-white">{dealsNeeded} <span className="text-[10px] text-white/30">fechamentos</span></p></div><div className="col-span-2 flex items-center gap-3 rounded-2xl border border-white/[0.06] bg-black/20 p-3"><span className="text-[9px] font-black uppercase tracking-widest text-white/30">Ajustar meta</span><input type="range" min="5000" max="100000" step="500" value={goal} onChange={e=>setGoal(Number(e.target.value))} className="flex-1 accent-cyan-300"/><span className="min-w-[78px] text-right text-[10px] font-black text-cyan-300">{goalLabel}</span></div></div>
       </div>
+    </Card>
 
-      {/* KPI Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {kpis.map((kpi, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-          >
-            <Card className="p-6 border-border/50 hover:border-primary/30 transition-all group glass overflow-hidden relative">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">{kpi.label}</span>
-                <kpi.icon className={`h-5 w-5 ${kpi.color}`} />
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-4xl font-black tracking-tighter">{kpi.value}</span>
-                {kpi.progress ? (
-                  <div className="mt-2 space-y-1.5">
-                    <div className="flex justify-between text-[10px] font-bold text-muted-foreground">
-                      <span>PROGRESSO</span>
-                      <span>{kpi.progress}%</span>
-                    </div>
-                    <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        animate={{ width: `${kpi.progress}%` }}
-                        className="h-full gradient-brand"
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <span className="text-xs font-bold text-green-500 flex items-center">
-                    <ArrowUpRight className="h-3 w-3 mr-1" /> {kpi.trend}
-                  </span>
-                )}
-              </div>
-            </Card>
-          </motion.div>
-        ))}
-      </div>
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">{[["Leads no radar","47","+12 hoje",Users,"text-cyan-300"],["Conversão","28,4%","+5,2%",TrendingUp,"text-emerald-300"],["Ticket médio","R$ 1.850","+R$ 320",DollarSign,"text-violet-300"],["Projetos ativos","06","2 em entrega",Zap,"text-amber-300"]].map(([label,value,trend,Icon,color],i)=> <motion.div key={String(label)} initial={{opacity:0,y:15}} animate={{opacity:1,y:0}} transition={{delay:i*.06}}><Card className="group relative overflow-hidden border-white/[0.07] bg-white/[0.025] p-5 transition hover:border-cyan-300/20 hover:bg-white/[0.04]"><div className="mb-5 flex items-center justify-between"><span className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">{label as string}</span><div className="rounded-xl bg-white/[0.04] p-2"><Icon className={`h-4 w-4 ${color as string}`}/></div></div><p className="text-3xl font-black tracking-tight text-white">{value as string}</p><p className="mt-2 text-[9px] font-bold text-emerald-300/70">{trend as string}</p></Card></motion.div>)}</div>
 
-      <div className="grid gap-8 lg:grid-cols-3">
-        {/* Main Chart/Evolution area */}
-        <div className="lg:col-span-2 space-y-6">
-          <Card className="p-8 border-border/50 glass">
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h3 className="text-xl font-bold">Faturamento Estimado</h3>
-                <p className="text-sm text-muted-foreground">Evolução dos últimos 7 dias</p>
-              </div>
-              <Button variant="outline" size="sm">Ver Relatório</Button>
-            </div>
-            <div className="h-[300px] flex items-end justify-between gap-3">
-              {[35, 65, 45, 80, 55, 90, 100].map((h, i) => (
-                <div key={i} className="flex-1 space-y-3">
-                  <div className="w-full bg-muted/30 rounded-t-xl relative group h-full flex flex-col justify-end overflow-hidden">
-                    <motion.div 
-                      initial={{ height: 0 }} 
-                      animate={{ height: `${h}%` }} 
-                      className="w-full gradient-brand rounded-t-xl opacity-80 group-hover:opacity-100 transition-opacity" 
-                    />
-                  </div>
-                  <div className="text-[10px] text-center font-bold text-muted-foreground uppercase">Dia {i + 1}</div>
-                </div>
-              ))}
-            </div>
-          </Card>
+    <div className="grid gap-5 xl:grid-cols-[1.45fr_.55fr]">
+      <Card className="border-white/[0.07] bg-white/[0.025] p-6 md:p-7"><div className="flex items-center justify-between"><div><div className="flex items-center gap-2"><BarChart3 className="h-4 w-4 text-cyan-300"/><h2 className="text-sm font-black uppercase tracking-widest text-white">Performance da operação</h2></div><p className="mt-2 text-[10px] text-white/30">Volume de atividade dos últimos 10 dias</p></div><div className="rounded-xl border border-white/[0.07] px-3 py-2 text-[9px] font-black uppercase tracking-widest text-white/40">10 dias</div></div><div className="mt-7 flex h-[250px] items-end gap-2 md:gap-3">{bars.map((height,i)=><div key={i} className="group flex h-full flex-1 flex-col justify-end gap-2"><div className="relative flex-1 rounded-t-xl bg-white/[0.025]"><motion.div initial={{height:0}} animate={{height:`${height}%`}} transition={{duration:.7,delay:i*.04}} className="absolute bottom-0 w-full rounded-t-xl bg-gradient-to-t from-violet-600/80 via-blue-500/70 to-cyan-300"/><span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[8px] font-black text-cyan-300 opacity-0 transition group-hover:opacity-100">{height}</span></div><span className="text-center text-[8px] font-bold text-white/20">D{i+1}</span></div>)}</div><div className="mt-5 grid grid-cols-3 gap-3 border-t border-white/[0.06] pt-5"><div><p className="text-[8px] uppercase tracking-widest text-white/25">Prospecções</p><p className="mt-1 text-lg font-black text-white">142</p></div><div><p className="text-[8px] uppercase tracking-widest text-white/25">Propostas</p><p className="mt-1 text-lg font-black text-white">31</p></div><div><p className="text-[8px] uppercase tracking-widest text-white/25">Fechamentos</p><p className="mt-1 text-lg font-black text-white">08</p></div></div></Card>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="p-6 border-border/50 glass hover:border-primary/20 transition-colors cursor-pointer group">
-              <Link to="/prospecting" className="block">
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-bold">Prospecção Ativa</h4>
-                  <Users className="h-5 w-5 text-primary" />
-                </div>
-                <p className="text-sm text-muted-foreground mb-4">Encontre novos nichos e empresas que precisam de um site agora.</p>
-                <div className="flex items-center text-xs font-bold text-primary group-hover:translate-x-1 transition-transform">
-                  EXPLORAR OPORTUNIDADES <ArrowUpRight className="ml-1 h-3 w-3" />
-                </div>
-              </Link>
-            </Card>
-            <Card className="p-6 border-border/50 glass hover:border-primary/20 transition-colors cursor-pointer group">
-              <Link to="/library" className="block">
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-bold">Biblioteca Premium</h4>
-                  <Library className="h-5 w-5 text-purple-500" />
-                </div>
-                <p className="text-sm text-muted-foreground mb-4">Acesse templates e blocos de código prontos para usar.</p>
-                <div className="flex items-center text-xs font-bold text-purple-500 group-hover:translate-x-1 transition-transform">
-                  VER TEMPLATES <ArrowUpRight className="ml-1 h-3 w-3" />
-                </div>
-              </Link>
-            </Card>
-          </div>
-        </div>
-
-        {/* Sidebar area: Activities & Notes */}
-        <div className="space-y-8">
-          <Card className="p-6 border-border/50 glass">
-            <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-              <Clock className="h-5 w-5 text-primary" /> Atividades Recentes
-            </h3>
-            <div className="space-y-6">
-              {activities.map((act, i) => (
-                <div key={i} className="flex gap-4 relative">
-                  {i !== activities.length - 1 && (
-                    <div className="absolute left-[11px] top-6 bottom-[-24px] w-[2px] bg-border/50" />
-                  )}
-                  <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center shrink-0 mt-1">
-                    <div className="h-2 w-2 rounded-full bg-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">{act.content}</p>
-                    <p className="text-[10px] text-muted-foreground font-bold uppercase mt-1 tracking-wider">{act.time}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <Button variant="ghost" className="w-full mt-8 text-xs font-bold text-muted-foreground hover:text-primary">
-              VER TODA A ATIVIDADE
-            </Button>
-          </Card>
-
-          <Card className="p-6 border-border/50 bg-gradient-to-br from-primary/5 to-purple-500/5 relative overflow-hidden group">
-            <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform">
-              <BarChart3 className="h-32 w-32" />
-            </div>
-            <h3 className="text-lg font-bold mb-2">Dica do Dia</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              "Aborde empresas com nota 3.5 no Google Maps. Elas sabem que precisam melhorar e estão dispostas a investir."
-            </p>
-            <div className="mt-6 flex items-center gap-2 text-xs font-bold text-primary">
-              <CheckCircle2 className="h-4 w-4" /> ESTRATÉGIA VALIDADA
-            </div>
-          </Card>
-        </div>
-      </div>
+      <Card className="border-white/[0.07] bg-white/[0.025] p-6"><div className="mb-5 flex items-center gap-2"><Zap className="h-4 w-4 text-cyan-300"/><h2 className="text-sm font-black uppercase tracking-widest">Ação rápida</h2></div><p className="text-xs leading-relaxed text-white/35">Adicione uma empresa que você encontrou e continue a abordagem pelo Radar.</p><div className="mt-5 space-y-3"><Input value={quickLead} onChange={e=>setQuickLead(e.target.value)} onKeyDown={e=>e.key==="Enter"&&addLead()} placeholder="Nome da empresa" className="h-11 border-white/10 bg-black/20 text-white placeholder:text-white/20"/><Button onClick={addLead} className="h-11 w-full bg-white text-[#05070d] font-black hover:bg-cyan-100"><Plus className="h-4 w-4"/> Adicionar ao radar</Button></div><div className="mt-6 space-y-2"><Link to="/ai-builder" className="flex items-center gap-3 rounded-xl border border-white/[0.06] p-3 hover:bg-white/[0.04]"><Wand2 className="h-4 w-4 text-cyan-300"/><span className="flex-1 text-[10px] font-bold text-white/60">Criar projeto com IA</span><ArrowUpRight className="h-3.5 w-3.5 text-white/20"/></Link><Link to="/pricing-calculator" className="flex items-center gap-3 rounded-xl border border-white/[0.06] p-3 hover:bg-white/[0.04]"><Calculator className="h-4 w-4 text-violet-300"/><span className="flex-1 text-[10px] font-bold text-white/60">Montar uma proposta</span><ArrowUpRight className="h-3.5 w-3.5 text-white/20"/></Link></div></Card>
     </div>
-  );
+
+    <div className="grid gap-5 lg:grid-cols-[1fr_.8fr]">
+      <Card className="border-white/[0.07] bg-white/[0.025] p-6"><div className="mb-5 flex items-center justify-between"><div><h2 className="text-sm font-black uppercase tracking-widest">Atividade recente</h2><p className="mt-1 text-[9px] text-white/25">Tudo o que aconteceu no seu workspace</p></div><Activity className="h-4 w-4 text-cyan-300"/></div><div className="space-y-2">{activity.map(([title,text,time,Icon])=><div key={String(text)} className="flex items-center gap-3 rounded-xl border border-white/[0.05] p-3 transition hover:bg-white/[0.035]"><div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-300/[0.06] text-cyan-300"><Icon className="h-4 w-4"/></div><div className="min-w-0 flex-1"><p className="text-[10px] font-bold text-white/70">{text as string}</p><p className="mt-1 text-[8px] font-black uppercase tracking-wider text-white/25">{title as string} · {time as string}</p></div><ArrowUpRight className="h-3.5 w-3.5 text-white/15"/></div>)}</div></Card>
+      <Card className="border-emerald-300/10 bg-emerald-300/[0.025] p-6"><div className="flex items-center gap-2 text-emerald-300"><CheckCircle2 className="h-4 w-4"/><span className="text-[9px] font-black uppercase tracking-[0.2em]">Playbook de hoje</span></div><h3 className="mt-4 text-xl font-black tracking-tight text-white">Seu próximo dinheiro está na prospecção.</h3><p className="mt-2 text-xs leading-relaxed text-white/35">Encontre 10 empresas com presença digital fraca, personalize a abordagem e envie uma demonstração visual. Consistência vence volume aleatório.</p><Link to="/prospecting"><Button className="mt-6 h-11 w-full bg-emerald-300 font-black text-[#04110b] hover:bg-emerald-200"><Target className="h-4 w-4"/> Abrir Radar agora</Button></Link><div className="mt-5 flex items-center justify-between border-t border-white/[0.06] pt-4 text-[8px] font-black uppercase tracking-widest text-white/20"><span>Meta sugerida</span><span>10 oportunidades</span></div></Card>
+    </div>
+
+    <div className="grid gap-4 md:grid-cols-4">{[["AI Builder","Crie o site","/ai-builder",Wand2],["Radar","Ache clientes","/prospecting",Search],["Scripts","Venda melhor","/scripts",MessageSquare],["Calculadora","Precifique","/pricing-calculator",Calculator]].map(([title,desc,to,Icon])=><Link key={String(to)} to={String(to)}><Card className="group flex items-center gap-3 border-white/[0.06] bg-white/[0.02] p-4 hover:border-cyan-300/20 hover:bg-white/[0.04]"><div className="rounded-xl bg-white/[0.04] p-2.5 text-cyan-300"><Icon className="h-4 w-4"/></div><div className="min-w-0 flex-1"><p className="text-[10px] font-black text-white">{title as string}</p><p className="mt-0.5 text-[8px] text-white/25">{desc as string}</p></div><ArrowUpRight className="h-3.5 w-3.5 text-white/15 transition group-hover:text-cyan-300"/></Card></Link>)}</div>
+  </div>;
 }
