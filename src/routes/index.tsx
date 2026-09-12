@@ -1,427 +1,76 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Zap, ArrowRight, Check, Play, Shield, Sparkles, Star, Wand2, Search, Calculator, Library, GraduationCap, Camera, MessageSquare } from "lucide-react";
+import { ArrowRight, Bot, Calculator, Check, ChevronRight, Clipboard, Copy, Crosshair, DollarSign, Gauge, Globe2, Layers3, Library, MessageSquare, MousePointer2, Rocket, Search, Shield, Sparkles, Target, Wand2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
-  head: () => ({
-    title: "SiteAI Pro | Criador de Sites Corporativos com IA",
-    meta: [
-      {
-        name: "description",
-        content: "A maior plataforma futurista de criação estratégica de sites com Inteligência Artificial para agências e freelancers. Design premium em minutos.",
-      },
-      { property: "og:title", content: "SiteAI Pro | Design Futurista e IA" },
-      { property: "og:description", content: "Crie sites corporativos de alta conversão com nossa inteligência artificial de elite." },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () => ({ title: "SiteAI Pro | Sistema de Sites, Prompts e Prospecção com IA", meta: [
+    { name: "description", content: "Crie sites profissionais, gere prompts, prospecte empresas e calcule propostas com o SiteAI Pro." },
+    { property: "og:title", content: "SiteAI Pro | Venda sites com IA" },
+    { property: "og:description", content: "Crie. Prospecte. Precifique. Venda. Um ecossistema para transformar IA em serviços digitais." },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
 });
 
+const niches = ["Clínicas", "Restaurantes", "Imobiliárias", "Advogados", "Academias", "Estética", "Construção", "Oficinas", "Energia Solar", "Hotéis", "Dentistas", "Lojas"];
+const features = [
+  [Wand2, "AI Site Builder", "Gere briefing, estrutura, copy, seções e direção visual para criar projetos completos com IA."],
+  [Crosshair, "Prospecção Radar", "Encontre oportunidades, identifique empresas com presença digital fraca e organize sua abordagem."],
+  [Calculator, "Pricing Engine", "Calcule preço sugerido, margem, horas e pacote ideal antes de enviar uma proposta."],
+  [Library, "Prompt Vault", "Biblioteca de prompts profissionais por nicho, objetivo, estilo e etapa do projeto."],
+  [MessageSquare, "Sales Scripts", "Scripts para Instagram, WhatsApp, ligação, follow-up e recuperação de leads."],
+  [Rocket, "Launch Academy", "Planos práticos para montar oferta, criar portfólio e vender seus primeiros projetos."],
+  [Layers3, "Client Kit", "Briefing, checklist de entrega, roteiro de apresentação e estrutura de proposta."],
+  [Gauge, "Performance", "Acompanhe produção, propostas, conversão e faturamento em uma visão simples."],
+  [Globe2, "White Label", "Venda a solução com sua própria marca e transforme a plataforma em uma máquina de produção."],
+];
+const promptTemplates = {
+  "Site corporativo": "Crie um site corporativo premium para uma empresa de {NICHO}. Objetivo: gerar contatos pelo WhatsApp. Estruture hero, autoridade, serviços, diferenciais, provas, FAQ e CTA. Use copy persuasiva, design moderno e responsivo.",
+  "Landing page": "Crie uma landing page de alta conversão para um site profissional no nicho {NICHO}. Foque em dor, mecanismo, benefícios, prova, oferta, garantia, objeções e CTA. Visual premium e mobile-first.",
+  "Clínica": "Crie um site premium para uma clínica de {NICHO}. Transmita confiança, autoridade e acolhimento. Inclua serviços, equipe, diferenciais, localização, FAQ e agendamento via WhatsApp.",
+  "Restaurante": "Crie um site moderno para um restaurante {NICHO}. Destaque experiência, cardápio, localização, avaliações, reservas e WhatsApp. Visual sofisticado e rápido no celular.",
+};
+
 function LandingPage() {
-  const partners = [
-    { name: "Shopee", color: "text-[#EE4D2D]" },
-    { name: "Amazon", color: "text-[#FF9900]" },
-    { name: "TikTok", color: "text-[#000000]" },
-    { name: "Mercado Livre", color: "text-[#FFE600]" },
-  ];
-
+  const [niche, setNiche] = useState("Clínicas");
+  const [promptType, setPromptType] = useState<keyof typeof promptTemplates>("Site corporativo");
+  const [promptCopied, setPromptCopied] = useState(false);
+  const [sitePrice, setSitePrice] = useState(1500);
+  const [sitesPerMonth, setSitesPerMonth] = useState(5);
+  const [margin, setMargin] = useState(80);
+  const [prospect, setProspect] = useState("");
+  const [scriptCopied, setScriptCopied] = useState(false);
+  const generatedPrompt = useMemo(() => promptTemplates[promptType].replace("{NICHO}", niche), [promptType, niche]);
+  const revenue = sitePrice * sitesPerMonth;
+  const profit = Math.round(revenue * margin / 100);
+  const salesScript = `Olá! Vi o perfil da ${prospect || "sua empresa"} e percebi uma oportunidade interessante. Muitas pessoas pesquisam uma empresa antes de entrar em contato, e um site profissional pode ajudar a transformar essa busca em novos clientes. Eu trabalho com criação de sites estratégicos e posso te mostrar uma ideia rápida para a ${prospect || "empresa"}. Posso te enviar?`;
+  const copyText = async (text: string, setter: (v: boolean) => void) => { try { await navigator.clipboard.writeText(text); setter(true); setTimeout(() => setter(false), 1600); } catch {} };
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/30 relative overflow-x-hidden grid-bg">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="scanline" />
-        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/10 to-transparent" />
-        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/10 to-transparent" />
-        <div className="absolute top-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
-        <div className="absolute bottom-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
-        
-        {/* Glowing Orbs */}
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
-        
-        <motion.div 
-          animate={{ opacity: [0.05, 0.15, 0.05] }}
-          transition={{ duration: 6, repeat: Infinity }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.05),transparent_50%),radial-gradient(circle_at_80%_70%,rgba(168,85,247,0.05),transparent_50%)]"
-        />
-      </div>
-      
-      {/* Urgent Top Banner */}
-      <div className="bg-primary py-2.5 text-center text-[10px] sm:text-xs font-black text-primary-foreground uppercase tracking-widest px-4">
-        Tempo esgotado! Adquira a plataforma imediatamente para não perder a oportunidade de aplicar o cupom <span className="bg-white text-primary px-2 py-0.5 rounded mx-1">PAIOFF50</span>
-        <a href="#pricing" className="ml-2 underline hover:no-underline">Ver planos →</a>
-      </div>
-
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/20">
-              <Zap className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <span className="text-2xl font-black tracking-tighter uppercase">SiteAI Pro</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-xs font-black uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary">Recursos</a>
-            <a href="#gallery" className="text-xs font-black uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary">Galeria</a>
-            <a href="#how" className="text-xs font-black uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary">Como funciona</a>
-            <a href="#pricing" className="text-xs font-black uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary">Planos</a>
-            <a href="#faq" className="text-xs font-black uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary">FAQ</a>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" className="font-bold text-xs uppercase" asChild>
-              <Link to="/auth">Entrar</Link>
-            </Button>
-            <Button className="gradient-brand border-0 font-bold px-6 shadow-xl shadow-primary/20" asChild>
-              <Link to="/auth">Assinar agora</Link>
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative px-4 pt-24 pb-32 text-center overflow-hidden">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_70%)]" />
-          <motion.div 
-            animate={{ 
-              opacity: [0.1, 0.3, 0.1],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] -z-20 pointer-events-none" 
-          />
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.8 }}
-            className="container mx-auto"
-          >
-            <div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10">
-              {[...Array(12)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  animate={{
-                    x: ["-100%", "200%"],
-                    opacity: [0, 1, 0],
-                    scaleX: [1, 1.5, 1],
-                  }}
-                  transition={{
-                    duration: 3 + Math.random() * 5,
-                    repeat: Infinity,
-                    delay: i * 2,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute h-[2px] w-96 bg-gradient-to-r from-transparent via-primary to-transparent"
-                  style={{ 
-                    top: `${10 + i * 8}%`, 
-                    left: 0,
-                    filter: "blur(1px) drop-shadow(0 0 10px rgba(59, 130, 246, 0.8))"
-                  }}
-                />
-              ))}
-            </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-black uppercase tracking-widest mb-8">
-              <Sparkles className="h-3 w-3" /> Inteligência Artificial de Elite
-            </div>
-            <h1 className="mx-auto max-w-5xl text-5xl font-black tracking-tighter sm:text-8xl leading-[0.9] uppercase mb-8">
-              Sites corporativos <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Premium em minutos.</span>
-            </h1>
-            <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed font-medium">
-              Transforme a presença digital de qualquer empresa com design de estúdio e copy estratégica. Escalabilidade real para sua agência.
-            </p>
-            <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="h-16 px-12 text-lg font-black uppercase gradient-brand border-0 shadow-2xl shadow-primary/30 w-full sm:w-auto" asChild>
-                <Link to="/auth">Assinar agora <ArrowRight className="ml-2 h-6 w-6" /></Link>
-              </Button>
-              <Button size="lg" variant="outline" className="h-16 px-12 text-lg font-black uppercase border-border/60 hover:bg-muted/50 w-full sm:w-auto">
-                Ver como funciona <Play className="ml-2 h-6 w-6" />
-              </Button>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Partners Marquee */}
-        <div className="py-12 border-y border-border/40 bg-card/20 overflow-hidden relative">
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
-            <div className="container mx-auto px-4 mb-6">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-center text-muted-foreground">Empresas parceiras na plataforma</p>
-            </div>
-            <div className="flex animate-marquee gap-12 whitespace-nowrap">
-                {[...Array(4)].map((_, groupIdx) => (
-                    <div key={groupIdx} className="flex gap-12 items-center">
-                        {partners.map(p => (
-                            <span key={`${groupIdx}-${p.name}`} className={`text-2xl font-black tracking-tighter opacity-40 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 cursor-default ${p.color}`}>
-                                {p.name}
-                            </span>
-                        ))}
-                    </div>
-                ))}
-            </div>
-        </div>
-
-        {/* Features / Recursos */}
-        <section id="features" className="py-32 container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
-                <div className="max-w-2xl">
-                    <div className="text-primary text-xs font-black uppercase tracking-widest mb-4">Recursos</div>
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-[0.9]">Tudo o que você precisa <br /> pra criar como um estúdio.</h2>
-                </div>
-                <p className="text-muted-foreground text-lg font-medium md:text-right max-w-sm">
-                    Dezenas de funcionalidades inteligentes dentro do SiteAI Pro. Veja o poder em ação.
-                </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-                {[
-                    { title: "AI Builder Pro", desc: "Gere sites completos, copy e estrutura em segundos com prompts expert v3.0.", icon: Wand2, color: "from-blue-500/10 to-cyan-500/10" },
-                    { title: "Prospecção VIP", desc: "Localize empresas que precisam de um site agora e aborde com scripts validados.", icon: Search, color: "from-purple-500/10 to-pink-500/10" },
-                    { title: "Pricing Engine", desc: "Calcule orçamentos precisos com margem de lucro real e preços sugeridos.", icon: Calculator, color: "from-orange-500/10 to-yellow-500/10" },
-                    { title: "Library Premium", desc: "Acesse centenas de templates e blocos de código prontos para conversão.", icon: Library, color: "from-green-500/10 to-emerald-500/10" },
-                    { title: "Academy", desc: "Aprenda a escalar sua agência para faturar 5 dígitos por mês com nossa metodologia.", icon: GraduationCap, color: "from-red-500/10 to-rose-500/10" },
-                    { title: "White Label", desc: "Apresente os resultados com sua marca e encante seus clientes.", icon: Shield, color: "from-indigo-500/10 to-blue-500/10" },
-                ].map((f, i) => (
-                    <Card key={i} className="group p-12 min-h-[400px] border-border/30 bg-card/20 hover:border-primary/50 transition-all glass relative overflow-hidden flex flex-col justify-center shadow-2xl hover:shadow-primary/5">
-                        <div className={`absolute -top-24 -right-24 h-64 w-64 bg-gradient-to-br ${f.color} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`} />
-                        <div className="relative z-10">
-                            <f.icon className="h-16 w-16 text-primary mb-10 group-hover:scale-110 transition-transform group-hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.6)]" />
-                            <h3 className="text-3xl font-black uppercase mb-8 tracking-tighter leading-none">{f.title}</h3>
-                            <p className="text-muted-foreground text-lg leading-relaxed">{f.desc}</p>
-                        </div>
-                    </Card>
-                ))}
-            </div>
-        </section>
-
-        {/* How it Works / Passo a Passo */}
-        <section id="how" className="py-32 bg-card/30 relative">
-            <div className="container mx-auto px-4">
-                <div className="text-center max-w-3xl mx-auto mb-20">
-                    <div className="text-primary text-xs font-black uppercase tracking-widest mb-4">Como funciona</div>
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-[0.9] mb-8">Três passos. <br />Resultado de estúdio.</h2>
-                    <p className="text-muted-foreground text-lg font-medium">Do briefing à publicação em minutos. O fluxo completo para sua agência.</p>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-12 relative">
-                    <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 hidden md:block" />
-                    
-                    {[
-                        { step: "01", title: "Defina o Negócio", desc: "Insira os dados da empresa e deixe nossa IA entender o posicionamento ideal." },
-                        { step: "02", title: "Gere a Estratégia", desc: "Nossa IA cria o design, a copy e a estrutura focada em conversão WhatsApp." },
-                        { step: "03", title: "Feche o Contrato", desc: "Apresente um projeto impecável e valide com o cliente em tempo recorde." }
-                    ].map((s, i) => (
-                        <div key={i} className="relative z-10 flex flex-col items-center text-center group">
-                            <div className="h-20 w-20 rounded-2xl bg-background border-2 border-border flex items-center justify-center text-2xl font-black text-primary group-hover:border-primary group-hover:scale-110 transition-all mb-8 shadow-xl">
-                                {s.step}
-                            </div>
-                            <h3 className="text-xl font-black uppercase mb-4">{s.title}</h3>
-                            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">{s.desc}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-
-        {/* Pricing / Planos */}
-        <section id="pricing" className="py-32 container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-                <div className="text-primary text-xs font-black uppercase tracking-widest mb-4">Planos</div>
-                <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-[0.9] mb-8">Escolha o ritmo <br />da sua criação.</h2>
-                <div className="inline-flex items-center gap-2 p-4 rounded-2xl bg-primary/5 border border-primary/20 text-sm font-bold text-primary mt-4">
-                    <Sparkles className="h-5 w-5" /> Cupom aplicado: PAIOFF50 (-50%)
-                </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                {/* Mensal */}
-                <div className="p-10 rounded-[2.5rem] border border-border bg-card/20 glass flex flex-col justify-between group hover:border-primary/30 transition-all relative overflow-hidden">
-                    <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                    <div>
-                        <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">Mensal</h3>
-                        <p className="text-muted-foreground text-sm font-medium mb-8">Acesso completo com flexibilidade total.</p>
-                        <div className="mb-8">
-                            <p className="text-muted-foreground text-sm font-bold line-through">R$ 319,90</p>
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-5xl font-black tracking-tighter uppercase">R$ 159,00</span>
-                                <span className="text-muted-foreground text-sm font-bold uppercase">/mês</span>
-                            </div>
-                            <div className="inline-block px-2 py-1 rounded bg-red-500/10 text-red-500 text-[10px] font-black uppercase tracking-wider mt-2">-50% OFF</div>
-                        </div>
-                        <ul className="space-y-4 mb-10">
-                            {[ 'Acesso ao AI Builder Pro', 'Calculadora de Preços', 'Scripts de Vendas', 'Academy Starter', 'Suporte Prioritário' ].map(f => (
-                                <li key={f} className="flex items-center gap-3 text-sm font-medium">
-                                    <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                                        <Check className="h-3 w-3 text-primary" />
-                                    </div>
-                                    {f}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <Button className="w-full h-16 text-lg font-black uppercase border-border/60 hover:bg-muted/50" variant="outline">Assinar mensal</Button>
-                </div>
-
-                {/* Vitalício */}
-                <div className="p-10 rounded-[2.5rem] border-2 border-primary bg-primary/5 glass flex flex-col justify-between group relative overflow-hidden shadow-2xl shadow-primary/20">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.2),transparent_70%)]" />
-                    <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-black uppercase px-4 py-2 rounded-bl-2xl tracking-widest z-10">Melhor custo-benefício</div>
-                    <div className="absolute -top-24 -right-24 h-64 w-64 bg-primary/10 rounded-full blur-3xl" />
-                    
-                    <div className="relative z-10">
-                        <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">Vitalício</h3>
-                        <p className="text-muted-foreground text-sm font-medium mb-8">Pague uma vez. Use para sempre, sem mensalidade.</p>
-                        <div className="mb-8">
-                            <p className="text-muted-foreground text-sm font-bold line-through">R$ 597,00</p>
-                            <div className="flex flex-col">
-                                <div className="flex items-baseline gap-2">
-                                    <span className="text-muted-foreground text-sm font-bold uppercase">12x de</span>
-                                    <span className="text-5xl font-black tracking-tighter uppercase">R$ 31,53</span>
-                                </div>
-                                <p className="text-sm font-bold text-primary mt-1">ou R$ 295,90 à vista</p>
-                            </div>
-                            <div className="inline-block px-2 py-1 rounded bg-primary/20 text-primary text-[10px] font-black uppercase tracking-wider mt-2">-50% OFF APLICADO</div>
-                        </div>
-                        <ul className="space-y-4 mb-10">
-                            {[ 'Acesso Vitalício Ilimitado', 'Academy Completo (VIP)', 'Biblioteca Premium Full', 'Novas Funções Grátis', 'Prioridade Máxima' ].map(f => (
-                                <li key={f} className="flex items-center gap-3 text-sm font-bold">
-                                    <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center shrink-0">
-                                        <Check className="h-3 w-3 text-white" />
-                                    </div>
-                                    {f}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <Button className="w-full h-16 text-lg font-black uppercase gradient-brand border-0 shadow-xl shadow-primary/20 relative z-10 group-hover:scale-[1.02] transition-transform">Garantir vitalício</Button>
-                </div>
-            </div>
-            
-            <p className="text-center text-[10px] text-muted-foreground mt-12 max-w-xl mx-auto uppercase font-black tracking-widest opacity-50">
-                Ao adquirir qualquer plano você declara que leu e concorda com os Termos de Uso e a Política de Privacidade da plataforma SiteAI Pro.
-            </p>
-        </section>
-
-        {/* FAQ Section */}
-        <section id="faq" className="py-32 container mx-auto px-4 max-w-4xl">
-            <div className="text-center mb-20">
-                <div className="text-primary text-xs font-black uppercase tracking-widest mb-4">FAQ</div>
-                <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-[0.9]">Tudo o que você <br />precisa saber.</h2>
-            </div>
-            <Accordion type="single" collapsible className="w-full space-y-4">
-                {[
-                    { q: "O que é o SiteAI Pro?", a: "Uma plataforma IA de alta performance para criação estratégica de sites corporativos focados em conversão WhatsApp para agências e freelancers." },
-                    { q: "Preciso ter experiência com IA ou desenvolvimento?", a: "Não. Nossa inteligência cuida de toda a complexidade técnica, permitindo que você foque apenas na parte estratégica e no atendimento ao cliente." },
-                    { q: "Os sites gerados são responsivos?", a: "Sim, todos os prompts e modelos são otimizados para oferecerem a melhor experiência possível em desktop, tablets e celulares." },
-                    { q: "Como funcionam os scripts de abordagem?", a: "São modelos de texto validados que você pode copiar e adaptar para prospectar clientes via Instagram, WhatsApp, LinkedIn e E-mail." },
-                    { q: "Posso cancelar minha assinatura mensal?", a: "Sim, o plano mensal não possui fidelidade. Você pode cancelar a qualquer momento sem letras miúdas." }
-                ].map((faq, i) => (
-                    <AccordionItem key={i} value={`faq-${i}`} className="border border-border/50 rounded-2xl bg-card/30 glass px-6 overflow-hidden">
-                        <AccordionTrigger className="text-sm font-black uppercase tracking-tighter hover:text-primary transition-colors py-6">{faq.q}</AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground leading-relaxed pb-6 text-sm font-medium">
-                            {faq.a}
-                        </AccordionContent>
-                    </AccordionItem>
-                ))}
-            </Accordion>
-        </section>
-
-        {/* Final CTA */}
-        <section className="py-32 relative overflow-hidden bg-primary/5">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_60%)]" />
-            <div className="container mx-auto px-4 text-center relative z-10">
-                <h2 className="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-12">
-                    Pronto para dominar o mercado <br />
-                    <span className="text-primary">de sites com IA?</span>
-                </h2>
-                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <Button size="lg" className="h-16 px-12 text-lg font-black uppercase gradient-brand border-0 shadow-2xl shadow-primary/30 w-full sm:w-auto" asChild>
-                        <Link to="/auth">Assinar agora</Link>
-                    </Button>
-                    <Button size="lg" variant="outline" className="h-16 px-12 text-lg font-black uppercase border-border/60 w-full sm:w-auto" asChild>
-                        <Link to="/auth">Já tenho conta</Link>
-                    </Button>
-                </div>
-                <div className="mt-16 flex flex-wrap justify-center gap-12 text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">
-                    <span className="flex items-center gap-2"><Sparkles className="h-4 w-4" /> Geração em segundos</span>
-                    <span className="flex items-center gap-2"><Shield className="h-4 w-4" /> Seus dados seguros</span>
-                    <span className="flex items-center gap-2"><Check className="h-4 w-4" /> Atualizações mensais</span>
-                </div>
-            </div>
-        </section>
+    <div className="min-h-screen bg-[#05070d] text-white overflow-x-hidden selection:bg-cyan-400/30">
+      <div className="fixed inset-0 pointer-events-none z-0 bg-[radial-gradient(circle_at_15%_10%,rgba(37,99,235,.18),transparent_30%),radial-gradient(circle_at_85%_20%,rgba(139,92,246,.14),transparent_28%),radial-gradient(circle_at_50%_80%,rgba(6,182,212,.08),transparent_32%)]" />
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-[.16] [background-image:linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] [background-size:60px_60px]" />
+      <div className="relative z-20 bg-gradient-to-r from-blue-600 via-violet-600 to-cyan-500 px-4 py-2 text-center text-[10px] sm:text-xs font-black uppercase tracking-[.14em]">⚡ LANÇAMENTO SITEAI PRO · CRIE, PROSPECTE E VENDA SITES COM IA · <span className="bg-white text-black px-2 py-1 rounded-md">PAIOFF50</span></div>
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#05070d]/75 backdrop-blur-2xl"><div className="max-w-7xl mx-auto h-[72px] px-4 flex items-center justify-between"><a href="#inicio" className="flex items-center gap-3 group"><div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 grid place-items-center shadow-lg shadow-blue-500/25 group-hover:rotate-6 transition-transform"><Zap className="h-5 w-5"/></div><span className="font-black tracking-tight text-xl">SiteAI <span className="text-cyan-400">PRO</span></span></a><nav className="hidden lg:flex items-center gap-7 text-[11px] font-black uppercase tracking-widest text-white/55"><a href="#recursos" className="hover:text-white">Recursos</a><a href="#laboratorio" className="hover:text-white">Laboratório</a><a href="#prospeccao" className="hover:text-white">Prospecção</a><a href="#como" className="hover:text-white">Como funciona</a><a href="#pricing" className="hover:text-white">Planos</a></nav><div className="flex gap-2"><Button variant="ghost" className="hidden sm:inline-flex text-xs font-bold" asChild><Link to="/auth">Entrar</Link></Button><Button className="bg-white text-black hover:bg-cyan-50 font-black text-xs rounded-xl px-5" asChild><Link to="/auth">Começar agora <ArrowRight className="ml-2 h-4 w-4"/></Link></Button></div></div></header>
+      <main className="relative z-10">
+        <section id="inicio" className="relative pt-20 sm:pt-28 pb-24 px-4"><div className="max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_.95fr] gap-14 items-center"><motion.div initial={{opacity:0,y:25}} animate={{opacity:1,y:0}} transition={{duration:.7}}><div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/5 px-4 py-2 text-[10px] font-black uppercase tracking-[.18em] text-cyan-300 mb-7"><Bot className="h-3.5 w-3.5"/> Seu novo sistema operacional para vender sites</div><h1 className="text-5xl sm:text-7xl xl:text-[88px] font-black tracking-[-.065em] leading-[.86]">PARE DE SÓ <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-500">CRIAR.</span><br/><span>COMECE A VENDER.</span></h1><p className="mt-8 max-w-2xl text-lg sm:text-xl text-white/55 leading-relaxed">Uma plataforma criada para transformar Inteligência Artificial em uma operação real de criação de sites, prospecção, propostas e vendas.</p><div className="mt-9 flex flex-col sm:flex-row gap-3"><Button size="lg" className="h-14 px-8 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-600 text-white border-0 font-black shadow-2xl shadow-blue-500/20" asChild><Link to="/auth">Quero acessar o SiteAI Pro <ArrowRight className="ml-2"/></Link></Button><a href="#laboratorio" className="h-14 px-7 rounded-2xl border border-white/10 bg-white/[.03] flex items-center justify-center font-black text-sm hover:bg-white/[.07]">Explorar ferramentas <ChevronRight className="ml-2 h-4"/></a></div><div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-[10px] font-black uppercase tracking-widest text-white/40"><span className="flex gap-2 items-center"><Check className="h-4 w-4 text-cyan-400"/> Sites mais rápidos</span><span className="flex gap-2 items-center"><Check className="h-4 w-4 text-cyan-400"/> Mais organização</span><span className="flex gap-2 items-center"><Check className="h-4 w-4 text-cyan-400"/> Mais oportunidades</span></div></motion.div>
+          <motion.div initial={{opacity:0,scale:.94}} animate={{opacity:1,scale:1}} transition={{duration:.8,delay:.15}} className="relative"><div className="absolute -inset-8 bg-gradient-to-r from-cyan-500/10 via-blue-500/15 to-violet-500/10 blur-3xl rounded-full"/><div className="relative rounded-[30px] border border-white/10 bg-[#0a0e18]/90 p-3 shadow-2xl shadow-black/50 rotate-1 hover:rotate-0 transition-transform duration-700"><div className="rounded-[22px] border border-white/10 overflow-hidden bg-[#080b13]"><div className="h-11 border-b border-white/10 flex items-center px-4 gap-2"><span className="h-2 w-2 rounded-full bg-red-400/70"/><span className="h-2 w-2 rounded-full bg-yellow-400/70"/><span className="h-2 w-2 rounded-full bg-green-400/70"/><span className="ml-4 text-[9px] text-white/30 font-bold">siteai.pro / workspace</span></div><div className="p-5 sm:p-7"><div className="flex justify-between"><div><div className="text-[9px] uppercase tracking-widest text-cyan-300 font-black">Workspace</div><div className="text-2xl font-black mt-1">Sua máquina de vendas</div></div><Sparkles className="h-6 text-cyan-300"/></div><div className="grid grid-cols-2 gap-3 mt-6"><div className="rounded-2xl border border-white/10 bg-white/[.035] p-4"><div className="text-[9px] text-white/35 uppercase font-black">Sites no mês</div><div className="text-3xl font-black mt-2">{sitesPerMonth}</div><div className="text-[9px] text-emerald-300 mt-1">↑ produção</div></div><div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/[.05] p-4"><div className="text-[9px] text-white/35 uppercase font-black">Faturamento</div><div className="text-2xl font-black mt-2">R$ {revenue.toLocaleString("pt-BR")}</div><div className="text-[9px] text-cyan-300 mt-1">simulado</div></div></div><div className="mt-3 rounded-2xl border border-white/10 bg-white/[.025] p-4"><div className="flex justify-between text-[9px] font-black uppercase text-white/40"><span>Pipeline</span><span>IA ativa</span></div><div className="space-y-3 mt-4">{["Prompt gerado","Lead qualificado","Proposta enviada"].map((x,i)=><div key={x} className="flex items-center gap-3"><div className="h-7 w-7 rounded-lg bg-blue-500/10 grid place-items-center text-cyan-300 text-[9px] font-black">0{i+1}</div><span className="text-xs font-bold text-white/70">{x}</span><span className="ml-auto h-1.5 w-20 rounded-full bg-white/10"><i className="block h-full w-[80%] bg-gradient-to-r from-blue-500 to-cyan-300"/></span></div>)}</div></div></div></div></div></motion.div></div></section>
+        <section className="border-y border-white/10 bg-white/[.02] py-8 overflow-hidden"><div className="flex w-max gap-12 animate-[marquee_24s_linear_infinite]">{[...niches,...niches].map((n,i)=><span key={i} className="text-sm font-black uppercase tracking-widest text-white/25">{n} <span className="text-cyan-400/40">✦</span></span>)}</div></section>
+        <section id="recursos" className="py-28 px-4"><div className="max-w-7xl mx-auto"><div className="max-w-3xl mb-16"><div className="text-cyan-300 text-[10px] font-black uppercase tracking-[.2em]">O ecossistema</div><h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-.05em] leading-[.9]">Muito mais que um gerador de sites.</h2><p className="mt-6 text-lg text-white/45">Ferramentas para acelerar a criação e transformar cada projeto em uma oportunidade comercial.</p></div><div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">{features.map(([Icon,title,desc])=><motion.div key={title as string} whileHover={{y:-6}} transition={{type:"spring",stiffness:300}}><Card className="h-full min-h-[235px] rounded-3xl border-white/10 bg-white/[.025] hover:bg-white/[.045] hover:border-cyan-400/25 p-7 flex flex-col justify-between group"><div className="h-12 w-12 rounded-2xl border border-cyan-400/15 bg-cyan-400/5 grid place-items-center"><Icon className="h-6 w-6 text-cyan-300 group-hover:scale-110 transition-transform"/></div><div className="mt-10"><h3 className="text-xl font-black tracking-tight">{title as string}</h3><p className="mt-3 text-sm leading-relaxed text-white/40">{desc as string}</p></div></Card></motion.div>)}</div></div></section>
+        <section id="laboratorio" className="py-28 px-4 border-y border-white/10 bg-[#070a12]"><div className="max-w-7xl mx-auto"><div className="text-center max-w-3xl mx-auto"><div className="inline-flex items-center gap-2 text-violet-300 text-[10px] font-black uppercase tracking-[.2em]"><Wand2 className="h-3.5"/> Laboratório de IA</div><h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-.05em]">Crie seu prompt em segundos.</h2><p className="mt-5 text-white/45">Escolha projeto e nicho. O sistema prepara uma base estratégica para você adaptar.</p></div><div className="mt-14 grid lg:grid-cols-[.7fr_1.3fr] gap-5"><Card className="rounded-3xl border-white/10 bg-white/[.025] p-6"><div className="text-[10px] uppercase tracking-widest font-black text-white/35">Tipo de projeto</div><div className="grid gap-2 mt-4">{Object.keys(promptTemplates).map(t=><button key={t} onClick={()=>setPromptType(t as keyof typeof promptTemplates)} className={`text-left p-4 rounded-2xl border transition ${promptType===t?"border-cyan-400/40 bg-cyan-400/10 text-white":"border-white/10 bg-white/[.02] text-white/50 hover:text-white"}`}><span className="text-sm font-black">{t}</span><span className="block text-[10px] mt-1 opacity-50">Estratégia pronta para IA</span></button>)}</div><div className="text-[10px] uppercase tracking-widest font-black text-white/35 mt-7">Nicho</div><select value={niche} onChange={e=>setNiche(e.target.value)} className="mt-3 w-full h-12 rounded-xl bg-black/40 border border-white/10 px-4 text-sm font-bold text-white">{niches.map(n=><option key={n}>{n}</option>)}</select></Card><Card className="rounded-3xl border-cyan-400/15 bg-gradient-to-br from-cyan-400/[.05] to-blue-500/[.03] p-6"><div className="flex justify-between items-center"><div className="text-[10px] uppercase tracking-widest font-black text-cyan-300">Prompt pronto</div><button onClick={()=>copyText(generatedPrompt,setPromptCopied)} className="h-9 px-3 rounded-xl border border-white/10 bg-white/[.04] text-[10px] font-black flex items-center gap-2">{promptCopied?<Check className="h-3.5"/>:<Copy className="h-3.5"/>}{promptCopied?"Copiado":"Copiar"}</button></div><div className="mt-5 rounded-2xl border border-white/10 bg-black/30 p-5 min-h-[250px] text-sm leading-7 text-white/65 font-mono">{generatedPrompt}</div><div className="mt-4 flex items-center gap-2 text-[9px] text-white/30 uppercase font-black"><Sparkles className="h-3.5 text-cyan-300"/> Base estratégica · responsivo · conversão</div></Card></div></div></section>
+        <section id="prospeccao" className="py-28 px-4"><div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-6"><div><div className="text-blue-300 text-[10px] font-black uppercase tracking-[.2em]">Prospecção Radar</div><h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-.05em] leading-[.9]">Não espere o cliente aparecer.</h2><p className="mt-6 text-lg text-white/45 max-w-xl">Organize sua abordagem e tenha um script pronto para iniciar conversas com contexto, benefício e personalização.</p><div className="mt-8 space-y-3">{["Escolha um nicho e encontre empresas","Identifique problemas de presença digital","Aborde com contexto e benefício","Faça follow-up sem perder o lead"].map((x,i)=><div key={x} className="flex gap-3 items-center rounded-2xl border border-white/10 bg-white/[.025] p-4"><div className="h-7 w-7 rounded-lg bg-blue-500/10 text-blue-300 grid place-items-center text-[10px] font-black">0{i+1}</div><span className="text-sm font-bold text-white/65">{x}</span></div>)}</div></div><Card className="rounded-3xl border-white/10 bg-white/[.025] p-7"><div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-black text-white/35"><Target className="h-4 text-blue-300"/> Gerador de abordagem</div><label className="block mt-8 text-xs font-bold text-white/50">Nome da empresa</label><input value={prospect} onChange={e=>setProspect(e.target.value)} placeholder="Ex.: Clínica Vida" className="mt-2 w-full h-13 rounded-xl bg-black/30 border border-white/10 px-4 text-sm text-white outline-none"/><div className="mt-5 rounded-2xl border border-blue-400/15 bg-blue-400/[.04] p-5 text-sm leading-7 text-white/60">{salesScript}</div><Button onClick={()=>copyText(salesScript,setScriptCopied)} className="mt-5 w-full h-12 rounded-xl bg-blue-500 hover:bg-blue-400 font-black">{scriptCopied?<Check className="mr-2"/>:<Clipboard className="mr-2"/>}{scriptCopied?"Script copiado":"Copiar script de abordagem"}</Button></Card></div></section>
+        <section className="py-28 px-4 border-y border-white/10 bg-white/[.015]"><div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center"><div><div className="text-emerald-300 text-[10px] font-black uppercase tracking-[.2em]">Pricing Engine</div><h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-.05em] leading-[.9]">Saiba quanto sua operação pode gerar.</h2><p className="mt-6 text-white/45 text-lg">Simule preço, volume e margem para enxergar uma meta comercial.</p><div className="mt-8 text-5xl font-black">R$ {revenue.toLocaleString("pt-BR")}<span className="text-sm text-white/30 font-bold ml-2">/mês</span></div><div className="mt-3 text-sm font-bold text-emerald-300">≈ R$ {profit.toLocaleString("pt-BR")} de margem simulada</div></div><Card className="rounded-3xl border-white/10 bg-black/20 p-7"><div className="space-y-7"><label className="block"><div className="flex justify-between text-xs font-black uppercase tracking-widest text-white/45"><span>Preço médio</span><b className="text-white">R$ {sitePrice}</b></div><input type="range" min="500" max="5000" step="100" value={sitePrice} onChange={e=>setSitePrice(Number(e.target.value))} className="w-full mt-4 accent-cyan-400"/></label><label className="block"><div className="flex justify-between text-xs font-black uppercase tracking-widest text-white/45"><span>Sites/mês</span><b className="text-white">{sitesPerMonth}</b></div><input type="range" min="1" max="20" value={sitesPerMonth} onChange={e=>setSitesPerMonth(Number(e.target.value))} className="w-full mt-4 accent-blue-500"/></label><label className="block"><div className="flex justify-between text-xs font-black uppercase tracking-widest text-white/45"><span>Margem</span><b className="text-white">{margin}%</b></div><input type="range" min="30" max="95" value={margin} onChange={e=>setMargin(Number(e.target.value))} className="w-full mt-4 accent-violet-500"/></label></div><div className="mt-8 grid grid-cols-2 gap-3"><div className="rounded-2xl border border-white/10 p-4"><DollarSign className="h-5 text-emerald-300"/><div className="text-[9px] uppercase font-black text-white/30 mt-3">Faturamento</div><b className="text-xl">R$ {revenue.toLocaleString("pt-BR")}</b></div><div className="rounded-2xl border border-emerald-400/15 bg-emerald-400/[.04] p-4"><Gauge className="h-5 text-emerald-300"/><div className="text-[9px] uppercase font-black text-white/30 mt-3">Margem</div><b className="text-xl">R$ {profit.toLocaleString("pt-BR")}</b></div></div></Card></div></section>
+        <section id="como" className="py-28 px-4"><div className="max-w-7xl mx-auto"><div className="text-center max-w-3xl mx-auto"><div className="text-violet-300 text-[10px] font-black uppercase tracking-[.2em]">Seu fluxo</div><h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-.05em]">Do lead ao site entregue.</h2></div><div className="grid md:grid-cols-4 gap-4 mt-14">{[{n:"01",t:"Encontrar",d:"Escolha nicho e encontre oportunidades."},{n:"02",t:"Abordar",d:"Use scripts e uma proposta de valor clara."},{n:"03",t:"Criar",d:"Gere estratégia, copy e estrutura com IA."},{n:"04",t:"Vender",d:"Apresente, feche e entregue com velocidade."}].map((s,i)=><div key={s.n} className="relative rounded-3xl border border-white/10 bg-white/[.025] p-7"><div className="text-cyan-300 text-xs font-black">{s.n}</div><h3 className="mt-12 text-xl font-black">{s.t}</h3><p className="mt-3 text-sm text-white/40 leading-relaxed">{s.d}</p>{i<3&&<div className="hidden md:block absolute top-1/2 -right-3 z-10"><ChevronRight className="h-5 w-5 text-white/20"/></div>}</div>)}</div></div></section>
+        <section id="pricing" className="py-28 px-4 bg-[#070a12] border-y border-white/10"><div className="max-w-6xl mx-auto"><div className="text-center max-w-3xl mx-auto"><div className="text-cyan-300 text-[10px] font-black uppercase tracking-[.2em]">Oferta de lançamento</div><h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-.05em]">Escolha como quer operar.</h2></div><div className="grid md:grid-cols-2 gap-5 mt-14"><Card className="rounded-[30px] border-white/10 bg-white/[.025] p-8 sm:p-10"><div className="text-xs font-black uppercase tracking-widest text-white/40">Mensal</div><div className="mt-5 text-5xl font-black">R$ 159<span className="text-sm text-white/30">/mês</span></div><div className="mt-2 text-xs text-white/30 line-through">R$ 319,90</div><ul className="mt-8 space-y-4 text-sm text-white/60">{["AI Site Builder","Pricing Engine","Scripts de vendas","Academy Starter","Suporte prioritário"].map(x=><li key={x} className="flex gap-3"><Check className="h-4 text-cyan-300 shrink-0"/>{x}</li>)}</ul><Button className="mt-10 w-full h-14 rounded-2xl font-black" variant="outline" asChild><Link to="/auth">Assinar mensal</Link></Button></Card><Card className="rounded-[30px] border-cyan-400/40 bg-gradient-to-br from-cyan-400/[.09] via-blue-500/[.05] to-violet-500/[.08] p-8 sm:p-10 relative overflow-hidden shadow-2xl shadow-blue-500/10"><div className="absolute top-0 right-0 px-4 py-2 rounded-bl-2xl bg-gradient-to-r from-cyan-400 to-blue-500 text-black text-[9px] font-black uppercase">Mais completo</div><div className="text-xs font-black uppercase tracking-widest text-cyan-300">Vitalício</div><div className="mt-5 text-5xl font-black">12x R$ 31,53</div><div className="mt-2 text-sm font-bold text-cyan-300">ou R$ 295,90 à vista</div><ul className="mt-8 space-y-4 text-sm text-white/70">{["Tudo do mensal","Acesso vitalício ilimitado","Academy completo VIP","Biblioteca Premium Full","Novas funções grátis","Prioridade máxima"].map(x=><li key={x} className="flex gap-3"><Check className="h-4 text-cyan-300 shrink-0"/>{x}</li>)}</ul><Button className="mt-10 w-full h-14 rounded-2xl bg-white text-black hover:bg-cyan-50 font-black" asChild><Link to="/auth">Garantir acesso vitalício <ArrowRight className="ml-2"/></Link></Button></Card></div><div className="mt-6 text-center text-[9px] text-white/25 font-black uppercase tracking-[.18em]">Cupom de lançamento: PAIOFF50 · oferta promocional</div></div></section>
+        <section className="py-28 px-4"><div className="max-w-5xl mx-auto text-center"><div className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/5 px-4 py-2 text-[10px] font-black uppercase tracking-[.18em] text-violet-300"><MousePointer2 className="h-3.5"/> Feito para quem quer vender serviço</div><h2 className="mt-6 text-4xl sm:text-7xl font-black tracking-[-.06em] leading-[.88]">Você não precisa ser um desenvolvedor para construir uma operação.</h2><p className="mt-7 text-lg text-white/40 max-w-2xl mx-auto">Reduza tempo operacional, aumente a qualidade percebida e tenha um processo comercial mais organizado.</p><Button size="lg" className="mt-10 h-15 px-9 rounded-2xl bg-gradient-to-r from-cyan-400 to-violet-600 border-0 font-black" asChild><Link to="/auth">Começar minha operação <ArrowRight className="ml-2"/></Link></Button></div></section>
+        <section id="faq" className="py-28 px-4 border-t border-white/10 bg-white/[.015]"><div className="max-w-4xl mx-auto"><div className="text-center mb-14"><div className="text-cyan-300 text-[10px] font-black uppercase tracking-[.2em]">FAQ</div><h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-.05em]">Perguntas frequentes.</h2></div><Accordion type="single" collapsible className="space-y-3">{[{q:"O SiteAI Pro cria o site sozinho?",a:"Ele acelera a parte estratégica e operacional: prompts, estrutura, copy, direção e recursos para você produzir muito mais rápido. Você continua no controle."},{q:"Preciso saber programar?",a:"Não. A proposta é reduzir a complexidade técnica e deixar o foco na estratégia, personalização e venda."},{q:"Para quem é a plataforma?",a:"Freelancers, agências, social medias, designers e profissionais que querem vender sites e serviços digitais com mais velocidade."},{q:"A plataforma serve para qualquer nicho?",a:"Sim. Você pode adaptar prompts, abordagem, preço e estrutura ao mercado escolhido."},{q:"Posso usar os prompts em outras ferramentas de IA?",a:"Sim. Os prompts são bases estratégicas que podem ser adaptadas ao seu fluxo."}].map((f,i)=><AccordionItem key={i} value={`f${i}`} className="rounded-2xl border border-white/10 bg-white/[.025] px-5"><AccordionTrigger className="text-sm font-black hover:no-underline hover:text-cyan-300">{f.q}</AccordionTrigger><AccordionContent className="text-sm leading-7 text-white/40 pb-5">{f.a}</AccordionContent></AccordionItem>)}</Accordion></div></section>
+        <section className="py-28 px-4 relative overflow-hidden"><div className="absolute inset-0 bg-gradient-to-r from-cyan-500/[.08] via-blue-500/[.08] to-violet-500/[.08]"/><div className="relative max-w-6xl mx-auto rounded-[34px] border border-white/10 bg-[#090d17]/80 backdrop-blur-xl p-9 sm:p-16 text-center"><Sparkles className="mx-auto h-8 w-8 text-cyan-300"/><h2 className="mt-6 text-4xl sm:text-7xl font-black tracking-[-.06em] leading-[.88]">A próxima venda pode começar com uma ferramenta.</h2><p className="mt-6 text-white/40 max-w-xl mx-auto">Monte sua primeira estratégia e comece a construir uma operação de sites mais rápida e profissional.</p><Button size="lg" className="mt-9 h-15 px-10 rounded-2xl bg-white text-black hover:bg-cyan-50 font-black" asChild><Link to="/auth">Quero começar agora <ArrowRight className="ml-2"/></Link></Button></div></section>
       </main>
-
-      <footer className="border-t border-border/40 py-20 bg-background relative z-10">
-        <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-4 gap-12 mb-20 text-center md:text-left">
-                <div className="col-span-1 md:col-span-2 space-y-6">
-                    <div className="flex items-center justify-center md:justify-start gap-2">
-                        <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                            <Zap className="h-5 w-5 text-white" />
-                        </div>
-                        <span className="text-xl font-black uppercase tracking-tighter">SiteAI Pro</span>
-                    </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mx-auto md:mx-0">
-                        A maior plataforma de criação estratégica de sites com Inteligência Artificial para agências e freelancers do Brasil.
-                    </p>
-                    <div className="flex justify-center md:justify-start gap-4">
-                        <a href="#" className="h-12 w-12 rounded-xl bg-card border border-border/50 flex items-center justify-center hover:bg-primary/10 transition-colors group">
-                            <Camera className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
-                        </a>
-                        <a href="#" className="h-12 w-12 rounded-xl bg-card border border-border/50 flex items-center justify-center hover:bg-primary/10 transition-colors group">
-                            <MessageSquare className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
-                        </a>
-                        <a href="#" className="h-12 w-12 rounded-xl bg-card border border-border/50 flex items-center justify-center hover:bg-primary/10 transition-colors group">
-                            <Zap className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
-                        </a>
-                    </div>
-                </div>
-                <div className="space-y-6">
-                    <h4 className="text-xs font-black uppercase tracking-widest text-foreground">Menu</h4>
-                    <ul className="space-y-4 text-sm font-bold text-muted-foreground">
-                        <li><a href="#features" className="hover:text-primary transition-colors">Recursos</a></li>
-                        <li><a href="#how" className="hover:text-primary transition-colors">Como funciona</a></li>
-                        <li><a href="#pricing" className="hover:text-primary transition-colors">Planos</a></li>
-                    </ul>
-                </div>
-                <div className="space-y-6">
-                    <h4 className="text-xs font-black uppercase tracking-widest text-foreground">Suporte</h4>
-                    <ul className="space-y-4 text-sm font-bold text-muted-foreground">
-                        <li><a href="#faq" className="hover:text-primary transition-colors">Perguntas Frequentes</a></li>
-                        <li><Link to="/auth" className="hover:text-primary transition-colors">Entrar</Link></li>
-                        <li><Link to="/auth" className="hover:text-primary transition-colors">Criar Conta</Link></li>
-                    </ul>
-                </div>
-            </div>
-            <div className="pt-12 border-t border-border/20 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">© 2026 SiteAI Pro. Todos os direitos reservados.</p>
-                <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">
-                    <a href="#" className="hover:text-primary transition-colors">Privacidade</a>
-                    <a href="#" className="hover:text-primary transition-colors">Termos</a>
-                </div>
-            </div>
-        </div>
-      </footer>
-
-      {/* Marquee Animation Styles */}
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          display: flex;
-          width: fit-content;
-          animation: marquee 30s linear infinite;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
+      <footer className="relative z-10 border-t border-white/10 py-16 px-4 bg-[#04060b]"><div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10"><div className="md:col-span-2"><div className="flex items-center gap-3"><div className="h-9 w-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 grid place-items-center"><Zap className="h-5"/></div><span className="font-black text-xl">SiteAI <span className="text-cyan-400">PRO</span></span></div><p className="mt-5 text-sm text-white/30 max-w-md leading-relaxed">Sistema de criação, estratégia e prospecção com Inteligência Artificial para profissionais que vendem serviços digitais.</p></div><div><h4 className="text-[10px] font-black uppercase tracking-widest text-white/60">Plataforma</h4><div className="mt-5 space-y-3 text-sm text-white/30"><a className="block hover:text-white" href="#recursos">Recursos</a><a className="block hover:text-white" href="#laboratorio">Laboratório IA</a><a className="block hover:text-white" href="#prospeccao">Prospecção</a><a className="block hover:text-white" href="#pricing">Planos</a></div></div><div><h4 className="text-[10px] font-black uppercase tracking-widest text-white/60">Acesso</h4><div className="mt-5 space-y-3 text-sm text-white/30"><Link className="block hover:text-white" to="/auth">Entrar</Link><Link className="block hover:text-white" to="/auth">Criar conta</Link><a className="block hover:text-white" href="#faq">FAQ</a></div></div></div><div className="max-w-7xl mx-auto mt-12 pt-7 border-t border-white/10 text-[9px] font-black uppercase tracking-widest text-white/20 flex justify-between gap-4"><span>© 2026 SiteAI Pro</span><span>Crie. Prospecte. Precifique. Venda.</span></div></footer>
+      <style>{`@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}`}</style>
     </div>
   );
 }
