@@ -1,60 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PlayCircle, Lock, CheckCircle, BookOpen, Clock, Award } from "lucide-react";
+import { useState } from "react";
+import { Play, Lock, CheckCircle2, Clock, Award, ChevronRight, Search } from "lucide-react";
 import { Card } from "@/components/ui/card";
-
-export const Route = createFileRoute("/_authenticated/academy")({
-  component: () => (
-    <div className="space-y-10">
-      <div>
-        <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">SiteAI Academy</h1>
-        <p className="text-muted-foreground mt-2 text-sm font-medium">O treinamento completo para dominar o mercado de criação de sites.</p>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-6">
-        <Card className="p-6 bg-primary/10 border-primary/20">
-            <BookOpen className="h-8 w-8 text-primary mb-4" />
-            <p className="text-[10px] font-black uppercase tracking-widest text-primary">Progresso</p>
-            <p className="text-3xl font-black tracking-tighter mt-1">45% Completo</p>
-        </Card>
-        <Card className="p-6 border-border">
-            <Clock className="h-8 w-8 text-muted-foreground mb-4" />
-            <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Tempo Total</p>
-            <p className="text-2xl font-bold mt-1">12h 30m</p>
-        </Card>
-        <Card className="p-6 border-border">
-            <Award className="h-8 w-8 text-yellow-500 mb-4" />
-            <p className="text-xs font-bold uppercase tracking-wider text-yellow-500">Conquistas</p>
-            <p className="text-2xl font-bold mt-1">08 Selos</p>
-        </Card>
-      </div>
-
-      <div className="space-y-4">
-        {[
-          { title: "Fundamentos: Criando sites com IA (v2.0)", status: "completed" },
-          { title: "Prospecção Ativa: A ciência dos leads", status: "completed" },
-          { title: "Fechamento de alto valor (High-Ticket)", status: "unlocked" },
-          { title: "Otimização Avançada de Vendas", status: "locked" },
-          { title: "Gestão de Clientes e Retenção", status: "locked" },
-          { title: "Escalando sua agência", status: "locked" },
-        ].map((mod, i) => (
-          <div key={i} className="flex items-center justify-between p-6 rounded-2xl border border-border bg-card hover:border-primary/50 transition-colors">
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-muted flex items-center justify-center font-bold text-sm text-foreground">
-                {i + 1}
-              </div>
-              <div>
-                <h3 className="font-bold text-foreground text-lg">{mod.title}</h3>
-                <p className="text-xs text-muted-foreground mt-0.5">Duração média: 45 min</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              {mod.status === 'completed' && <CheckCircle className="h-6 w-6 text-green-500" />}
-              {mod.status === 'unlocked' && <PlayCircle className="h-6 w-6 text-primary" />}
-              {mod.status === 'locked' && <Lock className="h-6 w-6 text-muted-foreground" />}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  ),
-});
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+export const Route=createFileRoute("/_authenticated/academy")({component:AcademyPage});
+const modules=[
+ {title:'Comece aqui: Prime por dentro',tag:'INÍCIO',img:'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=900',lessons:6,done:true},
+ {title:'Criação de sites com IA',tag:'CRIAR',img:'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=900',lessons:8,done:true},
+ {title:'Design e direção de arte',tag:'DESIGN',img:'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=900',lessons:7,done:false},
+ {title:'Prospecção que gera conversas',tag:'VENDAS',img:'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=900',lessons:9,done:false},
+ {title:'Scripts, objeções e fechamento',tag:'VENDAS',img:'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=900',lessons:10,done:false},
+ {title:'Precificação e proposta',tag:'NEGÓCIO',img:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=900',lessons:6,done:false},
+ {title:'Entrega, manutenção e recorrência',tag:'ESCALA',img:'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=900',lessons:8,done:false},
+ {title:'Escalando sua operação',tag:'AVANÇADO',img:'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=900',lessons:12,done:false,locked:true},
+];
+function AcademyPage(){const [query,setQuery]=useState('');const [selected,setSelected]=useState<string|null>(null);const visible=modules.filter(m=>`${m.title} ${m.tag}`.toLowerCase().includes(query.toLowerCase()));return <div className="max-w-7xl mx-auto space-y-8 pb-20"><div className="rounded-3xl bg-[#111] text-white p-7 md:p-10 relative overflow-hidden"><div className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-[#FFD600]/20 to-transparent pointer-events-none"/><div className="relative"><p className="text-[#FFD600] text-[10px] font-black uppercase tracking-[.2em]">Prime Academy</p><h1 className="text-4xl md:text-5xl font-black tracking-tighter mt-2">Aprenda. Aplique. Venda.</h1><p className="text-white/60 max-w-2xl mt-3">Uma área de membros organizada em trilhas para você criar sites melhores, vender mais e construir uma operação profissional.</p><div className="flex flex-wrap items-center gap-4 mt-6"><div><p className="text-2xl font-black">45%</p><p className="text-[10px] uppercase text-white/40 font-bold">progresso</p></div><div className="h-8 w-px bg-white/10"/><div><p className="text-2xl font-black">18</p><p className="text-[10px] uppercase text-white/40 font-bold">aulas concluídas</p></div><div className="ml-auto w-full sm:w-64"><div className="h-2 rounded-full bg-white/10 overflow-hidden"><div className="h-full bg-[#FFD600]" style={{width:'45%'}}/></div></div></div></div></div><div className="flex flex-col md:flex-row md:items-center justify-between gap-4"><div><h2 className="text-2xl font-black">Continue assistindo</h2><p className="text-xs text-muted-foreground mt-1">Escolha um módulo para continuar sua trilha.</p></div><div className="relative w-full md:w-72"><Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"/><Input value={query} onChange={e=>setQuery(e.target.value)} className="pl-9" placeholder="Buscar módulo..."/></div></div><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">{visible.map((m,i)=><button key={m.title} onClick={()=>!m.locked&&setSelected(m.title)} className="text-left group rounded-2xl overflow-hidden border border-border bg-card hover:border-[#FFD600]/60 transition-all"><div className="aspect-[16/9] relative overflow-hidden"><img src={m.img} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-105"/><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"/><span className="absolute top-3 left-3 rounded-md bg-[#FFD600] px-2 py-1 text-[9px] font-black text-[#111]">{m.tag}</span>{m.locked&&<span className="absolute inset-0 flex items-center justify-center bg-black/40"><Lock className="text-white"/></span>}<span className="absolute bottom-3 left-3 text-white text-xs font-bold">{m.lessons} aulas</span><span className="absolute bottom-3 right-3 h-9 w-9 rounded-full bg-[#FFD600] text-[#111] flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><Play className="h-4 w-4 fill-current"/></span></div><div className="p-4"><h3 className="font-black text-sm leading-tight">{m.title}</h3><div className="flex items-center gap-2 mt-3 text-[10px] text-muted-foreground"><Clock className="h-3.5 w-3.5"/> 30–60 min por módulo {m.done&&<CheckCircle2 className="h-4 w-4 text-[#FFD600] ml-auto"/>}</div></div></button>)}</div><div className="grid md:grid-cols-3 gap-4"><Card className="p-5"><Award className="h-5 w-5 text-[#FFD600]"/><p className="font-black mt-3">Certificados</p><p className="text-xs text-muted-foreground mt-1">Conquiste selos conforme conclui trilhas.</p></Card><Card className="p-5"><Play className="h-5 w-5 text-[#FFD600]"/><p className="font-black mt-3">Aulas práticas</p><p className="text-xs text-muted-foreground mt-1">Conteúdo pensado para aplicar no próximo projeto.</p></Card><Card className="p-5"><ChevronRight className="h-5 w-5 text-[#FFD600]"/><p className="font-black mt-3">Trilhas</p><p className="text-xs text-muted-foreground mt-1">Criação, vendas, entrega e escala em sequência.</p></Card></div>{selected&&<div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4" onClick={()=>setSelected(null)}><div className="max-w-lg w-full bg-card rounded-3xl border border-[#FFD600]/50 p-7" onClick={e=>e.stopPropagation()}><p className="text-[10px] uppercase font-black tracking-widest text-[#8A6A00]">Módulo selecionado</p><h2 className="text-2xl font-black mt-2">{selected}</h2><p className="text-sm text-muted-foreground mt-3">Área preparada para receber aulas, vídeos, materiais, progresso e exercícios deste módulo.</p><Button className="mt-6 bg-[#FFD600] text-[#111] hover:bg-[#FFDF00]" onClick={()=>setSelected(null)}>Continuar</Button></div></div>}</div>}
