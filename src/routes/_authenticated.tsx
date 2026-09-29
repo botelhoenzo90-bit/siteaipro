@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AppShell } from "@/components/app/AppShell";
+import { PrimeAppShell } from "@/components/app/PrimeAppShell";
 
 export const Route = createFileRoute("/_authenticated")({
-  component: AppShell,
+  component: PrimeAppShell,
 });
