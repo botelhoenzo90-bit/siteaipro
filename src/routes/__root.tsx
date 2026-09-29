@@ -4,6 +4,7 @@ import { useEffect, type ReactNode } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import appCss from "../styles.css?url";
 import primeCss from "../prime-overrides.css?url";
+import primeSystemCss from "../prime-system.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -15,7 +16,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return <div className="flex min-h-screen items-center justify-center bg-background px-4"><div className="max-w-md text-center"><h1 className="text-xl font-semibold tracking-tight text-foreground">Algo deu errado</h1><p className="mt-2 text-sm text-muted-foreground">Ocorreu um erro inesperado. Você pode tentar novamente ou voltar para o início.</p><div className="mt-6 flex flex-wrap justify-center gap-2"><button onClick={()=>{router.invalidate();reset()}} className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">Tentar novamente</button><Link to="/" className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent">Voltar para o Início</Link></div></div></div>;
 }
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head:()=>({meta:[{charSet:"utf-8"},{name:"viewport",content:"width=device-width, initial-scale=1"},{title:"Prime — Venda sites e transforme sua operação em uma máquina de vendas"},{name:"description",content:"Prime: prospecção, criação de sites, precificação, scripts e gestão em uma única plataforma."},{property:"og:title",content:"Prime — Sua operação de sites em um só lugar"},{property:"og:description",content:"Encontre clientes, crie sites, apresente, precifique e acompanhe sua operação."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"stylesheet",href:appCss},{rel:"stylesheet",href:primeCss},{rel:"icon",href:"/favicon.ico",type:"image/x-icon"}]}),
+  head:()=>({meta:[{charSet:"utf-8"},{name:"viewport",content:"width=device-width, initial-scale=1"},{title:"Prime — Venda sites e transforme sua operação em uma máquina de vendas"},{name:"description",content:"Prime: prospecção, criação de sites, precificação, scripts e gestão em uma única plataforma."},{property:"og:title",content:"Prime — Sua operação de sites em um só lugar"},{property:"og:description",content:"Encontre clientes, crie sites, apresente, precifique e acompanhe sua operação."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"stylesheet",href:appCss},{rel:"stylesheet",href:primeCss},{rel:"stylesheet",href:primeSystemCss},{rel:"icon",href:"/favicon.ico",type:"image/x-icon"}]}),
   shellComponent: RootShell, component: RootComponent, notFoundComponent: NotFoundComponent, errorComponent: ErrorComponent,
 });
 function RootShell({children}:{children:ReactNode}){return <html lang="pt-BR"><head><HeadContent/></head><body>{children}<Toaster position="top-right" richColors/><Scripts/></body></html>}
