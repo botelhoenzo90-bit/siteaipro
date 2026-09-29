@@ -1,54 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Library, Wand2, Eye, Download, Code, Palette, Zap } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Eye, Wand2, Search, Copy, LayoutTemplate, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-
-export const Route = createFileRoute("/_authenticated/library")({
-  component: () => (
-    <div className="space-y-10">
-      <div>
-        <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Biblioteca Premium</h1>
-        <p className="text-muted-foreground mt-2 text-sm font-medium">Templates, blocos de código e prompts testados para converter mais.</p>
-      </div>
-
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {[
-            { title: 'Clínica Odontológica', tag: 'Conversão Alta', img: 'https://images.unsplash.com/photo-1629909605125-58da0500a14c?auto=format&fit=crop&q=80&w=400' },
-            { title: 'Advocacia Corporativa', tag: 'Profissional', img: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=400' },
-            { title: 'Imobiliária de Luxo', tag: 'Visual', img: 'https://images.unsplash.com/photo-1600585154340-be6199f7d009?auto=format&fit=crop&q=80&w=400' },
-            { title: 'Restaurante Gourmet', tag: 'Conversão', img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=400' },
-            { title: 'Academia & Fit', tag: 'Energético', img: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=400' },
-            { title: 'Estética Avançada', tag: 'Visual', img: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&q=80&w=400' },
-            { title: 'SaaS Tech', tag: 'Moderno', img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=400' },
-            { title: 'Consultoria B2B', tag: 'Profissional', img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=400' },
-            { title: 'Landing Page Eventos', tag: 'Urgência', img: 'https://images.unsplash.com/photo-1505373630562-402923ad9901?auto=format&fit=crop&q=80&w=400' },
-            { title: 'Pet Shop Premium', tag: 'Acolhedor', img: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=400' },
-            { title: 'E-commerce Moda', tag: 'Vendas', img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=400' },
-            { title: 'Agência de Marketing', tag: 'Moderno', img: 'https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=400' }
-        ].map((item) => (
-          <Card key={item.title} className="group overflow-hidden border-border hover:border-primary/50 transition-all glass shadow-lg">
-            <div className="aspect-video relative overflow-hidden">
-              <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-              <div className="absolute top-3 left-3 bg-primary/20 backdrop-blur-md text-primary px-2 py-1 rounded text-[10px] uppercase tracking-wider font-bold border border-primary/20">
-                {item.tag}
-              </div>
-            </div>
-            <div className="p-6">
-              <h3 className="font-bold text-xl">{item.title}</h3>
-              <p className="text-sm text-muted-foreground mt-2 mb-6">Estrutura validada com mais de 500+ testes de conversão.</p>
-              <div className="flex gap-2">
-                <Button size="sm" variant="outline" className="flex-1">
-                  <Eye className="mr-2 h-4 w-4" /> Preview
-                </Button>
-                <Button size="sm" className="flex-1 gradient-brand border-0">
-                  <Wand2 className="mr-2 h-4 w-4" /> Usar Prompt
-                </Button>
-              </div>
-            </div>
-          </Card>
-        ))}
-      </div>
-    </div>
-  ),
-});
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
+export const Route=createFileRoute("/_authenticated/library")({component:TemplatesPage});
+const templates=[
+ ['Clínica Odontológica','Saúde','https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800'],['Advocacia Corporativa','Serviços','https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800'],['Imobiliária Premium','Imobiliário','https://images.unsplash.com/photo-1600585154340-be6199f7d009?auto=format&fit=crop&q=80&w=800'],['Restaurante Gourmet','Gastronomia','https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800'],['Academia & Fitness','Fitness','https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800'],['Estética Avançada','Beleza','https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&q=80&w=800'],['SaaS Tech','Tecnologia','https://images.unsplash.com/photo-1551434678-e076c223692?auto=format&fit=crop&q=80&w=800'],['Consultoria B2B','Consultoria','https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800'],['Eventos','Eventos','https://images.unsplash.com/photo-1505373630562-402923ad9901?auto=format&fit=crop&q=80&w=800'],['Pet Shop Premium','Pets','https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=800'],['E-commerce Moda','E-commerce','https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800'],['Agência de Marketing','Marketing','https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=800']
+];
+function TemplatesPage(){const [query,setQuery]=useState('');const [preview,setPreview]=useState<typeof templates[number]|null>(null);const visible=useMemo(()=>templates.filter(x=>`${x[0]} ${x[1]}`.toLowerCase().includes(query.toLowerCase())),[query]);return <div className="max-w-7xl mx-auto space-y-8 pb-20"><div className="flex flex-col md:flex-row md:items-end justify-between gap-5"><div><p className="text-[10px] font-black uppercase tracking-[.2em] text-[#8A6A00]">Prime Templates</p><h1 className="text-4xl md:text-5xl font-black tracking-tighter mt-2">Templates prontos para adaptar</h1><p className="text-muted-foreground mt-2">Escolha uma referência visual, veja o preview e leve a estrutura para o Criador de Sites.</p></div><div className="relative w-full md:w-80"><Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"/><Input className="pl-9" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Buscar por nicho..."/></div></div><div className="flex items-center gap-3 rounded-2xl border border-[#FFD600]/40 bg-[#FFFBE6] dark:bg-[#2a2608] p-4"><LayoutTemplate className="h-5 w-5 text-[#FFD600]"/><p className="text-xs"><strong>Como usar:</strong> use o template como ponto de partida e personalize nicho, oferta, copy, imagens e identidade.</p></div><div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">{visible.map(t=><Card key={t[0]} className="group overflow-hidden border-border hover:border-[#FFD600]/70 transition-all"><div className="aspect-[16/10] relative overflow-hidden"><img src={t[2]} alt={t[0]} className="w-full h-full object-cover group-hover:scale-105 transition duration-500"/><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent"/><span className="absolute left-3 top-3 rounded-md bg-[#FFD600] px-2 py-1 text-[9px] font-black text-[#111]">{t[1]}</span><p className="absolute bottom-3 left-3 right-3 text-white font-black text-sm">{t[0]}</p></div><div className="p-4"><p className="text-xs text-muted-foreground">Estrutura de referência para criação rápida.</p><div className="flex gap-2 mt-4"><Button size="sm" variant="outline" className="flex-1" onClick={()=>setPreview(t)}><Eye className="mr-2 h-4 w-4"/> Preview</Button><Button size="sm" className="flex-1 bg-[#FFD600] text-[#111] hover:bg-[#FFDF00]" onClick={()=>toast.success(`Template ${t[0]} selecionado!`)}><Wand2 className="mr-2 h-4 w-4"/> Usar</Button></div></div></Card>)}</div>{preview&&<div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4" onClick={()=>setPreview(null)}><div className="max-w-4xl w-full max-h-[90vh] overflow-auto rounded-3xl bg-card border border-[#FFD600]/50" onClick={e=>e.stopPropagation()}><div className="relative"><img src={preview[2]} alt={preview[0]} className="w-full max-h-[420px] object-cover"/><button onClick={()=>setPreview(null)} className="absolute top-4 right-4 h-10 w-10 rounded-full bg-black/60 text-white flex items-center justify-center"><X/></button></div><div className="p-7"><p className="text-[10px] font-black uppercase tracking-widest text-[#8A6A00]">Preview do template</p><h2 className="text-3xl font-black mt-2">{preview[0]}</h2><p className="text-sm text-muted-foreground mt-2">Categoria: {preview[1]}. Use esta referência para montar uma versão única no Prime AI Builder.</p><Button className="mt-6 bg-[#FFD600] text-[#111] hover:bg-[#FFDF00]" onClick={()=>{setPreview(null);toast.success('Template selecionado. Abra o Criador de Sites para personalizar.')}}><Wand2 className="mr-2 h-4 w-4"/> Personalizar no Criador</Button></div></div></div>}</div>}
