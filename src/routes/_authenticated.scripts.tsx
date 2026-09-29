@@ -1,166 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MessageSquare, Copy, Camera, Phone, Briefcase, Globe, Info, Zap, Send, Star } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Camera, Phone, Linkedin, Mail, Copy, ChevronRight, ChevronLeft, MessageSquare, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
 
-export const Route = createFileRoute("/_authenticated/scripts")({
-  component: ScriptsPage,
-});
+export const Route = createFileRoute("/_authenticated/scripts")({ component: ScriptsPage });
 
-function ScriptsPage() {
-  const scripts = [
-    {
-      category: "Instagram (Direct)",
-      icon: Camera,
-      color: "text-pink-500",
-      description: "Ideal para marcas visuais como clínicas, lojas e restaurantes.",
-      items: [
-        {
-          title: "Abordagem Elogio + Gancho",
-          text: "Olá [Nome], tudo bem? Acompanho seu trabalho na [Empresa] e vejo que vocês têm um posicionamento incrível. Notei que o link da bio poderia converter muito mais se tivesse um site focado em agendamentos. Já pensou em modernizar sua presença digital?"
-        },
-        {
-          title: "Parceria Estratégica",
-          text: "Oi [Nome], sou desenvolvedor de sites para o nicho de [Nicho]. Vi que seu perfil é referência na região de [Cidade], mas senti falta de uma página que facilite a vida do seu cliente. Toparia uma breve conversa sobre como automatizar suas vendas via site?"
-        },
-        {
-          title: "Gatilho de Autoridade",
-          text: "Olá [Nome]! Acabei de entregar um site para uma empresa do seu setor e eles dobraram o número de contatos semanais apenas com a mudança de layout. Vi que o seu perfil é muito forte e um site premium seria o próximo passo ideal. Topa conhecer o modelo?"
-        }
-      ]
-    },
-    {
-      category: "WhatsApp / Abordagem Fria",
-      icon: Phone,
-      color: "text-green-500",
-      description: "Comunicação direta para fechamentos rápidos.",
-      items: [
-        {
-          title: "Abordagem Direta (Gatilho de Prova)",
-          text: "Olá [Nome], sou o [Seu Nome]. Acabei de entregar um projeto para uma clínica no mesmo segmento que a sua e tivemos um aumento de 30% nos contatos. Vi o site atual de vocês e identifiquei 3 pontos que estão fazendo vocês perderem dinheiro hoje. Podemos conversar?"
-        },
-        {
-          title: "Sugestão de Melhoria (Vídeo/Áudio)",
-          text: "Fala [Nome], tudo bom? Estava navegando pelo Google e encontrei a [Empresa]. Tentei abrir o site pelo celular e ele demorou muito para carregar, o que afasta clientes. Criei um esboço de como ele ficaria na versão 2026. Quer ver?"
-        },
-        {
-          title: "Quebra de Objeção (Preço)",
-          text: "Entendo seu ponto sobre investimento, [Nome]. Por isso mesmo eu foco em sites que se pagam sozinhos através do aumento de conversão. Se eu te mostrar que o site se paga em 2 meses, a gente consegue avançar?"
-        }
-      ]
-    },
-    {
-      category: "LinkedIn (B2B Corporativo)",
-      icon: Briefcase,
-      color: "text-blue-600",
-      description: "Abordagem formal para empresas de médio/grande porte.",
-      items: [
-        {
-          title: "Conexão Profissional",
-          text: "Prezado [Nome], é um prazer conectar. Vejo que a [Empresa] está em expansão. Trabalho auxiliando empresas a consolidarem sua autoridade digital através de plataformas de alta conversão. Gostaria de trocar uma ideia sobre seus objetivos para este semestre?"
-        },
-        {
-          title: "Análise de Concorrência",
-          text: "Olá [Nome], notei que alguns de seus concorrentes diretos atualizaram suas plataformas digitais recentemente. Preparei um estudo de benchmarking focado em como a [Empresa] pode se destacar visualmente no mercado. Teria 10 minutos para uma call?"
-        }
-      ]
-    },
-    {
-      category: "E-mail de Alta Conversão",
-      icon: Globe,
-      color: "text-primary",
-      description: "Scripts estruturados para campanhas de Cold Mail.",
-      items: [
-        {
-          title: "Assunto: Análise do site [Empresa]",
-          text: "Olá [Nome],\n\nEstive analisando a presença digital da [Empresa] e notei que vocês estão investindo em tráfego, porém o site atual não possui elementos de conversão modernos (como FAQ dinâmico e CTAs inteligentes).\n\nPreparei uma proposta de renovação que se paga em menos de 30 dias com o aumento das conversões.\n\nAguardo seu retorno."
-        },
-        {
-          title: "Assunto: Proposta estratégica para [Nicho]",
-          text: "Bom dia [Nome],\n\nSou especialista em tecnologia para o setor de [Nicho] e ajudo empresas a captarem leads qualificados no automático.\n\nVi que o site da [Empresa] ainda não utiliza [Recurso Específico]. Gostaria de agendar uma breve demonstração de como isso pode impactar seu faturamento?\n\nAbs!"
-        }
-      ]
-    }
-  ];
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    toast.success("Script copiado para a área de transferência!");
-  };
-
-  return (
-    <div className="max-w-6xl mx-auto space-y-12 pb-20">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col md:flex-row md:items-center justify-between gap-4"
-      >
-        <div>
-          <h1 className="text-4xl font-black tracking-tight uppercase">Scripts de Venda</h1>
-          <p className="text-muted-foreground mt-2">Abordagens validadas para converter contatos em contratos fechados.</p>
-        </div>
-        <div className="bg-primary/10 border border-primary/20 p-4 rounded-2xl flex items-center gap-4">
-            <Star className="h-6 w-6 text-primary" />
-            <div className="text-xs">
-                <p className="font-bold text-primary">DICA VIP</p>
-                <p className="text-muted-foreground uppercase font-black">Personalize sempre o 1º parágrafo.</p>
-            </div>
-        </div>
-      </motion.div>
-
-      <div className="grid gap-12">
-        {scripts.map((section, idx) => (
-          <div key={idx} className="space-y-6">
-            <div className="flex flex-col border-b border-border pb-4">
-              <h2 className="text-2xl font-black flex items-center gap-3 uppercase tracking-tighter">
-                <section.icon className={`h-8 w-8 ${section.color}`} />
-                {section.category}
-              </h2>
-              <p className="text-sm text-muted-foreground mt-1">{section.description}</p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {section.items.map((item, i) => (
-                <Card key={i} className="group p-6 border-border/50 hover:border-primary/50 transition-all flex flex-col justify-between glass relative overflow-hidden">
-                  <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 transition-opacity">
-                    <Send className="h-12 w-12 text-primary" />
-                  </div>
-                  <div className="space-y-4 relative z-10">
-                    <p className="font-black text-[10px] text-primary uppercase tracking-widest">{item.title}</p>
-                    <div className="p-4 bg-background/50 rounded-xl border border-border/50 min-h-[120px]">
-                      <p className="text-sm text-foreground italic leading-relaxed">
-                        "{item.text}"
-                      </p>
-                    </div>
-                  </div>
-                  <Button 
-                    onClick={() => copyToClipboard(item.text)}
-                    className="mt-6 w-full gradient-brand border-0 font-bold shadow-lg shadow-primary/10 group-hover:scale-[1.02] transition-transform"
-                  >
-                    <Copy className="mr-2 h-4 w-4" /> Copiar para Vender
-                  </Button>
-                </Card>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-      
-      <Card className="p-8 border-primary/20 bg-primary/5 rounded-3xl">
-        <div className="flex gap-6 flex-col md:flex-row items-center">
-            <div className="h-20 w-20 rounded-2xl bg-primary flex items-center justify-center shrink-0 shadow-xl shadow-primary/20">
-                <Zap className="h-10 w-10 text-white" />
-            </div>
-            <div>
-                <h3 className="text-xl font-black uppercase">Regra de Ouro do Fechamento</h3>
-                <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
-                    Não foque em vender um "site". Foque em vender o <strong>resultado</strong> que o site trará. 
-                    Seja aumento de clientes, autoridade de marca ou automação de processos. O site é apenas a ferramenta.
-                </p>
-            </div>
-        </div>
-      </Card>
-    </div>
-  );
+type Script={title:string;text:string};
+const channels=[
+  {id:'instagram',name:'Instagram',desc:'Direct, comentários e abordagem visual',icon:Camera},
+  {id:'whatsapp',name:'WhatsApp',desc:'Conversa direta e follow-up',icon:Phone},
+  {id:'ligacao',name:'Ligação',desc:'Roteiro para conversa rápida',icon:Phone},
+  {id:'linkedin',name:'LinkedIn',desc:'B2B e decisores',icon:Linkedin},
+  {id:'email',name:'E-mail',desc:'Cold mail e follow-up',icon:Mail},
+];
+const scriptsByChannel:Record<string,Script[]>={
+ instagram:[{title:'Primeiro contato',text:'Olá [Nome]! Conheci a [Empresa] pelo Instagram e gostei muito do trabalho de vocês. Posso te mostrar uma oportunidade simples que encontrei na presença digital da empresa?'},{title:'Apresentação da oportunidade',text:'Analisei o perfil de vocês e percebi que um site mais estratégico poderia transformar o interesse que chega pelo Instagram em contatos e pedidos de orçamento. Quer que eu te mostre uma ideia?'},{title:'Follow-up',text:'Oi [Nome], passando para não deixar aquela análise se perder. Se fizer sentido, posso te enviar um exemplo pensado para a [Empresa].'}],
+ whatsapp:[{title:'Abertura',text:'Olá [Nome], tudo bem? Sou [Seu Nome]. Trabalho com criação de sites estratégicos e encontrei a [Empresa]. Posso te mostrar rapidamente uma oportunidade que identifiquei?'},{title:'Diagnóstico',text:'O ponto principal é transformar a presença digital em uma jornada mais clara para quem chega: entender, confiar e entrar em contato. Posso te explicar em 2 minutos?'},{title:'Fechamento',text:'Se você gostar da proposta, posso montar o próximo passo com escopo, prazo e investimento para a [Empresa]. Quer receber?'},{title:'Follow-up',text:'Oi [Nome]! Só retomando nossa conversa. Ainda posso te enviar aquela proposta visual sem compromisso.'}],
+ ligacao:[{title:'Abertura',text:'Olá, falo com [Nome]? Aqui é [Seu Nome]. Vou ser breve: encontrei a [Empresa] e trabalho com sites focados em transformar presença digital em oportunidades. Posso fazer uma pergunta rápida?'},{title:'Pergunta',text:'Hoje vocês recebem clientes principalmente por indicação, Instagram, Google ou já têm um site que gera contatos?'},{title:'Diagnóstico',text:'Entendi. A partir disso consigo te mostrar onde um site estratégico pode complementar o que vocês já fazem, sem substituir os canais que funcionam.'},{title:'Próximo passo',text:'Posso te enviar uma demonstração e, se fizer sentido, marcamos uma conversa para montar o projeto.'}],
+ linkedin:[{title:'Conexão',text:'Olá [Nome], acompanho a atuação da [Empresa] e achei interessante conectar. Trabalho com experiências digitais para negócios que querem fortalecer posicionamento e aquisição.'},{title:'Valor',text:'Analisei rapidamente a presença digital da empresa e encontrei alguns pontos de melhoria. Posso compartilhar uma análise objetiva?'},{title:'Reunião',text:'Se a análise fizer sentido, podemos marcar uma conversa de 15 minutos para entender prioridades e próximos passos.'}],
+ email:[{title:'Primeiro e-mail',text:'Assunto: Uma oportunidade na presença digital da [Empresa]\n\nOlá [Nome], analisei rapidamente a presença digital da [Empresa] e identifiquei uma oportunidade de melhorar a jornada de quem chega até vocês. Posso enviar um diagnóstico curto?'},{title:'Follow-up',text:'Assunto: Re: presença digital da [Empresa]\n\nOlá [Nome], passando apenas para confirmar se conseguiu ver minha mensagem. Se quiser, envio a análise em um único PDF.'},{title:'Último contato',text:'Assunto: Encerrando por aqui\n\nVou encerrar este contato para não ser inconveniente. Se melhorar o site ou a conversão digital entrar no radar, fico à disposição.'}]
+};
+const modes=[{id:'abordagem',label:'Abordagem inicial'},{id:'diagnostico',label:'Diagnóstico / valor'},{id:'followup',label:'Follow-up'},{id:'fechamento',label:'Fechamento'}];
+function ScriptsPage(){
+ const [channel,setChannel]=useState(''); const [scriptIndex,setScriptIndex]=useState(0); const [mode,setMode]=useState('');
+ const scripts=useMemo(()=>scriptsByChannel[channel]||[],[channel]);
+ const filtered=scripts.filter((_,i)=>mode==='followup'?i===scripts.length-1:mode==='fechamento'?i===scripts.length-1:i<2||mode==='diagnostico');
+ const current=filtered[Math.min(scriptIndex,Math.max(0,filtered.length-1))];
+ const chooseChannel=(id:string)=>{setChannel(id);setMode('');setScriptIndex(0)};
+ return <div className="max-w-6xl mx-auto space-y-8 pb-20">
+  <div><div className="flex items-center gap-2 text-[#8A6A00] text-[10px] font-black uppercase tracking-[.2em]"><Sparkles className="h-4 w-4 text-[#FFD600]"/> Prime Sales</div><h1 className="text-4xl md:text-5xl font-black tracking-tighter mt-2">Scripts de Venda</h1><p className="text-muted-foreground mt-2">Escolha o canal, depois o objetivo da conversa. A Prime conduz a mensagem etapa por etapa.</p></div>
+  <div className="grid md:grid-cols-5 gap-3">{channels.map(c=>{const Icon=c.icon;return <button key={c.id} onClick={()=>chooseChannel(c.id)} className={`text-left rounded-2xl border p-4 transition-all ${channel===c.id?'border-[#FFD600] bg-[#FFFBE6] dark:bg-[#2a2608] shadow-[0_8px_30px_rgba(255,214,0,.12)]':'border-border bg-card hover:border-[#FFD600]/60'}`}><div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFD600] text-[#111]"><Icon className="h-5 w-5"/></div><p className="font-black mt-3">{c.name}</p><p className="text-[11px] text-muted-foreground mt-1">{c.desc}</p></button>})}</div>
+  {channel&&<Card className="p-6 md:p-8 border-[#FFD600]/50"><div className="flex flex-wrap items-center justify-between gap-4"><div><p className="text-[10px] font-black uppercase tracking-[.2em] text-[#8A6A00]">Canal selecionado</p><h2 className="text-2xl font-black">{channels.find(x=>x.id===channel)?.name}</h2></div><span className="rounded-full bg-[#FFD600] px-3 py-1 text-[10px] font-black text-[#111]">FLUXO GUIADO</span></div><div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-6">{modes.map((m,i)=><button key={m.id} onClick={()=>{setMode(m.id);setScriptIndex(0)}} className={`rounded-xl border px-3 py-3 text-xs font-black transition ${mode===m.id?'border-[#FFD600] bg-[#FFFBE6] dark:bg-[#2a2608]':'border-border hover:border-[#FFD600]/60'}`}><span className="block text-[9px] text-muted-foreground mb-1">0{i+1}</span>{m.label}</button>)}</div>
+  {current&&<div className="mt-7 grid lg:grid-cols-[1fr_280px] gap-5"><div className="rounded-2xl border border-border bg-background p-6"><div className="flex items-center justify-between gap-3"><div><p className="text-[10px] font-black uppercase tracking-widest text-[#8A6A00]">Mensagem {scriptIndex+1} de {filtered.length}</p><h3 className="text-xl font-black mt-1">{current.title}</h3></div><MessageSquare className="h-6 w-6 text-[#FFD600]"/></div><p className="mt-5 whitespace-pre-wrap text-sm leading-7 text-foreground">{current.text}</p><div className="flex flex-wrap gap-2 mt-6"><Button onClick={()=>{navigator.clipboard.writeText(current.text);toast.success('Mensagem copiada!')}} className="bg-[#FFD600] text-[#111] hover:bg-[#FFDF00]"><Copy className="mr-2 h-4 w-4"/> Copiar mensagem</Button><Button variant="outline" disabled={scriptIndex===0} onClick={()=>setScriptIndex(x=>Math.max(0,x-1))}><ChevronLeft className="mr-1 h-4 w-4"/> Anterior</Button><Button variant="outline" disabled={scriptIndex>=filtered.length-1} onClick={()=>setScriptIndex(x=>Math.min(filtered.length-1,x+1))}>Próxima <ChevronRight className="ml-1 h-4 w-4"/></Button></div></div><div className="rounded-2xl border border-border bg-card p-5"><p className="font-black">Como usar</p><div className="space-y-3 mt-4 text-xs text-muted-foreground"><p>1. Personalize [Nome] e [Empresa].</p><p>2. Envie uma etapa por vez.</p><p>3. Espere a resposta antes de avançar.</p><p>4. Adapte a conversa ao contexto real.</p></div><div className="mt-5 rounded-xl bg-[#FFFBE6] dark:bg-[#2a2608] border border-[#FFD600]/40 p-4"><p className="text-[10px] font-black uppercase text-[#8A6A00]">Próxima etapa</p><p className="text-xs font-bold mt-1">Não acelere o fechamento. Gere contexto primeiro.</p></div></div></div>}</Card>}
+  {!channel&&<div className="rounded-3xl border border-dashed border-[#FFD600]/60 bg-[#FFFBE6] dark:bg-[#2a2608] p-10 text-center"><MessageSquare className="mx-auto h-10 w-10 text-[#FFD600]"/><h2 className="text-2xl font-black mt-4">Comece escolhendo o canal</h2><p className="text-sm text-muted-foreground mt-2">Instagram, WhatsApp, ligação, LinkedIn ou e-mail. Depois a Prime monta o fluxo da conversa.</p></div>}
+ </div>;
 }
