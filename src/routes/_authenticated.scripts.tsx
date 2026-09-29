@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Camera, Phone, Linkedin, Mail, Copy, ChevronRight, ChevronLeft, MessageSquare, Sparkles } from "lucide-react";
+import { Camera, Phone, BriefcaseBusiness, Mail, Copy, ChevronRight, ChevronLeft, MessageSquare, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
@@ -12,7 +12,7 @@ const channels=[
   {id:'instagram',name:'Instagram',desc:'Direct, comentários e abordagem visual',icon:Camera},
   {id:'whatsapp',name:'WhatsApp',desc:'Conversa direta e follow-up',icon:Phone},
   {id:'ligacao',name:'Ligação',desc:'Roteiro para conversa rápida',icon:Phone},
-  {id:'linkedin',name:'LinkedIn',desc:'B2B e decisores',icon:Linkedin},
+  {id:'linkedin',name:'LinkedIn',desc:'B2B e decisores',icon:BriefcaseBusiness},
   {id:'email',name:'E-mail',desc:'Cold mail e follow-up',icon:Mail},
 ];
 const scriptsByChannel:Record<string,Script[]>={
