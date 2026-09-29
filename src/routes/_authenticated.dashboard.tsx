@@ -41,7 +41,10 @@ function DashboardPage() {
   const goalLabel = useMemo(() => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(goal), [goal]);
 
   const addLead = () => {
-    if (!quickLead.trim()) return toast.error("Digite o nome da empresa.");
+    if (!quickLead.trim()) {
+      toast.error("Digite o nome da empresa.");
+      return;
+    }
     toast.success(`${quickLead} adicionada ao seu radar.`);
     setQuickLead("");
   };
