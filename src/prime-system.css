@@ -1,0 +1,66 @@
+/* PRIME SYSTEM — unified palette + product polish */
+:root{
+  --prime-yellow:#FFD600;
+  --prime-yellow-bright:#FFDF00;
+  --prime-yellow-deep:#E5B900;
+  --prime-yellow-soft:#FFF7B8;
+  --prime-ink:#111111;
+  --prime-bg:#F7F8F5;
+  --prime-card:#FFFFFF;
+  --prime-line:#E4E7E1;
+}
+
+/* Replace every legacy cool accent inside the authenticated product. */
+.prime-app-shell [class*="text-blue-"],.prime-app-shell [class*="text-indigo-"],.prime-app-shell [class*="text-purple-"],.prime-app-shell [class*="text-violet-"],.prime-app-shell [class*="text-cyan-"],.prime-app-shell [class*="text-sky-"],.prime-app-shell [class*="text-teal-"],.prime-app-shell [class*="text-emerald-"],.prime-app-shell [class*="text-green-"],.prime-app-shell [class*="text-fuchsia-"],.prime-app-shell [class*="text-pink-"]{color:var(--prime-yellow-deep)!important}
+.prime-app-shell [class*="bg-blue-"],.prime-app-shell [class*="bg-indigo-"],.prime-app-shell [class*="bg-purple-"],.prime-app-shell [class*="bg-violet-"],.prime-app-shell [class*="bg-cyan-"],.prime-app-shell [class*="bg-sky-"],.prime-app-shell [class*="bg-teal-"],.prime-app-shell [class*="bg-emerald-"],.prime-app-shell [class*="bg-green-"],.prime-app-shell [class*="bg-fuchsia-"],.prime-app-shell [class*="bg-pink-"]{background-color:var(--prime-yellow)!important}
+.prime-app-shell [class*="border-blue-"],.prime-app-shell [class*="border-indigo-"],.prime-app-shell [class*="border-purple-"],.prime-app-shell [class*="border-violet-"],.prime-app-shell [class*="border-cyan-"],.prime-app-shell [class*="border-sky-"],.prime-app-shell [class*="border-teal-"],.prime-app-shell [class*="border-emerald-"],.prime-app-shell [class*="border-green-"],.prime-app-shell [class*="border-fuchsia-"],.prime-app-shell [class*="border-pink-"]{border-color:#FFE45A!important}
+.prime-app-shell [class*="ring-blue-"],.prime-app-shell [class*="ring-indigo-"],.prime-app-shell [class*="ring-purple-"],.prime-app-shell [class*="ring-violet-"],.prime-app-shell [class*="ring-cyan-"],.prime-app-shell [class*="ring-sky-"],.prime-app-shell [class*="ring-teal-"],.prime-app-shell [class*="ring-emerald-"],.prime-app-shell [class*="ring-green-"]{--tw-ring-color:rgba(255,214,0,.42)!important}
+.prime-app-shell [class*="from-blue-"],.prime-app-shell [class*="from-indigo-"],.prime-app-shell [class*="from-purple-"],.prime-app-shell [class*="from-violet-"],.prime-app-shell [class*="from-cyan-"],.prime-app-shell [class*="from-sky-"],.prime-app-shell [class*="from-teal-"],.prime-app-shell [class*="from-emerald-"]{--tw-gradient-from:var(--prime-yellow)!important;--tw-gradient-from-position:0%}
+.prime-app-shell [class*="via-blue-"],.prime-app-shell [class*="via-indigo-"],.prime-app-shell [class*="via-purple-"],.prime-app-shell [class*="via-violet-"],.prime-app-shell [class*="via-cyan-"],.prime-app-shell [class*="via-sky-"],.prime-app-shell [class*="via-teal-"],.prime-app-shell [class*="via-emerald-"]{--tw-gradient-stops:var(--tw-gradient-from),var(--prime-yellow),var(--tw-gradient-to)!important}
+.prime-app-shell [class*="to-blue-"],.prime-app-shell [class*="to-indigo-"],.prime-app-shell [class*="to-purple-"],.prime-app-shell [class*="to-violet-"],.prime-app-shell [class*="to-cyan-"],.prime-app-shell [class*="to-sky-"],.prime-app-shell [class*="to-teal-"],.prime-app-shell [class*="to-emerald-"]{--tw-gradient-to:var(--prime-yellow-bright)!important;--tw-gradient-to-position:100%}
+.prime-app-shell [class*="shadow-blue"],.prime-app-shell [class*="shadow-indigo"],.prime-app-shell [class*="shadow-purple"],.prime-app-shell [class*="shadow-violet"],.prime-app-shell [class*="shadow-cyan"],.prime-app-shell [class*="shadow-emerald"]{--tw-shadow-color:rgba(255,214,0,.18)!important}
+
+/* Keep charts, progress and data visualization on-brand. */
+.prime-app-shell [class*="recharts"],.prime-app-shell .recharts-wrapper{--chart-accent:var(--prime-yellow)}
+.prime-app-shell .recharts-cartesian-grid line{stroke:#E7E9E4!important}
+.prime-app-shell .recharts-text{fill:#747A75!important}
+.prime-app-shell.prime-dark .recharts-cartesian-grid line{stroke:#2B302B!important}
+.prime-app-shell.prime-dark .recharts-text{fill:#A9AEA8!important}
+
+/* Product surfaces: less template-like, more premium. */
+.prime-app-shell main{max-width:1600px;margin-inline:auto}
+.prime-app-shell main>div{scroll-margin-top:90px}
+.prime-app-shell .prime-page-title{letter-spacing:-.035em}
+.prime-app-shell .prime-section-label{font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#8A6A00}
+.prime-app-shell .prime-accent-line{height:3px;width:42px;border-radius:999px;background:var(--prime-yellow);box-shadow:0 0 18px rgba(255,214,0,.28)}
+.prime-app-shell .prime-primary,.prime-app-shell button[class*="bg-primary"]{background:var(--prime-yellow)!important;color:#111!important;border-color:var(--prime-yellow)!important;box-shadow:0 10px 26px rgba(255,214,0,.18)}
+.prime-app-shell .prime-primary:hover,.prime-app-shell button[class*="bg-primary"]:hover{background:var(--prime-yellow-bright)!important;transform:translateY(-1px)}
+.prime-app-shell .prime-outline:hover{border-color:var(--prime-yellow)!important;background:#FFFBE6!important;color:#111!important}
+.prime-app-shell .app-grid{opacity:.34!important}
+.prime-app-shell .rounded-xl,.prime-app-shell .rounded-2xl,.prime-app-shell .rounded-3xl{border-radius:18px}
+.prime-app-shell .rounded-xl,.prime-app-shell .rounded-2xl,.prime-app-shell .rounded-3xl{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
+.prime-app-shell .rounded-xl:hover,.prime-app-shell .rounded-2xl:hover,.prime-app-shell .rounded-3xl:hover{border-color:#E8D15A!important}
+.prime-app-shell input:focus,.prime-app-shell textarea:focus,.prime-app-shell [data-slot="select-trigger"]:focus{border-color:var(--prime-yellow)!important;box-shadow:0 0 0 3px rgba(255,214,0,.15)!important}
+
+/* Light theme */
+.prime-app-shell{background:#F7F8F5!important;color:#151515!important}
+.prime-app-shell aside,.prime-app-shell header{background:rgba(255,255,255,.94)!important;border-color:#E4E7E1!important}
+.prime-app-shell .bg-white{background:#fff!important}
+.prime-app-shell .bg-black\/20{background:#F1F2EE!important}
+.prime-app-shell .border-white\/10,.prime-app-shell .border-white\/\[0\.08\]{border-color:#E4E7E1!important}
+
+/* Dark theme */
+.prime-app-shell.prime-dark{background:#090A09!important;color:#F8F8F3!important}
+.prime-app-shell.prime-dark aside,.prime-app-shell.prime-dark header{background:rgba(14,16,14,.96)!important;border-color:#292D29!important}
+.prime-app-shell.prime-dark .prime-section-label{color:#FFD600}
+.prime-app-shell.prime-dark .prime-outline:hover{background:rgba(255,214,0,.09)!important;color:#fff!important}
+.prime-app-shell.prime-dark .bg-white{background:#171A17!important}
+.prime-app-shell.prime-dark [class*="bg-blue-"],.prime-app-shell.prime-dark [class*="bg-indigo-"],.prime-app-shell.prime-dark [class*="bg-purple-"],.prime-app-shell.prime-dark [class*="bg-violet-"],.prime-app-shell.prime-dark [class*="bg-cyan-"],.prime-app-shell.prime-dark [class*="bg-sky-"],.prime-app-shell.prime-dark [class*="bg-teal-"],.prime-app-shell.prime-dark [class*="bg-emerald-"],.prime-app-shell.prime-dark [class*="bg-green-"]{background-color:rgba(255,214,0,.12)!important}
+.prime-app-shell.prime-dark [class*="text-blue-"],.prime-app-shell.prime-dark [class*="text-indigo-"],.prime-app-shell.prime-dark [class*="text-purple-"],.prime-app-shell.prime-dark [class*="text-violet-"],.prime-app-shell.prime-dark [class*="text-cyan-"],.prime-app-shell.prime-dark [class*="text-sky-"],.prime-app-shell.prime-dark [class*="text-teal-"],.prime-app-shell.prime-dark [class*="text-emerald-"],.prime-app-shell.prime-dark [class*="text-green-"]{color:#FFD600!important}
+
+/* Scrollbars and selection */
+.prime-app-shell ::selection{background:#FFD600;color:#111}
+.prime-app-shell ::-webkit-scrollbar{width:8px;height:8px}.prime-app-shell ::-webkit-scrollbar-track{background:transparent}.prime-app-shell ::-webkit-scrollbar-thumb{background:#D8DBD4;border-radius:999px}.prime-app-shell.prime-dark ::-webkit-scrollbar-thumb{background:#3B403B}
+
+/* Mobile polish */
+@media(max-width:768px){.prime-app-shell main{padding:18px!important}.prime-app-shell .rounded-2xl,.prime-app-shell .rounded-3xl{border-radius:16px}.prime-app-shell button{min-height:40px}}
