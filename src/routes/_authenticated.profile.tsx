@@ -1,92 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { User, Shield, CreditCard, LogOut, Eraser, Copy, Settings, Bell, Star } from "lucide-react";
+import { useState } from "react";
+import { Shield, LogOut, Eraser, Copy, Settings, Bell, User, Palette, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-
-export const Route = createFileRoute("/_authenticated/profile")({
-  component: ProfilePage,
-});
-
-function ProfilePage() {
-  const copyBadgeCode = () => {
-    const code = "#lovable-badge {\n  display: none !important;\n}";
-    navigator.clipboard.writeText(code);
-    toast.success("Código copiado!");
-  };
-
-  return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Meu Perfil</h1>
-        <p className="text-muted-foreground mt-2 text-sm font-medium">Dados profissionais, configurações e sua conta.</p>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-8">
-        <div className="md:col-span-1 space-y-6">
-            <Card className="p-6 flex flex-col items-center text-center">
-                <div className="h-24 w-24 rounded-full bg-gradient-to-br from-primary to-purple-500 mb-4" />
-                <h3 className="text-lg font-bold">Bruno Pro</h3>
-                <p className="text-sm text-muted-foreground">Premium User</p>
-                <Button variant="outline" className="w-full mt-4">Editar Perfil</Button>
-            </Card>
-        </div>
-
-        <div className="md:col-span-2 space-y-6">
-          <Card className="p-6 space-y-6">
-            <h3 className="font-bold">Informações</h3>
-            <div className="space-y-4">
-                {[
-                    { label: "Email", value: "bruno@siteaipro.com" },
-                    { label: "Plano", value: "Profissional (SiteAI Pro)" },
-                    { label: "Membro desde", value: "Agosto 2026" }
-                ].map(info => (
-                    <div key={info.label} className="flex justify-between border-b border-border/50 pb-2">
-                        <span className="text-sm text-muted-foreground">{info.label}</span>
-                        <span className="text-sm font-bold">{info.value}</span>
-                    </div>
-                ))}
-            </div>
-          </Card>
-
-          <Card className="p-6 space-y-6">
-            <h3 className="font-bold">Preferências</h3>
-            <div className="space-y-4">
-                {[
-                    { icon: Shield, label: 'Segurança & Conta', desc: 'Gerenciar 2FA e dispositivos' },
-                    { icon: Bell, label: 'Notificações', desc: 'Configurar e-mails e alertas' },
-                    { icon: Settings, label: 'Configurações Avançadas', desc: 'Preferências da plataforma' }
-                ].map((item) => (
-                    <div key={item.label} className="p-4 rounded-xl border border-border bg-card flex items-center gap-4 hover:bg-muted/30 cursor-pointer">
-                        <item.icon className="h-5 w-5 text-primary" />
-                        <div>
-                            <p className="font-bold text-sm">{item.label}</p>
-                            <p className="text-xs text-muted-foreground">{item.desc}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-          </Card>
-
-          <div 
-            onClick={copyBadgeCode}
-            className="p-4 rounded-xl border border-primary/20 bg-primary/5 flex items-center justify-between hover:bg-primary/10 cursor-pointer group"
-          >
-            <div className="flex items-center gap-4">
-              <Eraser className="h-5 w-5 text-primary" />
-              <div>
-                <p className="font-bold text-sm">Remover Marca d'água</p>
-                <p className="text-xs text-muted-foreground">Clique para copiar o código CSS</p>
-              </div>
-            </div>
-            <Copy className="h-4 w-4 text-muted-foreground group-hover:text-primary" />
-          </div>
-
-          <Button variant="destructive" className="w-full">
-            <LogOut className="mr-2 h-4 w-4" /> Encerrar Sessão
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
+export const Route=createFileRoute("/_authenticated/profile")({component:ProfilePage});
+function ProfilePage(){const [name,setName]=useState('Enzo Prime');const [saved,setSaved]=useState(false);const copyBadge=()=>{navigator.clipboard.writeText('#lovable-badge {\n  display: none !important;\n}');toast.success('Código copiado!')};const save=()=>{setSaved(true);toast.success('Preferências salvas nesta sessão.');setTimeout(()=>setSaved(false),1800)};return <div className="max-w-5xl mx-auto space-y-8 pb-20"><div><p className="text-[10px] font-black uppercase tracking-[.2em] text-[#8A6A00]">Prime Workspace</p><h1 className="text-4xl md:text-5xl font-black tracking-tighter mt-2">Meu perfil</h1><p className="text-muted-foreground mt-2">Personalize sua experiência, conta e preferências da plataforma.</p></div><div className="grid lg:grid-cols-[300px_1fr] gap-6"><Card className="p-6 text-center"><div className="mx-auto h-24 w-24 rounded-3xl bg-[#FFD600] text-[#111] flex items-center justify-center text-2xl font-black">EP</div><h2 className="text-xl font-black mt-4">{name}</h2><p className="text-xs text-muted-foreground mt-1">Plano Pro · Prime</p><div className="mt-5 rounded-2xl bg-[#FFFBE6] dark:bg-[#2a2608] border border-[#FFD600]/40 p-4 text-left"><p className="text-[9px] uppercase font-black tracking-widest text-[#8A6A00]">Workspace</p><p className="text-sm font-bold mt-1">Criação & vendas</p><p className="text-[11px] text-muted-foreground mt-1">Tudo organizado em um único fluxo.</p></div></Card><div className="space-y-6"><Card className="p-6 space-y-5"><div className="flex items-center gap-3"><User className="h-5 w-5 text-[#FFD600]"/><div><h3 className="font-black">Informações pessoais</h3><p className="text-xs text-muted-foreground">Esses dados ficam locais até uma futura integração de conta.</p></div></div><div className="grid md:grid-cols-2 gap-4"><div><label className="text-xs font-bold">Nome</label><Input className="mt-2" value={name} onChange={e=>setName(e.target.value)}/></div><div><label className="text-xs font-bold">Plano</label><Input className="mt-2" value="Prime Pro" readOnly/></div></div><Button onClick={save} className="bg-[#FFD600] text-[#111] hover:bg-[#FFDF00]">{saved?<Check className="mr-2 h-4 w-4"/>:null}{saved?'Salvo':'Salvar preferências'}</Button></Card><Card className="p-6 space-y-4"><div className="flex items-center gap-3"><Settings className="h-5 w-5 text-[#FFD600]"/><h3 className="font-black">Preferências</h3></div>{[{icon:Shield,label:'Segurança & conta',desc:'Prepare a conta para futuras integrações de autenticação.'},{icon:Bell,label:'Notificações',desc:'Centralize avisos de projetos, scripts e oportunidades.'},{icon:Palette,label:'Identidade Prime',desc:'Interface clara/escura com preto, branco e amarelo vivo.'}].map(x=><div key={x.label} className="flex items-center gap-4 rounded-2xl border border-border p-4 hover:border-[#FFD600]/60 transition"><div className="h-10 w-10 rounded-xl bg-[#FFFBE6] dark:bg-[#2a2608] flex items-center justify-center"><x.icon className="h-5 w-5 text-[#FFD600]"/></div><div><p className="font-bold text-sm">{x.label}</p><p className="text-xs text-muted-foreground mt-1">{x.desc}</p></div></div>)}</Card><button onClick={copyBadge} className="w-full rounded-2xl border border-[#FFD600]/40 bg-[#FFFBE6] dark:bg-[#2a2608] p-4 flex items-center justify-between text-left hover:border-[#FFD600] transition"><div className="flex items-center gap-3"><Eraser className="h-5 w-5 text-[#FFD600]"/><div><p className="font-bold text-sm">Remover marca d'água</p><p className="text-xs text-muted-foreground">Copiar código CSS para usar no projeto.</p></div></div><Copy className="h-4 w-4 text-muted-foreground"/></button><Button variant="destructive" className="w-full"><LogOut className="mr-2 h-4 w-4"/> Encerrar sessão</Button></div></div></div>}
