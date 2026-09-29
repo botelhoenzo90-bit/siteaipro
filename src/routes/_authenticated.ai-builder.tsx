@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Wand2, Copy, Save, Edit, Download, Info, Lightbulb } from "lucide-react";
+import { Wand2, Copy, Sparkles, Target, Palette, LayoutTemplate } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,326 +8,36 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/_authenticated/ai-builder")({
-  component: AIBuilderPage,
-});
+export const Route = createFileRoute("/_authenticated/ai-builder")({ component: AIBuilderPage });
 
 function AIBuilderPage() {
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<string | null>(null);
-
-  const [context, setContext] = useState("");
-  const [niche, setNiche] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [city, setCity] = useState("");
-  const [objective, setObjective] = useState("");
-  const [style, setStyle] = useState("");
-  const [colors, setColors] = useState("");
-  const [targetAudience, setTargetAudience] = useState("");
-  const [mainBenefit, setMainBenefit] = useState("");
-  const [toneVoice, setToneVoice] = useState("");
-
-  const niches = [
-    'Clínica Médica', 'Restaurante', 'Advogado', 'Academia', 'Imobiliária', 
-    'Estética', 'Pet Shop', 'E-commerce', 'Consultoria', 'Arquitetura', 
-    'Educação', 'Eventos', 'Software/SaaS', 'Finanças', 'Construção'
-  ];
-
-  const objectives = [
-    'Gerar Clientes', 'Agendamento Direto', 'Venda de Produto', 'Capturar Leads (Newsletter)', 
-    'Autoridade de Marca', 'Portfólio', 'Educação do Público', 'Suporte ao Cliente'
-  ];
-
-  const styles = [
-    'Luxuoso/Premium', 'Minimalista', 'Moderno/Tech', 'Corporativo/Sério', 
-    'Vibrante/Criativo', 'Rústico/Acolhedor', 'Futurista', 'Clean/Médico'
-  ];
-
-  const tones = [
-    'Profissional', 'Amigável', 'Autoritário', 'Inspirador', 'Descontraído', 'Persuasivo'
-  ];
-
-  const handleGenerate = () => {
-    if (!context || !niche || !companyName) {
-      toast.error("Por favor, preencha o nome da empresa, o nicho e a explicação do negócio.");
-      return;
-    }
-
-    setLoading(true);
-    
-    setTimeout(() => {
-      const generatedPrompt = `Crie o MELHOR SITE POSSÍVEL para a empresa abaixo, interpretando todas as informações fornecidas e transformando-as em um projeto único, profissional e altamente personalizado.
-
-INFORMAÇÕES:
-Empresa: ${companyName}
-Nicho: ${niche}
-Cidade: ${city || 'Brasil'}
-Objetivo: ${objective || 'Conversão'}
-Público-alvo: ${targetAudience || 'Clientes em potencial'}
-Diferencial: ${mainBenefit || 'Qualidade e Profissionalismo'}
-Contexto: ${context}
-Estilo visual: ${style || 'Moderno'}
-Tom de voz: ${toneVoice || 'Profissional'}
-Cores desejadas: ${colors || 'A definir'}
-
-IMPORTANTE:
-Não apenas preencha um template. Analise e CRUZE todas essas informações antes de definir o site.
-
-O nicho escolhido, o público, o objetivo, o contexto, o diferencial, o estilo e as cores devem determinar a aparência, estrutura, imagens, copy, componentes e experiência do site.
-
-Crie um projeto que pareça ter sido desenvolvido exclusivamente para essa empresa por uma agência digital premium.
-
-DESIGN:
-O site deve ser extremamente bonito, moderno, sofisticado, elegante e visualmente impressionante.
-
-Crie uma direção de arte própria para o nicho escolhido. Escolha cuidadosamente:
-- tipografia
-- hierarquia visual
-- espaçamento
-- composição
-- proporções
-- formas
-- ícones
-- bordas
-- sombras
-- contrastes
-- elementos decorativos
-- animações
-
-As CORES INFORMADAS devem ser utilizadas como base da identidade visual, criando uma paleta profissional e harmoniosa. Não espalhe as cores aleatoriamente.
-
-O estilo visual informado deve ser respeitado em todo o projeto.
-
-IMAGENS:
-Utilize imagens grandes, bonitas, profissionais e diretamente relacionadas ao nicho. Não faça um site somente com textos e cards.
-
-As imagens devem aparecer principalmente no Hero e nas seções onde ajudam a apresentar serviços, produtos, ambiente, profissionais, projetos ou resultados.
-
-Escolha imagens que combinem com o público e com o posicionamento da empresa. Nunca utilize imagens aleatórias apenas para preencher espaço.
-
-ESTRUTURA:
-Não use sempre a mesma estrutura.
-
-Escolha as melhores seções para aquele negócio, podendo utilizar:
-Hero, Sobre, Benefícios, Serviços, Produtos, Como Funciona, Diferenciais, Portfólio, Galeria, Resultados, Depoimentos, FAQ, Contato e CTA final.
-
-A estrutura deve contar uma história e conduzir o visitante de:
-ATENÇÃO → INTERESSE → CONFIANÇA → DESEJO → AÇÃO.
-
-SERVIÇOS:
-Apresente os serviços de maneira visual e sofisticada. Use cards, imagens, carrosséis, sliders, tabs ou outros componentes quando fizer sentido. Evite uma página cheia de cards iguais.
-
-HERO:
-Crie uma primeira dobra excepcional, com headline específica, subheadline, CTA forte e imagem/composição visual relacionada ao negócio. O visitante deve entender imediatamente o que a empresa faz e por que deveria continuar navegando.
-
-COPY:
-Crie textos específicos utilizando o contexto fornecido. O conteúdo deve combinar com o tom de voz e público. Não use frases genéricas e não invente informações.
-
-CONVERSÃO:
-O site deve ser bonito E estratégico. Destaque benefícios, diferenciais, confiança e CTAs de acordo com o objetivo informado.
-
-DIRETRIZ OBRIGATÓRIA DE CONVERSÃO:
-- O site DEVE possuir botões de chamada para ação (CTA) em TODAS as seções sem exceção.
-- Todos os botões do site devem direcionar o usuário para o WhatsApp da empresa.
-
-FAQ:
-Quando fizer sentido, criar 5–8 perguntas relevantes ao negócio em um accordion elegante.
-
-DEPOIMENTOS:
-Quando existirem informações reais, apresentar em um carrossel moderno e elegante. Nunca inventar clientes ou avaliações.
-
-UX E RESPONSIVIDADE:
-Criar experiência excelente em desktop e mobile. Navegação intuitiva, botões claros, carrosséis funcionais, espaçamento adequado e nenhum elemento quebrado ou cortado.
-
-ANIMAÇÕES:
-Adicionar microinterações, hover effects, transições e animações suaves ao scroll quando agregarem qualidade. Nada exagerado.
-
-REGRA FINAL:
-Não entregue um site apenas funcional.
-
-Entregue uma experiência digital IMPECÁVEL, bonita, sofisticada, moderna, personalizada e memorável.
-
-Se o resultado parecer um template genérico, REFAÇA a direção visual.
-
-O objetivo é que o cliente veja o site e pense:
-"Isso parece ter sido feito especificamente para a minha empresa."
-
-PRIORIDADE:
-PERSONALIZAÇÃO + DIREÇÃO DE ARTE + IMAGENS + DESIGN + UX + CONVERSÃO.`;
-
-      setResult(generatedPrompt);
-      setLoading(false);
-      toast.success("Prompt profissional gerado!");
-    }, 1500);
-  };
-
-  return (
-    <div className="max-w-4xl mx-auto space-y-8 pb-20">
-      <div>
-        <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">AI Site Builder Pro</h1>
-        <p className="text-muted-foreground mt-2 text-sm font-medium">Gere prompts profissionais de alta conversão para criar sites incríveis com IA.</p>
+  const [loading,setLoading]=useState(false); const [result,setResult]=useState<string|null>(null);
+  const [context,setContext]=useState(""); const [niche,setNiche]=useState(""); const [customNiche,setCustomNiche]=useState("");
+  const [companyName,setCompanyName]=useState(""); const [city,setCity]=useState(""); const [objective,setObjective]=useState(""); const [customObjective,setCustomObjective]=useState("");
+  const [style,setStyle]=useState(""); const [colors,setColors]=useState(""); const [targetAudience,setTargetAudience]=useState(""); const [mainBenefit,setMainBenefit]=useState(""); const [toneVoice,setToneVoice]=useState("");
+  const niches=['Clínica Médica','Odontologia','Estética','Restaurante','Advocacia','Imobiliária','Academia','Arquitetura','Consultoria','Educação','Eventos','Pet Shop','E-commerce','SaaS / Tecnologia','Construção','Contabilidade','Hotelaria','Fotografia','Outro'];
+  const objectives=['Gerar leads','Agendamento','Vender produtos','Vender serviços','Apresentar portfólio','Gerar autoridade','Capturar WhatsApp','Receber orçamentos','Outro'];
+  const styles=['Premium / Luxuoso','Minimalista','Moderno','Corporativo','Criativo','Elegante','Tecnológico','Clean'];
+  const tones=['Profissional','Persuasivo','Humano','Autoridade','Premium','Descontraído'];
+  const finalNiche=niche==='Outro'?customNiche:niche; const finalObjective=objective==='Outro'?customObjective:objective;
+  const handleGenerate=()=>{if(!companyName||!finalNiche||!context){toast.error('Informe empresa, nicho e contexto do negócio.');return;} setLoading(true); setTimeout(()=>{const prompt=`CRIE UM SITE PROFISSIONAL E PERSONALIZADO PARA:\nEmpresa: ${companyName}\nNicho: ${finalNiche}\nCidade: ${city||'Brasil'}\nObjetivo principal: ${finalObjective||'Conversão'}\nPúblico: ${targetAudience||'Clientes em potencial'}\nDiferencial: ${mainBenefit||'Definir a partir do contexto'}\nContexto real: ${context}\nEstilo: ${style||'Moderno e premium'}\nTom: ${toneVoice||'Profissional'}\nCores: ${colors||'Definir uma paleta coerente'}\n\nDIREÇÃO: não use template genérico. Cruze nicho, público e objetivo para definir arquitetura, copy, imagens, tipografia, componentes e jornada. Crie uma primeira dobra forte, navegação intuitiva, seções de confiança, serviços, benefícios, prova social, FAQ e CTA final. Use imagens relevantes e carrosséis quando ajudarem. Todos os elementos devem ser responsivos, acessíveis e visualmente consistentes.\n\nCONVERSÃO: conduza ATENÇÃO → INTERESSE → CONFIANÇA → DESEJO → AÇÃO. Use CTAs estratégicos e copy específica. Não invente informações ou depoimentos.\n\nENTREGA: gere uma experiência premium, moderna e memorável, com espaçamento refinado, microinterações, estados de hover, boa hierarquia visual e excelente versão mobile.`; setResult(prompt);setLoading(false);toast.success('Prompt profissional gerado!');},700)};
+  return <div className="max-w-6xl mx-auto space-y-8 pb-20">
+    <div><div className="flex items-center gap-2 text-[#8A6A00] text-[10px] font-black uppercase tracking-[.2em]"><Sparkles className="h-4 w-4 text-[#FFD600]"/> Prime AI Builder</div><h1 className="text-4xl md:text-5xl font-black tracking-tighter mt-2">Crie sites que parecem feitos sob medida.</h1><p className="text-muted-foreground mt-3 max-w-2xl">Defina o negócio, objetivo e direção criativa. A Prime transforma isso em um briefing pronto para gerar um site profissional.</p></div>
+    <div className="grid lg:grid-cols-[1fr_300px] gap-6">
+      <div className="rounded-3xl border border-[#E4E7E1] bg-card p-6 md:p-8 space-y-7 shadow-sm">
+        <div className="grid md:grid-cols-2 gap-5">
+          <div className="space-y-2"><Label>Nicho do cliente</Label><Select value={niche} onValueChange={setNiche}><SelectTrigger><SelectValue placeholder="Escolha um nicho"/></SelectTrigger><SelectContent>{niches.map(x=><SelectItem key={x} value={x}>{x}</SelectItem>)}</SelectContent></Select>{niche==='Outro'&&<Input className="mt-2" value={customNiche} onChange={e=>setCustomNiche(e.target.value)} placeholder="Digite o nicho"/>}</div>
+          <div className="space-y-2"><Label>Nome da empresa</Label><Input value={companyName} onChange={e=>setCompanyName(e.target.value)} placeholder="Ex.: Clínica Prime"/></div>
+          <div className="space-y-2"><Label>Cidade / região</Label><Input value={city} onChange={e=>setCity(e.target.value)} placeholder="Ex.: São Paulo - SP"/></div>
+          <div className="space-y-2"><Label>Objetivo do site</Label><Select value={objective} onValueChange={setObjective}><SelectTrigger><SelectValue placeholder="Escolha o objetivo"/></SelectTrigger><SelectContent>{objectives.map(x=><SelectItem key={x} value={x}>{x}</SelectItem>)}</SelectContent></Select>{objective==='Outro'&&<Input className="mt-2" value={customObjective} onChange={e=>setCustomObjective(e.target.value)} placeholder="Digite o objetivo"/>}</div>
+        </div>
+        <div className="grid md:grid-cols-2 gap-5"><div className="space-y-2"><Label>Público-alvo</Label><Input value={targetAudience} onChange={e=>setTargetAudience(e.target.value)} placeholder="Quem precisa ser convencido?"/></div><div className="space-y-2"><Label>Diferencial / oferta</Label><Input value={mainBenefit} onChange={e=>setMainBenefit(e.target.value)} placeholder="O que torna o negócio diferente?"/></div></div>
+        <div className="rounded-2xl border-2 border-[#FFD600]/50 bg-[#FFFBE6] dark:bg-[#2a2608] p-5 space-y-3"><div className="flex items-center gap-2"><Target className="h-5 w-5 text-[#FFD600]"/><Label className="text-base font-black">Briefing do negócio</Label></div><Textarea value={context} onChange={e=>setContext(e.target.value)} className="min-h-[170px] bg-white dark:bg-[#11130f]" placeholder="Explique serviços, público, problema que resolve, diferenciais, provas, localização, oferta e tudo que a IA precisa saber. Você pode escrever livremente."/><p className="text-xs text-[#6f6846] dark:text-[#d9d4a8]">Quanto melhor o briefing, mais personalizado será o resultado. Não precisa escrever de forma técnica.</p></div>
+        <div className="grid md:grid-cols-3 gap-5"><div className="space-y-2"><Label>Estilo visual</Label><Select value={style} onValueChange={setStyle}><SelectTrigger><SelectValue placeholder="Escolha"/></SelectTrigger><SelectContent>{styles.map(x=><SelectItem key={x} value={x}>{x}</SelectItem>)}</SelectContent></Select></div><div className="space-y-2"><Label>Tom de voz</Label><Select value={toneVoice} onValueChange={setToneVoice}><SelectTrigger><SelectValue placeholder="Escolha"/></SelectTrigger><SelectContent>{tones.map(x=><SelectItem key={x} value={x}>{x}</SelectItem>)}</SelectContent></Select></div><div className="space-y-2"><Label>Cores</Label><Input value={colors} onChange={e=>setColors(e.target.value)} placeholder="Ex.: preto, dourado e branco"/></div></div>
+        <Button onClick={handleGenerate} disabled={loading} className="w-full h-14 bg-[#FFD600] hover:bg-[#FFDF00] text-[#111] font-black uppercase tracking-wider">{loading?'Montando briefing...':<>Gerar Prompt Profissional <Wand2 className="ml-2 h-5 w-5"/></>}</Button>
       </div>
-
-      <div className="rounded-2xl border border-border bg-card p-8 space-y-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground">Tipo de Negócio</Label>
-            <Select onValueChange={setNiche}>
-              <SelectTrigger className="bg-background/50">
-                <SelectValue placeholder="Selecione o nicho" />
-              </SelectTrigger>
-              <SelectContent>
-                {niches.map(n => (
-                  <SelectItem key={n} value={n}>{n}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="space-y-2">
-            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground">Nome da Empresa</Label>
-            <Input placeholder="Ex: Clínica Harmony" value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="bg-background/50" />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground">Cidade</Label>
-            <Input placeholder="Ex: São Paulo" value={city} onChange={(e) => setCity(e.target.value)} className="bg-background/50" />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground">Objetivo do Site</Label>
-            <Select onValueChange={setObjective}>
-              <SelectTrigger className="bg-background/50">
-                <SelectValue placeholder="Selecione o objetivo" />
-              </SelectTrigger>
-              <SelectContent>
-                {objectives.map(o => (
-                  <SelectItem key={o} value={o}>{o}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <Label>Público-Alvo</Label>
-            <Input placeholder="Ex: Mulheres de 25-45 anos interessadas em estética" value={targetAudience} onChange={(e) => setTargetAudience(e.target.value)} className="bg-background/50" />
-          </div>
-          <div className="space-y-2">
-            <Label>Diferencial Principal</Label>
-            <Input placeholder="Ex: Atendimento humanizado e tecnologia exclusiva" value={mainBenefit} onChange={(e) => setMainBenefit(e.target.value)} className="bg-background/50" />
-          </div>
-        </div>
-
-        {/* Highlighted Business Context Field */}
-        <div className="space-y-4 p-6 rounded-2xl border-2 border-primary/20 bg-primary/5 shadow-sm">
-          <div className="flex items-center gap-2">
-            <Label className="text-lg font-bold">Explique seu Negócio (Contexto para a IA)</Label>
-            <div className="bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Essencial</div>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="md:col-span-2 space-y-4">
-              <Textarea 
-                placeholder="Dica: O que sua empresa faz? Quais serviços oferece? Quem são seus clientes? Qual problema resolve? Quais são seus diferenciais? Qual sensação o site deve transmitir?" 
-                className="min-h-[200px] bg-background text-base"
-                value={context}
-                onChange={(e) => setContext(e.target.value)}
-              />
-              <div className="space-y-2">
-                <p className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <Info className="h-4 w-4 text-primary" />
-                  Essa é a parte mais importante do processo.
-                </p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Quanto mais detalhes você fornecer sobre seu negócio, seus serviços, clientes, diferenciais e objetivos, mais profissional e personalizado será o prompt gerado. 
-                  <strong> Não escreva apenas o segmento.</strong> Explique como sua empresa funciona, quais problemas resolve, quais serviços oferece, quem são seus clientes, seus diferenciais e qual imagem deseja transmitir.
-                </p>
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="p-4 rounded-xl bg-background border border-border space-y-2">
-                <p className="text-xs font-bold text-red-500 uppercase flex items-center gap-1">
-                  <Edit className="h-3 w-3" /> Exemplo Ruim
-                </p>
-                <p className="text-xs italic text-muted-foreground">"Tenho uma clínica odontológica."</p>
-              </div>
-              
-              <div className="p-4 rounded-xl bg-background border border-primary/30 space-y-2">
-                <p className="text-xs font-bold text-green-500 uppercase flex items-center gap-1">
-                  <Lightbulb className="h-3 w-3" /> Exemplo Ideal
-                </p>
-                <p className="text-xs italic text-muted-foreground leading-relaxed">
-                  "Somos uma clínica odontológica especializada em implantes e estética dental. Atendemos pacientes que buscam recuperar o sorriso com segurança e acompanhamento personalizado. Nosso diferencial é o atendimento humanizado, tecnologia moderna e profissionais especializados. Queremos transmitir confiança, qualidade e gerar novos agendamentos pelo WhatsApp."
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="space-y-2">
-            <Label>Estilo Visual</Label>
-            <Select onValueChange={setStyle}>
-              <SelectTrigger className="bg-background/50">
-                <SelectValue placeholder="Selecione o estilo" />
-              </SelectTrigger>
-              <SelectContent>
-                {styles.map(s => (
-                  <SelectItem key={s} value={s}>{s}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="space-y-2">
-            <Label>Tom de Voz</Label>
-            <Select onValueChange={setToneVoice}>
-              <SelectTrigger className="bg-background/50">
-                <SelectValue placeholder="Selecione o tom" />
-              </SelectTrigger>
-              <SelectContent>
-                {tones.map(t => (
-                  <SelectItem key={t} value={t}>{t}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="space-y-2">
-            <Label>Cores Desejadas</Label>
-            <Input placeholder="Ex: Dourado e Branco" value={colors} onChange={(e) => setColors(e.target.value)} className="bg-background/50" />
-          </div>
-        </div>
-
-        <Button 
-          onClick={handleGenerate} 
-          disabled={loading}
-          className="w-full h-16 gradient-brand border-0 text-lg font-black uppercase tracking-widest shadow-xl shadow-primary/20"
-        >
-          {loading ? "Processando Inteligência..." : <>Gerar Prompt Profissional <Wand2 className="ml-2 h-5 w-5" /></>}
-        </Button>
-      </div>
-
-      {result && (
-        <div className="rounded-2xl border-2 border-primary border-dashed bg-primary/5 p-8 space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-              <h3 className="text-xl font-bold">PROMPT GERADO:</h3>
-            </div>
-            <Button 
-              onClick={() => { navigator.clipboard.writeText(result); toast.success("Prompt copiado!"); }}
-              className="gradient-brand border-0"
-            >
-              <Copy className="mr-2 h-4 w-4" /> Copiar Prompt Profissional
-            </Button>
-          </div>
-          <div className="p-6 rounded-xl bg-background border border-border font-mono text-sm whitespace-pre-wrap leading-relaxed max-h-[500px] overflow-y-auto">
-            {result}
-          </div>
-          <p className="text-center text-xs text-muted-foreground">
-            Copie o prompt acima e utilize na sua ferramenta de IA favorita (Bolt.new, Lovable, v0, Cursor, etc).
-          </p>
-        </div>
-      )}
+      <div className="space-y-4"><div className="rounded-3xl border border-border bg-card p-5"><Palette className="h-6 w-6 text-[#FFD600]"/><p className="font-black mt-4">Direção visual</p><p className="text-xs text-muted-foreground mt-1">A identidade escolhida guia cores, imagens, componentes e ritmo da página.</p></div><div className="rounded-3xl border border-border bg-card p-5"><LayoutTemplate className="h-6 w-6 text-[#FFD600]"/><p className="font-black mt-4">Estrutura inteligente</p><p className="text-xs text-muted-foreground mt-1">A Prime prioriza as seções que fazem sentido para o objetivo do projeto.</p></div></div>
     </div>
-  );
+    {result&&<div className="rounded-3xl border-2 border-[#FFD600] bg-card p-6 space-y-4"><div className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-[10px] font-black uppercase tracking-[.2em] text-[#8A6A00]">Resultado</p><h2 className="text-xl font-black">Prompt pronto para usar</h2></div><Button onClick={()=>{navigator.clipboard.writeText(result);toast.success('Prompt copiado!')}} className="bg-[#FFD600] text-[#111] hover:bg-[#FFDF00]"><Copy className="mr-2 h-4 w-4"/> Copiar prompt</Button></div><pre className="whitespace-pre-wrap rounded-2xl border border-border bg-background p-5 text-sm leading-6 max-h-[520px] overflow-auto">{result}</pre></div>}
+  </div>;
 }
