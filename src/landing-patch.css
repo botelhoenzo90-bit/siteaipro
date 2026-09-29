@@ -1,0 +1,38 @@
+/* Prime Landing — refinamentos da primeira dobra */
+.valy-header .logo-mark{display:none!important}
+.hero-badge,.hero .test-link,.hero-benefits,.hero-screen{display:none!important}
+.hero{padding-top:92px;padding-bottom:78px}
+.hero h1{max-width:980px}
+.hero h1 em{color:#FFD600!important;text-shadow:0 1px 0 #8d7700}
+.hero h1 em:after{background:#FFD600!important}
+.hero .hero-copy{color:#4d4d4d}
+.hero .hero-btn,.hero .green-btn{background:#FFD600!important;color:#080808!important;box-shadow:0 12px 30px rgba(255,214,0,.24)}
+.hero .hero-btn span{background:#111!important;color:#FFD600!important}
+.industry-strip{background:#FFD600!important;border:0!important;padding:20px 0!important}
+.industry-strip .marquee{animation-duration:25s}
+.industry-strip .marquee span,.industry-strip .marquee b{color:#111!important}
+/* Substitui visualmente os antigos nichos por mensagens comerciais */
+.industry-strip .marquee span{font-size:0}
+.industry-strip .marquee span:after{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em}
+.industry-strip .marquee span:nth-child(1):after{content:'MAIS LUCRO POR PROJETO'}
+.industry-strip .marquee span:nth-child(2):after{content:'SITES PROFISSIONAIS'}
+.industry-strip .marquee span:nth-child(3):after{content:'PROSPECÇÃO LOCAL'}
+.industry-strip .marquee span:nth-child(4):after{content:'17+ NICHOS'}
+.industry-strip .marquee span:nth-child(5):after{content:'SEM CÓDIGO'}
+.industry-strip .marquee span:nth-child(6):after{content:'VENDA TODOS OS DIAS'}
+.industry-strip .marquee span:nth-child(7):after{content:'CRM E SCRIPTS'}
+.industry-strip .marquee span:nth-child(8):after{content:'PRECIFICAÇÃO'}
+.industry-strip .marquee span:nth-child(9):after{content:'EDITOR VISUAL'}
+.industry-strip .marquee span:nth-child(10):after{content:'GARANTIA DE 7 DIAS'}
+.industry-strip .marquee span:nth-child(11):after{content:'COMECE HOJE'}
+.industry-strip .marquee span:nth-child(12):after{content:'ESCALA DE OPERAÇÃO'}
+.industry-strip .marquee span:nth-child(13):after{content:'MAIS LUCRO POR PROJETO'}
+.industry-strip .marquee span:nth-child(14):after{content:'SITES PROFISSIONAIS'}
+.industry-strip .marquee span:nth-child(15):after{content:'PROSPECÇÃO LOCAL'}
+.industry-strip .marquee span:nth-child(16):after{content:'17+ NICHOS'}
+.industry-strip .marquee span:nth-child(17):after{content:'SEM CÓDIGO'}
+.industry-strip .marquee span:nth-child(18):after{content:'VENDA TODOS OS DIAS'}
+.valy-dark .hero .hero-copy{color:#aaa}
+.valy-dark .industry-strip{background:#FFD600!important}
+.valy-dark .industry-strip .marquee span,.valy-dark .industry-strip .marquee b{color:#111!important}
+@media(max-width:600px){.hero{padding-top:62px;padding-bottom:58px}.hero h1{font-size:42px!important}.hero-copy{font-size:16px!important}.industry-strip{padding:17px 0!important}}
