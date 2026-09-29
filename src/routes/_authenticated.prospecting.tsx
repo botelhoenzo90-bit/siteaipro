@@ -1,151 +1,21 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { Search, MapPin, Globe, Info, Target, MessageSquare, Lightbulb, Zap, TrendingUp, BarChart3, ChevronRight } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
+import { Search, MapPin, Instagram, Target, Zap, Star, Globe, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { motion } from "framer-motion";
+import { toast } from "sonner";
 
-export const Route = createFileRoute("/_authenticated/prospecting")({
-  component: ProspectingPage,
-});
-
-function ProspectingPage() {
-  const [niche, setNiche] = useState("");
-  const [city, setCity] = useState("");
-
-  const handleMapsSearch = () => {
-    if (!niche || !city) return;
-    const query = encodeURIComponent(`${niche} em ${city}`);
-    window.open(`https://www.google.com/maps/search/${query}`, '_blank');
-  };
-
-  const handleInstagramSearch = () => {
-    if (!niche) return;
-    const query = encodeURIComponent(niche.replace(/\s+/g, ''));
-    window.open(`https://www.instagram.com/explore/tags/${query}`, '_blank');
-  };
-
-  const niches = ["Odontologia", "Advocacia", "Arquitetura", "Restaurantes", "Clínicas de Estética", "Consultoria", "Imobiliárias", "Lojas de Roupa", "Academias", "Oficinas", "Pet Shops", "Hotéis", "Fotografia", "Engenharia", "Contabilidade", "Marketing Digital", "E-commerce", "Educação"];
-
-  return (
-    <div className="max-w-6xl mx-auto space-y-12 pb-20">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col md:flex-row md:items-center justify-between gap-4"
-      >
-        <div>
-          <h1 className="text-4xl font-black tracking-tighter uppercase leading-[0.9]">Prospecção Ativa</h1>
-          <p className="text-muted-foreground mt-2 text-sm font-medium">Encontre e aborde clientes de alto valor com nossas ferramentas de prospecção.</p>
-        </div>
-      </motion.div>
-
-      {/* Main Search Panel */}
-      <Card className="p-8 glass border-primary/20 space-y-6">
-        <h3 className="text-xl font-black flex items-center gap-2 uppercase tracking-tighter">
-          <Search className="h-6 w-6 text-primary" /> 
-          Gerador de Oportunidades
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Selecione o Nicho ou Digite</label>
-            <Input 
-              placeholder="Ex: Clínica Odontológica" 
-              value={niche}
-              onChange={(e) => setNiche(e.target.value)}
-              className="h-12 bg-background/50"
-              list="niches-list"
-            />
-            <datalist id="niches-list">
-                {niches.map(n => <option key={n} value={n} />)}
-            </datalist>
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Cidade / Região</label>
-            <Input 
-              placeholder="Ex: São Paulo, SP" 
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              className="h-12 bg-background/50"
-            />
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Button onClick={handleMapsSearch} className="h-16 gradient-brand border-0 text-lg font-black uppercase tracking-widest shadow-xl shadow-primary/20">
-            <MapPin className="mr-2 h-6 w-6" /> Pesquisar no Google Maps
-          </Button>
-          <Button onClick={handleInstagramSearch} variant="outline" className="h-16 border-border/60 hover:bg-primary/5 text-lg font-black uppercase tracking-widest">
-            <Globe className="mr-2 h-6 w-6" /> Explorar no Instagram
-          </Button>
-        </div>
-      </Card>
-
-      {/* Dicas de Prospecção */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <Card className="p-8 border-border bg-card">
-           <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
-             <Lightbulb className="h-5 w-5 text-yellow-500" />
-             Dicas Profissionais de Prospecção
-           </h4>
-           <div className="space-y-4 text-sm text-muted-foreground">
-             <p>• <strong>Filtre por avaliações:</strong> Leads com avaliações entre 3.0 e 4.0 costumam investir para melhorar a imagem online.</p>
-             <p>• <strong>Site antigo/lento:</strong> Se o site não abre no celular, é o seu argumento nº 1 de venda.</p>
-             <p>• <strong>Instagram parado:</strong> Se não postam há semanas, o negócio está estagnado e precisa de renovação visual.</p>
-             <p>• <strong>Horário de postagem:</strong> Aborde leads logo pela manhã (09h-10h), quando estão planejando o dia.</p>
-             <p>• <strong>Google My Business:</strong> Se não possuem, a empresa é praticamente invisível localmente.</p>
-           </div>
-        </Card>
-
-        <Card className="p-8 border-border bg-card">
-           <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
-             <Target className="h-5 w-5 text-primary" />
-             Estratégias Avançadas (Ideas VIP)
-           </h4>
-           <div className="space-y-4">
-               {[
-                   "LinkedIn: Filtre por 'Decisor' em empresas de 11-50 funcionários.",
-                   "E-mail Frio: Use o script de análise gratuita para quebrar o gelo.",
-                   "Facebook Ads Library: Veja se o cliente já investe em tráfego.",
-                   "Google My Business: Aborde quem não tem fotos atualizadas.",
-                   "Portais de Notícias Locais: Veja quem está expandindo o negócio."
-               ].map((item, i) => (
-                   <div key={i} className="flex gap-3 text-sm p-3 bg-muted/30 rounded-lg border border-border/50 hover:border-primary/30 transition-colors">
-                       <Zap className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                       {item}
-                   </div>
-               ))}
-           </div>
-        </Card>
-      </div>
-
-      {/* Script Section */}
-      <Card className="p-8 border-primary/20 bg-primary/5 rounded-3xl">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
-            <h4 className="text-xl font-black flex items-center gap-2 uppercase tracking-tighter">
-                <MessageSquare className="h-6 w-6 text-primary" />
-                Sessão de Scripts Rápidos
-            </h4>
-            <Button variant="outline" className="text-xs font-black uppercase tracking-widest border-primary/20" asChild>
-                <Link to="/scripts">Ver Todos os Scripts <ChevronRight className="ml-2 h-4 w-4" /></Link>
-            </Button>
-        </div>
-        <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-background/40 p-6 rounded-2xl border border-border/50 glass hover:border-primary/30 transition-colors">
-                <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-3">Google Maps (Cold)</p>
-                <p className="text-sm text-foreground italic leading-relaxed">
-                    "Olá [Nome], vi sua empresa em destaque no Maps, mas notei que o site de vocês não está otimizado para celulares. Sou especialista em sites rápidos que aumentam as vendas locais. Posso te enviar uma breve análise?"
-                </p>
-            </div>
-            <div className="bg-background/40 p-6 rounded-2xl border border-border/50 glass hover:border-primary/30 transition-colors">
-                <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-3">Instagram (Direct)</p>
-                <p className="text-sm text-foreground italic leading-relaxed">
-                    "Oi [Nome], acompanho o trabalho da [Empresa] e vejo um potencial enorme para atrair mais clientes com um site que conecte seus posts diretamente ao WhatsApp. Topa ver um modelo de site focado no seu nicho?"
-                </p>
-            </div>
-        </div>
-      </Card>
-    </div>
-  );
+export const Route=createFileRoute("/_authenticated/prospecting")({component:ProspectingPage});
+function ProspectingPage(){
+ const [niche,setNiche]=useState(''); const [city,setCity]=useState(''); const [site,setSite]=useState(''); const [instagram,setInstagram]=useState(''); const [rating,setRating]=useState(''); const [size,setSize]=useState('');
+ const score=useMemo(()=>{let n=0;if(niche)n+=20;if(city)n+=15;if(site==='Não')n+=30;if(instagram==='Sim')n+=15;if(rating==='3-4')n+=15;if(size==='Médio/alto')n+=5;return Math.min(100,n)},[niche,city,site,instagram,rating,size]);
+ const maps=()=>{if(!niche||!city){toast.error('Informe nicho e cidade.');return}window.open(`https://www.google.com/maps/search/${encodeURIComponent(`${niche} em ${city}`)}`,'_blank')};
+ const ig=()=>{if(!niche){toast.error('Informe o nicho.');return}window.open(`https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(niche)}`,'_blank')};
+ return <div className="max-w-6xl mx-auto space-y-8 pb-20"><div><p className="text-[10px] font-black uppercase tracking-[.2em] text-[#8A6A00]">Prime Prospect</p><h1 className="text-4xl md:text-5xl font-black tracking-tighter mt-2">Radar de Clientes</h1><p className="text-muted-foreground mt-2">Encontre negócios, avalie a presença digital e transforme pesquisa em oportunidade.</p></div>
+ <Card className="p-6 md:p-8 border-[#FFD600]/40"><div className="flex items-center gap-3"><div className="h-11 w-11 rounded-xl bg-[#FFD600] flex items-center justify-center text-[#111]"><Search/></div><div><h2 className="text-xl font-black">Encontrar oportunidades</h2><p className="text-xs text-muted-foreground">Pesquise por nicho e região sem depender de banco de dados.</p></div></div><div className="grid md:grid-cols-2 gap-5 mt-6"><div><label className="text-xs font-bold">Nicho</label><Input className="mt-2" value={niche} onChange={e=>setNiche(e.target.value)} placeholder="Ex.: clínica odontológica"/></div><div><label className="text-xs font-bold">Cidade / região</label><Input className="mt-2" value={city} onChange={e=>setCity(e.target.value)} placeholder="Ex.: Curitiba - PR"/></div></div><div className="grid md:grid-cols-2 gap-3 mt-5"><Button onClick={maps} className="h-12 bg-[#FFD600] text-[#111] hover:bg-[#FFDF00] font-black"><MapPin className="mr-2 h-5 w-5"/> Pesquisar no Google Maps</Button><Button onClick={ig} variant="outline" className="h-12 border-[#FFD600]/50 font-black"><Instagram className="mr-2 h-5 w-5 text-[#FFD600]"/> Explorar no Instagram</Button></div></Card>
+ <div className="grid lg:grid-cols-[1fr_280px] gap-6"><Card className="p-6 md:p-8"><div className="flex items-center justify-between"><div><p className="text-[10px] font-black uppercase tracking-widest text-[#8A6A00]">Qualificador</p><h2 className="text-2xl font-black">Vale abordar este lead?</h2></div><Target className="h-7 w-7 text-[#FFD600]"/></div><div className="grid md:grid-cols-2 gap-5 mt-6"><div><label className="text-xs font-bold">Tem site?</label><div className="grid grid-cols-3 gap-2 mt-2">{['Sim','Não','Ruim'].map(x=><button key={x} onClick={()=>setSite(x)} className={`rounded-xl border p-3 text-xs font-black ${site===x?'border-[#FFD600] bg-[#FFFBE6] dark:bg-[#2a2608]':'border-border'}`}>{x}</button>)}</div></div><div><label className="text-xs font-bold">Instagram ativo?</label><div className="grid grid-cols-2 gap-2 mt-2">{['Sim','Não'].map(x=><button key={x} onClick={()=>setInstagram(x)} className={`rounded-xl border p-3 text-xs font-black ${instagram===x?'border-[#FFD600] bg-[#FFFBE6] dark:bg-[#2a2608]':'border-border'}`}>{x}</button>)}</div></div><div><label className="text-xs font-bold">Avaliação no Maps</label><div className="grid grid-cols-2 gap-2 mt-2">{['3-4','4-5'].map(x=><button key={x} onClick={()=>setRating(x)} className={`rounded-xl border p-3 text-xs font-black ${rating===x?'border-[#FFD600] bg-[#FFFBE6] dark:bg-[#2a2608]':'border-border'}`}><Star className="inline h-3 w-3 text-[#FFD600] mr-1"/>{x}</button>)}</div></div><div><label className="text-xs font-bold">Porte percebido</label><div className="grid grid-cols-2 gap-2 mt-2">{['Pequeno','Médio/alto'].map(x=><button key={x} onClick={()=>setSize(x)} className={`rounded-xl border p-3 text-xs font-black ${size===x?'border-[#FFD600] bg-[#FFFBE6] dark:bg-[#2a2608]':'border-border'}`}>{x}</button>)}</div></div></div><div className="mt-6 rounded-2xl bg-background border border-border p-5"><div className="flex items-center justify-between"><span className="text-xs font-black uppercase tracking-widest">Score de oportunidade</span><strong className="text-3xl">{score}<span className="text-sm text-muted-foreground">/100</span></strong></div><div className="mt-3 h-2 rounded-full bg-muted overflow-hidden"><div className="h-full bg-[#FFD600] transition-all" style={{width:`${score}%`}}/></div><p className="text-xs text-muted-foreground mt-3">Use o score como apoio à triagem. A decisão final depende da análise real do negócio.</p></div></Card>
+ <div className="space-y-4"><Card className="p-5"><Globe className="h-6 w-6 text-[#FFD600]"/><p className="font-black mt-3">Checklist rápido</p><ul className="text-xs text-muted-foreground space-y-2 mt-3"><li>• Site lento ou inexistente</li><li>• CTA difícil de encontrar</li><li>• Instagram sem link estratégico</li><li>• Google sem informações completas</li><li>• Oferta difícil de entender</li></ul></Card><Card className="p-5 bg-[#FFFBE6] dark:bg-[#2a2608] border-[#FFD600]/40"><Zap className="h-6 w-6 text-[#FFD600]"/><p className="font-black mt-3">Próximo passo</p><p className="text-xs text-muted-foreground mt-2">Depois de encontrar o lead, abra Scripts e escolha o canal de abordagem.</p></Card></div></div>
+ <Card className="p-6"><div className="flex flex-wrap items-center justify-between gap-3"><div><p className="font-black">Mini diagnóstico para enviar</p><p className="text-xs text-muted-foreground">Gere uma abertura baseada no que você observou.</p></div><Button variant="outline" onClick={()=>{const t=`Olá [Nome], analisei rapidamente a presença digital da ${niche||'[Empresa]'} em ${city||'[Cidade]'} e encontrei alguns pontos que podem melhorar a jornada de quem chega até vocês. Posso te mostrar uma análise curta?`;navigator.clipboard.writeText(t);toast.success('Mensagem copiada!')}}><Copy className="mr-2 h-4 w-4"/> Copiar abordagem</Button></div></Card>
+ </div>;
 }
