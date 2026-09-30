@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/_authenticated/dashboard")({ component: DashboardPage });
+export const Route = createFileRoute("/_authenticated/dashboard")({ head:()=>({meta:[{title:"Dashboard — Prime"},{name:"description",content:"Visão geral da sua operação de sites."},{property:"og:title",content:"Dashboard — Prime"},{property:"og:description",content:"Acompanhe metas, projetos e ações."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}), component: DashboardPage });
 
 const bars = [42, 58, 47, 71, 63, 84, 76, 92, 88, 100];
 const activity: Array<[string, string, string, LucideIcon]> = [
@@ -17,11 +17,11 @@ const activity: Array<[string, string, string, LucideIcon]> = [
   ["Proposta", "Orçamento premium calculado", "há 43 min", Calculator],
   ["Scripts", "Script de WhatsApp copiado", "há 1h", MessageSquare],
 ];
-const stats: Array<[string, string, string, LucideIcon, string]> = [
-  ["Leads no radar", "47", "+12 hoje", Users, "text-cyan-300"],
-  ["Conversão", "28,4%", "+5,2%", TrendingUp, "text-emerald-300"],
-  ["Ticket médio", "R$ 1.850", "+R$ 320", DollarSign, "text-violet-300"],
-  ["Projetos ativos", "06", "2 em entrega", Zap, "text-amber-300"],
+const stats: Array<[string, string, string, LucideIcon]> = [
+  ["Leads no radar", "47", "+12 hoje", Users],
+  ["Conversão", "28,4%", "+5,2%", TrendingUp],
+  ["Ticket médio", "R$ 1.850", "+R$ 320", DollarSign],
+  ["Projetos ativos", "06", "2 em entrega", Zap],
 ];
 const quickLinks: Array<{ title: string; description: string; to: "/ai-builder" | "/prospecting" | "/scripts" | "/pricing-calculator"; icon: LucideIcon }> = [
   { title: "AI Builder", description: "Crie o site", to: "/ai-builder", icon: Wand2 },
@@ -49,10 +49,10 @@ function DashboardPage() {
     setQuickLead("");
   };
 
-  return <div className="mx-auto max-w-[1500px] space-y-7 pb-20">
+  return <div className="mx-auto max-w-[1500px] space-y-7 pb-20 text-foreground">
     <motion.div initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
-      <div><div className="mb-2 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.25em] text-cyan-300"><span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#67e8f9]"/> Centro de comando</div><h1 className="text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">Bom trabalho. Vamos vender <span className="text-cyan-300">mais sites.</span></h1><p className="mt-3 max-w-2xl text-sm text-white/40">Seu painel para transformar IA, prospecção e propostas em uma operação previsível.</p></div>
-      <div className="flex gap-2"><Link to="/prospecting"><Button variant="outline" className="h-11 border-white/10 bg-white/[0.03] text-white hover:bg-white/[0.07]"><Search className="h-4 w-4"/> Prospectar</Button></Link><Link to="/ai-builder"><Button className="h-11 bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-500 font-black text-[#05070d] hover:opacity-90"><Plus className="h-4 w-4"/> Novo projeto</Button></Link></div>
+      <div><div className="mb-2 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-primary"><span className="h-1.5 w-1.5 rounded-full bg-primary"/> Centro de comando</div><h1 className="text-4xl font-black md:text-5xl">Vamos vender <span className="text-primary">mais sites.</span></h1><p className="mt-3 max-w-2xl text-sm text-muted-foreground">Transforme criação, prospecção e precificação em uma operação previsível.</p></div>
+      <div className="grid grid-cols-2 gap-2 sm:flex"><Link to="/prospecting"><Button variant="outline" className="h-11 w-full"><Search className="h-4 w-4"/> Prospectar</Button></Link><Link to="/ai-builder"><Button className="h-11 w-full font-black"><Plus className="h-4 w-4"/> Novo projeto</Button></Link></div>
     </motion.div>
 
     <Card className="relative overflow-hidden border-cyan-300/10 bg-gradient-to-br from-cyan-300/[0.08] via-white/[0.025] to-violet-500/[0.08] p-6 md:p-7">
@@ -63,7 +63,7 @@ function DashboardPage() {
       </div>
     </Card>
 
-    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">{stats.map(([label,value,trend,Icon,color],i)=> <motion.div key={label} initial={{opacity:0,y:15}} animate={{opacity:1,y:0}} transition={{delay:i*.06}}><Card className="group relative overflow-hidden border-white/[0.07] bg-white/[0.025] p-5 transition hover:border-cyan-300/20 hover:bg-white/[0.04]"><div className="mb-5 flex items-center justify-between"><span className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">{label}</span><div className="rounded-xl bg-white/[0.04] p-2"><Icon className={`h-4 w-4 ${color}`}/></div></div><p className="text-3xl font-black tracking-tight text-white">{value}</p><p className="mt-2 text-[9px] font-bold text-emerald-300/70">{trend}</p></Card></motion.div>)}</div>
+    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{stats.map(([label,value,trend,Icon],i)=> <motion.div key={label} initial={{opacity:0,y:15}} animate={{opacity:1,y:0}} transition={{delay:i*.06}}><Card className="group relative overflow-hidden p-5"><div className="mb-5 flex items-center justify-between"><span className="text-[9px] font-black uppercase tracking-[0.15em] text-muted-foreground">{label}</span><div className="bg-primary/10 p-2"><Icon className="h-4 w-4 text-primary"/></div></div><p className="text-3xl font-black">{value}</p><p className="mt-2 text-[9px] font-bold text-muted-foreground">{trend}</p></Card></motion.div>)}</div>
 
     <div className="grid gap-5 xl:grid-cols-[1.45fr_.55fr]">
       <Card className="border-white/[0.07] bg-white/[0.025] p-6 md:p-7"><div className="flex items-center justify-between"><div><div className="flex items-center gap-2"><BarChart3 className="h-4 w-4 text-cyan-300"/><h2 className="text-sm font-black uppercase tracking-widest text-white">Performance da operação</h2></div><p className="mt-2 text-[10px] text-white/30">Volume de atividade dos últimos 10 dias</p></div><div className="rounded-xl border border-white/[0.07] px-3 py-2 text-[9px] font-black uppercase tracking-widest text-white/40">10 dias</div></div><div className="mt-7 flex h-[250px] items-end gap-2 md:gap-3">{bars.map((height,i)=><div key={i} className="group flex h-full flex-1 flex-col justify-end gap-2"><div className="relative flex-1 rounded-t-xl bg-white/[0.025]"><motion.div initial={{height:0}} animate={{height:`${height}%`}} transition={{duration:.7,delay:i*.04}} className="absolute bottom-0 w-full rounded-t-xl bg-gradient-to-t from-violet-600/80 via-blue-500/70 to-cyan-300"/><span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[8px] font-black text-cyan-300 opacity-0 transition group-hover:opacity-100">{height}</span></div><span className="text-center text-[8px] font-bold text-white/20">D{i+1}</span></div>)}</div><div className="mt-5 grid grid-cols-3 gap-3 border-t border-white/[0.06] pt-5"><div><p className="text-[8px] uppercase tracking-widest text-white/25">Prospecções</p><p className="mt-1 text-lg font-black text-white">142</p></div><div><p className="text-[8px] uppercase tracking-widest text-white/25">Propostas</p><p className="mt-1 text-lg font-black text-white">31</p></div><div><p className="text-[8px] uppercase tracking-widest text-white/25">Fechamentos</p><p className="mt-1 text-lg font-black text-white">08</p></div></div></Card>
