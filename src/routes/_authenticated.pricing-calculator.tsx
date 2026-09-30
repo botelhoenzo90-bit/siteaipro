@@ -14,8 +14,8 @@ function PricingCalculatorPage(){
   const [nicheId,setNicheId]=useState('local');
   const [extras,setExtras]=useState<string[]>([]);
   const [customAdjustment,setCustomAdjustment]=useState(0);
-  const tier=pricingTiers.find(item=>item.id===tierId)??pricingTiers[2];
-  const niche=nicheAdjustments.find(item=>item.id===nicheId)??nicheAdjustments[0];
+  const tier=pricingTiers.find(item=>item.id===tierId)??pricingTiers[2]!;
+  const niche=nicheAdjustments.find(item=>item.id===nicheId)??nicheAdjustments[0]!;
   const result=useMemo(()=>tier.price+niche.amount+pricingExtras.filter(item=>extras.includes(item.id)).reduce((total,item)=>total+item.price,0)+customAdjustment,[tier,niche,extras,customAdjustment]);
   const rangeMin=Math.max(350,Math.round(result*.9/10)*10);
   const rangeMax=Math.round(result*1.15/10)*10;

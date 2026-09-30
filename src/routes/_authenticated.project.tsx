@@ -37,8 +37,8 @@ function ProjectPage(){
   const objective=draft.objectiveChoice==='custom'?draft.customObjective.trim():draft.objectiveChoice;
   const stages=makeSalesScript(draft.channel,draft.situation,draft.salesObjective);
   const currentScript=stages[draft.scriptIndex]??stages[0];
-  const selectedTier=pricingTiers.find(item=>item.id===draft.tierId)??pricingTiers[2];
-  const selectedNichePrice=nicheAdjustments.find(item=>item.id===draft.nichePriceId)??nicheAdjustments[0];
+  const selectedTier=pricingTiers.find(item=>item.id===draft.tierId)??pricingTiers[2]!;
+  const selectedNichePrice=nicheAdjustments.find(item=>item.id===draft.nichePriceId)??nicheAdjustments[0]!;
   const suggestedPrice=useMemo(()=>selectedTier.price+selectedNichePrice.amount+pricingExtras.filter(item=>draft.extras.includes(item.id)).reduce((sum,item)=>sum+item.price,0),[selectedTier,selectedNichePrice,draft.extras]);
   const prompt=`CRIE UM SITE PROFISSIONAL PARA:\nEmpresa: ${draft.company||'[Empresa]'}\nNicho: ${niche||'[Nicho]'}\nRegião: ${draft.city||'[Região]'}\nObjetivo: ${objective||'Gerar contatos'}\nPúblico: ${draft.audience||'[Público-alvo]'}\nDiferencial: ${draft.benefit||'[Diferencial]'}\nContexto: ${draft.context||draft.observation||'[Contexto do negócio]'}\n\nCrie uma experiência personalizada, responsiva e orientada à conversão. Organize proposta de valor, serviços, provas reais, perguntas frequentes e chamadas para ação por WhatsApp. Não invente dados, avaliações ou resultados.`;
   const canAdvance=()=>draft.stage===0?Boolean(niche&&draft.city.trim()):draft.stage===1?Boolean(draft.company.trim()&&draft.observation.trim()):draft.stage===2?Boolean(objective&&draft.context.trim()):draft.stage===3?Boolean(draft.channel&&draft.situation&&draft.salesObjective):true;
