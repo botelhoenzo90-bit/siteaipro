@@ -8,6 +8,7 @@ import {
   CircleDollarSign,
   Compass,
   Moon,
+  Menu,
   MessageCircle,
   Palette,
   Quote,
@@ -17,6 +18,7 @@ import {
   Sun,
   Target,
   TrendingUp,
+  X,
   Zap,
   type LucideIcon,
 } from "lucide-react";
@@ -85,13 +87,20 @@ const faqs = [
   ["Tenho garantia?", "Sim. Você conta com 7 dias de garantia para conhecer a plataforma com tranquilidade."],
 ];
 
+const marqueeItems = ["Encontre clientes", "Crie sites em minutos", "Trabalhe de casa", "Gere uma nova renda", "Venda com confiança", "Tenha mais liberdade"];
+
 function Logo() {
   return <Link to="/" className="valy-logo" aria-label="Prime"><strong>PRIME</strong></Link>;
+}
+
+function OfferCta({ label = "Quero começar agora" }: { label?: string }) {
+  return <div className="offer-cta"><a className="green-btn section-cta" href="#planos">{label} <ArrowRight /></a><span>7 dias de garantia</span></div>;
 }
 
 function LandingPage() {
   const [faq, setFaq] = useState<number | null>(null);
   const [darkMode, setDarkMode] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const loopJourney = [...journey, ...journey];
   const loopTestimonials = [...testimonials, ...testimonials];
 
@@ -101,8 +110,9 @@ function LandingPage() {
       <div className="valy-container valy-nav">
         <Logo />
         <nav><a href="#como-funciona">COMO FUNCIONA</a><a href="#planos">PLANOS</a><a href="#faq">FAQ</a></nav>
-        <div className="nav-actions"><Button variant="ghost" size="icon" className="theme-btn" onClick={() => setDarkMode((active) => !active)} aria-label={darkMode ? "Ativar fundo claro" : "Ativar fundo escuro"} title={darkMode ? "Fundo claro" : "Fundo escuro"}>{darkMode ? <Sun /> : <Moon />}</Button><Link className="login-link" to="/auth">ENTRAR</Link><a className="green-btn small" href="#planos">VER PLANOS</a></div>
+        <div className="nav-actions"><Button variant="ghost" size="icon" className="theme-btn" onClick={() => setDarkMode((active) => !active)} aria-label={darkMode ? "Ativar fundo claro" : "Ativar fundo escuro"} title={darkMode ? "Fundo claro" : "Fundo escuro"}>{darkMode ? <Sun /> : <Moon />}</Button><Link className="login-link" to="/auth">ENTRAR</Link><a className="green-btn small" href="#planos">VER PLANOS</a><Button variant="ghost" size="icon" className="mobile-menu-btn" onClick={() => setMobileMenuOpen((open) => !open)} aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={mobileMenuOpen} aria-controls="mobile-menu">{mobileMenuOpen ? <X /> : <Menu />}</Button></div>
       </div>
+      {mobileMenuOpen && <div className="mobile-menu" id="mobile-menu"><a href="#como-funciona" onClick={() => setMobileMenuOpen(false)}>Como funciona</a><a href="#etapas" onClick={() => setMobileMenuOpen(false)}>Etapas</a><a href="#planos" onClick={() => setMobileMenuOpen(false)}>Planos</a><a href="#faq" onClick={() => setMobileMenuOpen(false)}>Perguntas frequentes</a><Link to="/auth" onClick={() => setMobileMenuOpen(false)}>Entrar na Prime</Link></div>}
     </header>
 
     <main>
@@ -110,11 +120,11 @@ function LandingPage() {
         <div className="hero-badge">MELHOR SISTEMA DE CRIAÇÃO DE SITES</div>
         <h1>Venda sites para o comércio<br /><em>da sua cidade</em></h1>
         <p className="hero-copy">Encontre empresas sem site, crie uma apresentação profissional em minutos e tenha um processo claro para transformar oportunidades locais em vendas.</p>
-        <div className="hero-actions"><a className="green-btn hero-btn" href="#planos">Quero começar a vender <ArrowRight /></a></div>
+        <div className="hero-actions"><a className="green-btn hero-btn" href="#planos">Quero começar a vender <ArrowRight /></a></div><div className="button-guarantee">7 dias de garantia</div>
         <div className="hero-benefits"><span>Estrutura pronta para começar</span><span>7 dias de garantia</span><span>Sem saber programar</span><span>Criação em minutos</span></div>
       </section>
 
-      <div className="industry-strip"><div className="marquee">{["Encontre clientes", "Crie sites em minutos", "Trabalhe de casa", "Gere uma nova renda", "Venda com confiança", "Tenha mais liberdade", "Encontre clientes", "Crie sites em minutos", "Trabalhe de casa", "Gere uma nova renda", "Venda com confiança", "Tenha mais liberdade"].map((item, index) => <span key={`${item}-${index}`}>{item}</span>)}</div></div>
+      <div className="industry-strip"><div className="marquee">{[0, 1].map((group) => <div className="marquee-group" key={group} aria-hidden={group === 1}>{marqueeItems.map((item) => <span key={`${group}-${item}`}>{item}</span>)}</div>)}</div></div>
 
       <section className="section light" id="dor">
         <div className="valy-container">
@@ -122,6 +132,7 @@ function LandingPage() {
           <h2>O que impede você de<br /><em>transformar sites em renda</em></h2>
           <p className="section-intro">Não é falta de capacidade. É falta de um processo que conecte oportunidade, criação e venda.</p>
           <div className="pain-cards">{painPoints.map(([title, description]) => <article key={title}><h3>{title}</h3><p>{description}</p></article>)}</div>
+          <OfferCta label="Quero mudar essa realidade" />
         </div>
       </section>
 
@@ -131,7 +142,7 @@ function LandingPage() {
           <h2>Quatro caminhos para<br /><em>mudar sua rotina de verdade</em></h2>
           <p className="section-intro">Transforme sua vontade de empreender em uma operação simples, prática e pronta para gerar renda.</p>
           <div className="solution-grid">{solutions.map(([title, description, SolutionIcon]) => <article key={title}><div className="solution-icon"><SolutionIcon /></div><h3>{title}</h3><p>{description}</p></article>)}</div>
-          <a className="green-btn section-cta" href="#planos">Quero construir minha operação <ArrowRight /></a>
+          <OfferCta label="Quero construir minha operação" />
         </div>
       </section>
 
@@ -141,13 +152,13 @@ function LandingPage() {
           <h2>Como funciona a <em>Prime</em></h2>
           <p className="section-intro">Veja o caminho completo: encontrar uma empresa, criar o projeto, ajustar a oferta e apresentar ao cliente.</p>
           <div className="video-placeholder"><div className="play">▶</div><span>DEMONSTRAÇÃO DA PLATAFORMA</span></div>
-          <a className="green-btn section-cta" href="#planos">Começar agora <ArrowRight /></a>
+          <OfferCta />
         </div>
       </section>
 
       <section className="section journey-section" id="etapas">
         <div className="valy-container"><div className="eyebrow">DO PRIMEIRO ACESSO À ESCALA</div><h2>Um processo simples para<br /><em>vender de forma repetível</em></h2><p className="section-intro">Cada etapa leva naturalmente à próxima, sem você precisar improvisar.</p></div>
-        <div className="carousel-window"><div className="journey-track">{loopJourney.map(([number, title, description], index) => <article key={`${title}-${index}`}><span>{number}</span><h3>{title}</h3><p>{description}</p></article>)}</div></div>
+        <div className="carousel-window"><div className="journey-track">{loopJourney.map(([number, title, description], index) => <article key={`${title}-${index}`}><span>{number}</span><h3>{title}</h3><p>{description}</p></article>)}</div></div><OfferCta label="Quero seguir esse processo" />
       </section>
 
       <section className="section transformation-section">
@@ -159,13 +170,20 @@ function LandingPage() {
             <article className="before-card"><span>ANTES DA PRIME</span><h3>Sua renda e seu tempo dependem da rotina dos outros</h3><ul><li>Você passa o dia preso ao trabalho e ao salário</li><li>Quer empreender, mas não sabe por onde começar</li><li>Não encontra clientes com frequência</li><li>Chega em casa sem energia e sem tempo</li></ul></article>
             <article className="after-card"><span>DEPOIS DA PRIME</span><h3>Você começa a construir um negócio que é seu</h3><ul><li>Encontra oportunidades na sua própria cidade</li><li>Cria sites profissionais com muito mais rapidez</li><li>Vende e precifica seguindo um processo claro</li><li>Constrói renda, liberdade e mais tempo para viver</li></ul></article>
           </div>
+          <OfferCta label="Quero começar a empreender" />
         </div>
+      </section>
+
+      <section className="section testimonials-section">
+        <div className="valy-container"><div className="eyebrow">AVALIAÇÕES</div><h2>Quem começou já enxerga<br /><em>um caminho mais claro</em></h2><p className="section-intro">Relatos de quem trocou a improvisação por um processo.</p></div>
+        <div className="carousel-window"><div className="testimonial-track">{loopTestimonials.map(([name, text, avatar], index) => <article key={`${name}-${index}`}><Quote /><div className="stars" aria-label="5 estrelas">{[0,1,2,3,4].map(star => <Star key={star} />)}</div><p>“{text}”</p><div className="testimonial-author"><img src={avatar} alt="" loading="lazy" width={768} height={768} /><div><strong>{name}</strong><span>Cliente Prime</span></div></div></article>)}</div></div>
+        <OfferCta label="Quero ter esses resultados" />
       </section>
 
       <section className="section light offer-section" id="planos">
         <div className="valy-container">
           <div className="eyebrow">OFERTA ESPECIAL</div><h2>Comece com a estrutura<br /><em>completa da Prime</em></h2><p className="section-intro">Um único acesso para prospectar, criar, precificar e vender seus projetos.</p>
-          <article className="offer-card"><div className="offer-tag">ACESSO VITALÍCIO</div><h3>Prime Completa</h3><p className="offer-price"><small>R$</small> 297<span>,00</span></p><p className="offer-note">Pagamento único, sem mensalidade</p><ul><li>Sites ilimitados para criar e editar</li><li>Prospecção para qualquer cidade do Brasil</li><li>Calculadora de precificação profissional</li><li>Scripts de abordagem para diferentes canais</li><li>Biblioteca e materiais para acelerar sua operação</li></ul><Link className="green-btn hero-btn" to="/auth">Quero acesso vitalício <ArrowRight /></Link></article>
+          <article className="offer-card"><div className="offer-tag">ACESSO VITALÍCIO</div><h3>Prime Completa</h3><p className="old-price">De R$ 497,00</p><p className="offer-price"><small>R$</small> 297<span>,00</span></p><p className="installments">ou em até 12x de R$ 29,82</p><p className="offer-note">Pagamento único, sem mensalidade</p><ul><li>Sites ilimitados para criar e editar</li><li>Prospecção para qualquer cidade do Brasil</li><li>Calculadora de precificação profissional</li><li>Scripts de abordagem para diferentes canais</li><li>Biblioteca e materiais para acelerar sua operação</li><li>7 dias de garantia incondicional</li></ul><Link className="green-btn hero-btn" to="/auth">Quero acesso vitalício <ArrowRight /></Link><span className="offer-guarantee">7 dias de garantia</span></article>
         </div>
       </section>
 
@@ -173,14 +191,9 @@ function LandingPage() {
         <div className="valy-container guarantee-inner"><div className="guarantee-seal">7</div><div><div className="eyebrow">GARANTIA INCONDICIONAL</div><h2>Conheça a Prime por 7 dias sem risco</h2><p>Entre, explore as ferramentas e veja se a plataforma faz sentido para o seu momento. Se não fizer, você pode solicitar o reembolso dentro do prazo.</p></div></div>
       </section>
 
-      <section className="section testimonials-section">
-        <div className="valy-container"><div className="eyebrow">AVALIAÇÕES</div><h2>Quem começou já enxerga<br /><em>um caminho mais claro</em></h2><p className="section-intro">Relatos de quem trocou a improvisação por um processo.</p></div>
-        <div className="carousel-window"><div className="testimonial-track">{loopTestimonials.map(([name, text, avatar], index) => <article key={`${name}-${index}`}><Quote /><div className="stars" aria-label="5 estrelas">{[0,1,2,3,4].map(star => <Star key={star} />)}</div><p>“{text}”</p><div className="testimonial-author"><img src={avatar} alt="" loading="lazy" width={768} height={768} /><div><strong>{name}</strong><span>Cliente Prime</span></div></div></article>)}</div></div>
-      </section>
+      <section className="section faq-section" id="faq"><div className="valy-container narrow"><div className="eyebrow">PERGUNTAS FREQUENTES</div><h2>Tudo o que você precisa<br /><em>saber antes de começar</em></h2><div className="faq-list">{faqs.map(([question, answer], index) => <div className={`faq-item ${faq === index ? "open" : ""}`} key={question}><Button variant="ghost" className="faq-trigger" onClick={() => setFaq(faq === index ? null : index)}><span>{question}</span><ChevronDown /></Button>{faq === index && <p>{answer}</p>}</div>)}</div><OfferCta label="Quero garantir meu acesso" /></div></section>
 
-      <section className="section faq-section" id="faq"><div className="valy-container narrow"><div className="eyebrow">PERGUNTAS FREQUENTES</div><h2>Tudo o que você precisa<br /><em>saber antes de começar</em></h2><div className="faq-list">{faqs.map(([question, answer], index) => <div className={`faq-item ${faq === index ? "open" : ""}`} key={question}><Button variant="ghost" className="faq-trigger" onClick={() => setFaq(faq === index ? null : index)}><span>{question}</span><ChevronDown /></Button>{faq === index && <p>{answer}</p>}</div>)}</div></div></section>
-
-      <section className="final-cta" id="final"><div className="valy-container"><div className="eyebrow">COMECE PELO PRIMEIRO</div><h2>Sua próxima oportunidade<br /><em>pode estar na sua cidade</em></h2><p>Abra a Prime, escolha um nicho e transforme uma empresa sem site no começo da sua nova operação.</p><div className="final-actions"><Link className="final-button" to="/auth">Quero começar agora <ArrowRight /></Link></div><div className="final-benefits"><span><Compass /> Processo guiado</span><span><Palette /> Sites profissionais</span><span><CircleDollarSign /> Precificação clara</span><span><TrendingUp /> Estrutura para escalar</span></div></div></section>
+      <section className="final-cta" id="final"><div className="valy-container"><div className="eyebrow">COMECE PELO PRIMEIRO</div><h2>Sua próxima oportunidade<br /><em>pode estar na sua cidade</em></h2><p>Abra a Prime, escolha um nicho e transforme uma empresa sem site no começo da sua nova operação.</p><div className="final-actions"><Link className="final-button" to="/auth">Quero começar agora <ArrowRight /></Link></div><div className="button-guarantee final-guarantee">7 dias de garantia</div><div className="final-benefits"><span><Compass /> Processo guiado</span><span><Palette /> Sites profissionais</span><span><CircleDollarSign /> Precificação clara</span><span><TrendingUp /> Estrutura para escalar</span></div></div></section>
     </main>
 
     <footer className="valy-footer"><div className="valy-container footer-grid"><div><b>PLATAFORMA</b><a href="#ferramentas">Ferramentas</a><a href="#planos">Plano</a><a href="#faq">FAQ</a></div><div><b>JORNADA</b><a href="#como-funciona">Como funciona</a><a href="#etapas">Etapas</a><a href="#final">Começar</a></div><div><b>ACESSO</b><Link to="/auth">Entrar</Link><a href="#planos">Ver oferta</a><a href="#faq">Tirar dúvidas</a></div></div><div className="footer-bottom valy-container"><span>© 2026. Todos os direitos reservados.</span><span>Feito para quem quer vender sites.</span></div></footer>
