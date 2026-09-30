@@ -9,8 +9,8 @@
 - [x] Validar os fluxos públicos, proteção de acesso e telas móveis; áreas autenticadas aguardam a primeira conta confirmada.
 - [x] Adicionar acesso com Google e permitir senhas sem bloqueio por lista de vazamentos.
 - [x] Ajustar meta editável e cores do painel; remover textos solicitados e selo IA.
-- [x] Criar fluxo único de projeto: radar, criador, scripts, preço e escala.
+- [x] Criar fluxo único de projeto na mesma tela: nicho, radar, criador, scripts, preço e escala.
 - [x] Permitir digitar nicho e objetivo; substituir qualificador do Radar.
-- [x] Ampliar scripts por canal e situação até o fechamento; recalibrar precificação para R$ 550–1.200.
+- [x] Ampliar scripts por canal e situação até o fechamento; criar referências de R$ 350, R$ 590, R$ 750, R$ 990 e R$ 1.450.
 - [x] Corrigir a apresentação da Academy e preparar trilhas de vídeos/PDFs; acrescentar orientação de escala.
 - [ ] Verificar navegação e visual no desktop e celular.
