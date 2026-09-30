@@ -1,8 +1,9 @@
 # Roadmap
 
-- [x] Corrigir looping contínuo da faixa amarela.
-- [x] Criar menu móvel com atalhos e login.
-- [x] Melhorar benefícios e contraste dos ícones no celular.
-- [x] Adicionar chamadas para a oferta e mensagem de garantia.
-- [x] Mover avaliações para antes da oferta.
-- [x] Atualizar preço, parcelamento e garantia da oferta.
+- [ ] Corrigir e profissionalizar login por e-mail e senha, sem tabela de perfil.
+- [ ] Criar recuperação de senha completa.
+- [ ] Unificar sistema interno em preto, amarelo e branco com modo escuro persistente.
+- [ ] Modernizar navegação e corrigir controles quebrados.
+- [ ] Reformular Scripts de Venda como fluxo guiado por etapas.
+- [ ] Revisar e melhorar cada módulo interno, alinhamento e responsividade.
+- [ ] Validar os principais fluxos em desktop e celular.
