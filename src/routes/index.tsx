@@ -1,66 +1,181 @@
 import "../landing.css";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { ArrowRight, Check, ChevronDown, MapPin, Moon, Search, Sparkles, Sun, Zap } from "lucide-react";
+import { useState } from "react";
+import {
+  ArrowRight,
+  Calculator,
+  ChevronDown,
+  CircleDollarSign,
+  Compass,
+  MessageCircle,
+  Palette,
+  Quote,
+  Search,
+  Sparkles,
+  Star,
+  Target,
+  TrendingUp,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
   head: () => ({
     title: "Prime — Venda sites para o comércio da sua cidade",
     meta: [
-      { name: "description", content: "Ache negócios sem site, gere páginas profissionais e transforme oportunidades locais em vendas." },
+      { name: "description", content: "Encontre empresas sem site, crie páginas profissionais e transforme oportunidades locais em vendas." },
       { property: "og:title", content: "Prime — Venda sites para o comércio da sua cidade" },
-      { property: "og:description", content: "Da prospecção ao fechamento em um único lugar." },
+      { property: "og:description", content: "Da prospecção à entrega: uma operação completa para vender sites." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
 
 const painPoints = [
-  "Passa horas montando cada site à mão",
-  "Cobra pouco porque o site demora a sair",
-  "Não sabe onde encontrar quem precisa de site",
-  "Perde o cliente entre o orçamento e a entrega",
-  "Manda proposta sem contrato e sem preço definido",
-  "Depende de designer ou programador para entregar",
+  ["Você perde horas", "Montar cada site do zero consome o tempo que deveria ser usado para vender."],
+  ["Você cobra pouco", "Sem um processo profissional, o cliente compara seu trabalho apenas pelo preço."],
+  ["Faltam clientes", "Você não sabe quais empresas abordar nem como iniciar uma conversa que gere interesse."],
+  ["Falta previsibilidade", "Cada novo projeto parece um recomeço e fica difícil transformar freelas em negócio."],
 ];
-const tools = [
-  ["01", "Prospecção", "Busca no Google Maps os negócios da sua cidade que ainda não têm site, com telefone e endereço.", Search],
-  ["02", "Gerador de sites", "Responde um questionário guiado e o site sai pronto em menos de 1 minuto, com as fotos do negócio.", Sparkles],
-  ["03", "Editor visual", "Ajusta textos, cores, fotos e seções no clique, sem código, quantas vezes precisar.", Zap],
-  ["04", "CRM e fechamento", "Script de abordagem, precificação, contrato e o funil de cada cliente até a entrega.", MapPin],
+
+const solutions: Array<[string, string, LucideIcon]> = [
+  ["Encontre clientes", "Localize empresas da sua região que ainda não têm site e organize sua prospecção.", Search],
+  ["Crie em minutos", "Transforme as informações do negócio em um site profissional pronto para apresentar.", Sparkles],
+  ["Venda com clareza", "Use scripts, argumentos e uma apresentação que mostra valor antes de falar em preço.", Target],
+  ["Precifique e escale", "Calcule o valor ideal, proteja sua margem e repita o processo para vender mais.", Calculator],
 ];
-const steps = [
-  ["01", "Ative sua conta", "Assine, acesse a plataforma e configure sua operação. Em poucos cliques você já está pronto para começar."],
-  ["02", "Monte o projeto", "Responda um questionário rápido sobre o negócio e o site sai pronto em menos de 1 minuto, dentro da plataforma."],
-  ["03", "Encontre clientes", "Use a busca por região pra achar negócios que ainda não têm site e aborde centenas por dia, cada um com o site dele já pronto na mão."],
-  ["04", "Feche e escale", "Apresente, gere o contrato e receba. Acompanhe tudo no painel e repita o processo."],
+
+const journey = [
+  ["01", "Entre no sistema", "Acesse sua central e prepare sua operação."],
+  ["02", "Defina o nicho", "Escolha um mercado com demanda na sua cidade."],
+  ["03", "Encontre o cliente", "Localize negócios que ainda não possuem site."],
+  ["04", "Faça a abordagem", "Use um roteiro direto para abrir a conversa."],
+  ["05", "Crie o site", "Gere uma apresentação profissional em minutos."],
+  ["06", "Precifique", "Chegue a um valor seguro para você e seu cliente."],
+  ["07", "Venda", "Apresente o projeto com confiança e feche o acordo."],
+  ["08", "Escale", "Repita o processo e construa uma operação previsível."],
 ];
+
+const testimonials = [
+  ["Lucas M.", "Consegui organizar minha oferta e apresentar meus primeiros sites com muito mais confiança."],
+  ["Mariana S.", "A prospecção me mostrou onde estavam os clientes. Parei de esperar indicação para vender."],
+  ["Rafael P.", "Hoje tenho um processo para criar, precificar e entregar em vez de fazer tudo no improviso."],
+  ["Camila R.", "Eu não sabia programar. Agora consigo mostrar uma solução pronta e conduzir a conversa comercial."],
+];
+
 const faqs = [
-  ["Preciso saber programar ou ter experiência com design?", "Não. A plataforma foi feita pra quem está começando: você responde um questionário guiado e ajusta o resultado por uma interface visual, sem escrever código."],
-  ["O resultado tem qualidade profissional?", "Sim. Os projetos partem de layouts construídos por designers, com tipografia, espaçamento e responsividade já resolvidos — o que muda é o conteúdo e a identidade de cada cliente."],
-  ["Quanto consigo cobrar por projeto?", "Depende do escopo, do nicho e da região. A ferramenta de precificação te ajuda a chegar num valor de mercado com base nessas variáveis, em vez de você chutar."],
-  ["Como encontro clientes se não tenho carteira de contatos?", "A busca por região lista negócios da sua cidade que ainda não têm presença online, com nome, telefone e endereço, para você abordar com uma oferta pronta."],
+  ["Preciso saber programar ou ter experiência com design?", "Não. A Prime guia a criação e deixa os ajustes visuais acessíveis, sem você escrever código."],
+  ["O resultado tem qualidade profissional?", "Sim. Os projetos seguem estruturas criadas para apresentar empresas com clareza, boa leitura e adaptação ao celular."],
+  ["Quanto consigo cobrar por projeto?", "O preço depende do escopo, nicho e região. A calculadora ajuda a formar um valor coerente sem trabalhar no prejuízo."],
+  ["Como encontro clientes sem uma carteira de contatos?", "A área de prospecção ajuda a buscar negócios da sua região e organizar uma abordagem personalizada."],
+  ["Quanto tempo leva para criar um site?", "Depois de reunir as informações do negócio, você consegue gerar uma primeira versão em poucos minutos."],
+  ["Posso editar o site depois de gerar?", "Sim. Você pode ajustar textos, cores, imagens e seções antes de apresentar o projeto."],
+  ["A Prime vende o site por mim?", "Não. A Prime entrega estrutura, ferramentas e direção; a abordagem e o fechamento continuam sendo seus."],
+  ["Funciona para qualquer tipo de empresa?", "Funciona melhor para negócios locais e prestadores de serviço que precisam apresentar serviços e receber contatos."],
+  ["Posso usar em qualquer cidade?", "Sim. Você pode prospectar e criar projetos para empresas de qualquer região do Brasil."],
+  ["Tenho garantia?", "Sim. Você conta com 7 dias de garantia para conhecer a plataforma com tranquilidade."],
 ];
-function Logo(){return <Link to="/" className="valy-logo" aria-label="Prime"><span className="logo-mark"><i/></span><strong>PRIME</strong></Link>}
-function LandingPage(){
- const [dark,setDark]=useState(false); const [faq,setFaq]=useState<number|null>(null);
- useEffect(()=>{document.documentElement.classList.toggle("valy-dark",dark);return()=>document.documentElement.classList.remove("valy-dark")},[dark]);
- return <div className="valy-page" id="inicio">
-  <div className="valy-grid-bg"/><header className="valy-header"><div className="valy-container valy-nav"><Logo/><nav><a href="#planos">PLANOS</a><a href="#faq">FAQ</a></nav><div className="nav-actions"><button className="theme-btn" aria-label="Alternar tema" onClick={()=>setDark(v=>!v)}>{dark?<Sun/>:<Moon/>}</button><Link className="login-link" to="/auth">ENTRAR</Link><a className="green-btn small" href="#planos">VER PLANOS</a></div></div></header>
-  <main>
-   <section className="hero valy-container"><div className="hero-badge"><span>✦</span> Sem saber programar · 7 dias de garantia</div><h1>Venda sites para o comércio<br/><em>da sua cidade</em></h1><p className="hero-copy">A Prime acha os negócios sem site no Google Maps, monta a abordagem e gera o site pronto em menos de 1 minuto. Você cobra de R$ 500 a R$ 2.000 por projeto — sem saber programar e sem equipe.</p><div className="hero-actions"><a className="green-btn hero-btn" href="#planos">Ver planos e começar a vender <span>→</span></a><Link className="test-link" to="/auth">Prefere testar antes? Crie a conta grátis</Link></div><div className="hero-benefits"><span><Check/> A partir de R$ 74,27/mês</span><span><Check/> 7 dias de garantia</span><span><Check/> Sem instalar nada</span><span><Check/> Site pronto em minutos</span></div><div className="hero-screen"><div className="browser-bar"><b/><b/><b/><span>prime.app / projeto</span></div><div className="screen-inner"><div className="screen-side"><span>PRIME</span><i/><i/><i/><i/></div><div className="screen-main"><div className="screen-label">SITE PRONTO</div><strong>Seu próximo cliente já pode conhecer o negócio.</strong><div className="screen-cards"><div/><div/><div/></div></div></div></div></section>
-   <div className="industry-strip"><div className="marquee">{["Barbearia","Pizzaria","Clínica","Academia","Advocacia","Estética","Restaurante","Nutrição","Imobiliária","Seguros","Energia solar","Veterinária","Barbearia","Pizzaria","Clínica","Academia","Advocacia","Estética"].map((x,i)=><span key={i}>{x} <b>✦</b></span>)}</div></div>
-   <section className="section light" id="dor"><div className="valy-container narrow"><div className="eyebrow">RECONHECE?</div><h2>Você está deixando dinheiro na mesa <em>se:</em></h2><p className="section-intro">Cada item da lista é um site que alguém da sua cidade precisava e você não vendeu.</p><div className="pain-list">{painPoints.map((p,i)=><div key={i}><span>{String(i+1).padStart(2,"0")}</span><p>{p}</p><Check/></div>)}</div><div className="solution-callout"><strong>Com a Prime, o site fica pronto em menos de 1 minuto</strong><p>Você entrega com contrato, preço e abordagem prontos. A venda continua sendo sua, mas o trabalho pesado não.</p><a className="green-btn" href="#ferramentas">Quero vender sites <ArrowRight/></a></div></div></section>
-   <section className="section" id="ferramentas"><div className="valy-container"><div className="eyebrow">DA BUSCA AO SITE NO AR</div><h2>4 ferramentas. 1 painel.<br/><em>Nenhuma aba perdida.</em></h2><p className="section-intro">Você não precisa de mais nada: a Prime acha o cliente, gera o site, deixa você editar e acompanha a venda no mesmo lugar.</p><div className="tools-grid">{tools.map(([num,title,desc,Icon])=>{const I=Icon as any;return <article className="tool-card" key={title as string}><span className="tool-number">{num as string}</span><div className="tool-icon"><I/></div><h3>{title as string}</h3><p>{desc as string}</p><a href="#planos">Ver como funciona <ArrowRight/></a></article>})}</div></div></section>
-   <section className="section soft" id="por-dentro"><div className="valy-container"><div className="eyebrow">POR DENTRO</div><h2>Olha o que você vai ter<br/><em>dentro da Prime</em></h2><p className="section-intro">Telas reais da plataforma, não ilustração. É o que você abre no primeiro dia.</p><div className="dashboard-showcase"><div className="dash-nav"><strong>PRIME</strong><span>Dashboard</span><span>Prospecção</span><span>Precificação</span><span>CRM</span></div><div className="dash-content"><div className="dash-top"><div><small>RECEITA</small><strong>R$ 12.480</strong></div><div><small>TICKET MÉDIO</small><strong>R$ 1.560</strong></div><div><small>LEADS</small><strong>48</strong></div></div><div className="dash-body"><div className="chart"><small>FUNIL DE PROSPECÇÃO</small><div className="bars"><i/><i/><i/><i/><i/></div></div><div className="lead-table"><small>OPORTUNIDADES</small><p>Barbearia Central <b>Sem site</b></p><p>Clínica Vida <b>Sem site</b></p><p>Studio Bella <b>Sem site</b></p></div></div></div></div><div className="feature-row"><div><b>Prospecção</b><span>Quem precisa de site, com telefone</span></div><div><b>Precificação</b><span>Quanto cobrar por ramo e tamanho</span></div><div><b>Abordagem</b><span>Script com nome do negócio</span></div><div><b>CRM</b><span>Roteiro e objeções por lead</span></div></div></div></section>
-   <section className="section demo"><div className="valy-container"><div className="eyebrow">POR DENTRO, SEM CORTE</div><h2>Como funciona a <em>ferramenta</em></h2><p className="section-intro">A gravação completa da tela: achar o negócio que ainda não tem site, gerar a página, editar e mandar para o cliente.</p><div className="video-placeholder"><div className="play">▶</div><span>DEMONSTRAÇÃO DA PLATAFORMA</span></div><a className="green-btn" href="#planos">Assistir a demonstração <ArrowRight/></a></div></section>
-   <section className="section light" id="planos"><div className="valy-container"><div className="eyebrow">PLANOS</div><h2>Escolha como quer começar<br/><em>e comece hoje</em></h2><p className="section-intro">Escolha a estrutura que combina com o seu momento e tenha as ferramentas principais para prospectar, criar e fechar.</p><div className="pricing"><article className="featured"><span className="plan-tag">STARTER · MAIS ESCOLHIDO</span><h3>Para começar a vender sites</h3><strong>12 x R$ 74,27</strong><small>ou R$ 697 à vista no Pix</small><ul><li>Sites ilimitados: gere e edite quantos quiser</li><li>Qualquer cidade do Brasil</li><li>17 categorias de negócio</li><li>Sites sem o selo da Prime</li><li>CRM e recursos para fechar clientes</li></ul><a className="green-btn" href="#final">Escolher Starter <ArrowRight/></a></article><article><span className="plan-tag">PRO · ESCALA</span><h3>Para quem quer aumentar o volume</h3><strong>12 x R$ 149,27</strong><small>Estrutura completa para operação</small><ul><li>Todos os recursos do Starter</li><li>Mais capacidade de prospecção</li><li>Operação pensada para volume</li><li>Prioridade e recursos avançados</li><li>Mais controle da sua produção</li></ul><a className="outline-btn" href="#final">Escolher Pro <ArrowRight/></a></article></div></div></section>
-   <section className="section" id="modelos"><div className="valy-container"><div className="eyebrow">O QUE VOCÊ ENTREGA</div><h2>Modelos feitos à mão<br/><em>por designers</em></h2><p className="section-intro">Cada ramo tem um layout próprio, com tipografia, espaçamento e celular já resolvidos. O que muda é o conteúdo e a identidade de cada cliente.</p><div className="model-strip"><div className="model-card pink"><span>Corretora de seguros</span><strong>Proteção para o que importa.</strong></div><div className="model-card green"><span>Clínica</span><strong>Cuidado que começa no primeiro contato.</strong></div><div className="model-card blue"><span>Restaurante</span><strong>Uma experiência que dá vontade de voltar.</strong></div></div></div></section>
-   <section className="section soft" id="etapas"><div className="valy-container"><div className="eyebrow">COMO FUNCIONA</div><h2>O caminho mais curto<br/><em>até o primeiro cliente</em></h2><p className="section-intro">Da ativação ao fechamento, numa sequência simples e repetível.</p><div className="steps">{steps.map(([n,t,d])=><article key={n as string}><span>{n as string}</span><div><h3>{t as string}</h3><p>{d as string}</p></div></article>)}</div><a className="green-btn" href="#planos">Escolher meu plano <ArrowRight/></a></div></section>
-   <section className="section light"><div className="valy-container narrow"><div className="eyebrow">ANTES DE ESCOLHER UM PLANO</div><h2>A Prime é para <em>você se…</em></h2><p className="section-intro">Sem promessa vazia: a ferramenta encurta o caminho, mas a venda continua sendo sua.</p><div className="fit-grid"><div><h3>Faz sentido se</h3><p>✓ Quer uma renda extra ou um negócio próprio sem saber programar</p><p>✓ Topa falar com donos de comércio pelo WhatsApp ou pessoalmente</p><p>✓ Tem 1 hora por dia para prospectar e apresentar sites</p><p>✓ Já é freelancer ou tem uma agência pequena e quer entregar mais rápido</p></div><div><h3>Não faz sentido se</h3><p>× Espera resultado sem procurar nem abordar nenhum cliente</p><p>× Quer um site para o seu próprio negócio, e só isso</p><p>× Precisa de um sistema com lojas virtuais e carrinho de compras</p></div></div></div></section>
-   <section className="section faq-section" id="faq"><div className="valy-container narrow"><div className="eyebrow">PERGUNTAS FREQUENTES</div><h2>Se ficou alguma dúvida,<br/><em>fale com a gente.</em></h2><div className="faq-list">{faqs.map(([q,a],i)=><div className={`faq-item ${faq===i?"open":""}`} key={q as string}><button onClick={()=>setFaq(faq===i?null:i)}><span>{q as string}</span><ChevronDown/></button>{faq===i&&<p>{a as string}</p>}</div>)}</div></div></section>
-   <section className="final-cta" id="final"><div className="valy-container"><div className="final-glow"/><div className="eyebrow">COMECE PELO PRIMEIRO</div><h2>Sua cidade tem negócios<br/>sem site. <em>Comece pelo primeiro.</em></h2><p>Escolha o plano, gere o primeiro site e entregue ainda hoje. Um projeto vendido já pode pagar seu investimento na plataforma.</p><div className="final-actions"><a className="green-btn hero-btn" href="#planos">Escolher meu plano <ArrowRight/></a><Link className="test-link" to="/auth">Quer testar antes? Crie a conta grátis</Link></div><div className="final-benefits"><span>✓ Hospedagem e SSL inclusos</span><span>✓ Botão de WhatsApp no site</span><span>✓ Funciona no celular</span></div></div></section>
-  </main>
-  <footer className="valy-footer"><div className="valy-container footer-grid"><div><Logo/><p>Sites prontos. Clientes encontrados. Venda local.</p></div><div><b>PLATAFORMA</b><a href="#ferramentas">Ferramentas</a><a href="#planos">Planos</a><a href="#faq">FAQ</a></div><div><b>EMPRESA</b><a href="#etapas">Como funciona</a><a href="#modelos">Modelos</a><a href="#final">Começar</a></div><div><b>LEGAL</b><a href="#">Termos</a><a href="#">Privacidade</a><a href="#">Cookies</a></div></div><div className="footer-bottom valy-container"><span>© 2026 Prime. Todos os direitos reservados.</span><span>Feito para quem quer vender sites.</span></div></footer>
- </div>
+
+function Logo() {
+  return <Link to="/" className="valy-logo" aria-label="Prime"><span className="logo-mark"><i /></span><strong>PRIME</strong></Link>;
+}
+
+function LandingPage() {
+  const [faq, setFaq] = useState<number | null>(null);
+  const loopJourney = [...journey, ...journey];
+  const loopTestimonials = [...testimonials, ...testimonials];
+
+  return <div className="valy-page" id="inicio">
+    <div className="valy-grid-bg" />
+    <header className="valy-header">
+      <div className="valy-container valy-nav">
+        <Logo />
+        <nav><a href="#como-funciona">COMO FUNCIONA</a><a href="#planos">PLANOS</a><a href="#faq">FAQ</a></nav>
+        <div className="nav-actions"><Link className="login-link" to="/auth">ENTRAR</Link><a className="green-btn small" href="#planos">VER PLANOS</a></div>
+      </div>
+    </header>
+
+    <main>
+      <section className="hero valy-container">
+        <div className="hero-badge">PRIME · PLATAFORMA PARA QUEM VENDE SITES</div>
+        <h1>Venda sites para o comércio<br /><em>da sua cidade</em></h1>
+        <p className="hero-copy">Encontre empresas sem site, crie uma apresentação profissional em minutos e tenha um processo claro para transformar oportunidades locais em vendas.</p>
+        <div className="hero-actions"><a className="green-btn hero-btn" href="#planos">Quero começar a vender <ArrowRight /></a></div>
+        <div className="hero-benefits"><span>Estrutura pronta para começar</span><span>7 dias de garantia</span><span>Sem saber programar</span><span>Criação em minutos</span></div>
+      </section>
+
+      <div className="industry-strip"><div className="marquee">{["Barbearia", "Pizzaria", "Clínica", "Academia", "Advocacia", "Estética", "Restaurante", "Imobiliária", "Barbearia", "Pizzaria", "Clínica", "Academia", "Advocacia", "Estética", "Restaurante", "Imobiliária"].map((item, index) => <span key={`${item}-${index}`}>{item} <b>✦</b></span>)}</div></div>
+
+      <section className="section light" id="dor">
+        <div className="valy-container">
+          <div className="eyebrow">O PROBLEMA</div>
+          <h2>O que impede você de<br /><em>transformar sites em renda</em></h2>
+          <p className="section-intro">Não é falta de capacidade. É falta de um processo que conecte oportunidade, criação e venda.</p>
+          <div className="pain-cards">{painPoints.map(([title, description], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+        </div>
+      </section>
+
+      <section className="section solution-section" id="ferramentas">
+        <div className="valy-container">
+          <div className="eyebrow">A SOLUÇÃO</div>
+          <h2>Quatro ferramentas para<br /><em>tirar sua operação do papel</em></h2>
+          <p className="section-intro">Tudo o que você precisa para sair da ideia e chegar a uma oferta pronta para vender.</p>
+          <div className="solution-grid">{solutions.map(([title, description, SolutionIcon]) => <article key={title}><div className="solution-icon"><SolutionIcon /></div><h3>{title}</h3><p>{description}</p></article>)}</div>
+          <a className="green-btn section-cta" href="#planos">Quero construir minha operação <ArrowRight /></a>
+        </div>
+      </section>
+
+      <section className="section demo" id="como-funciona">
+        <div className="valy-container">
+          <div className="eyebrow">VEJA NA PRÁTICA</div>
+          <h2>Como funciona a <em>Prime</em></h2>
+          <p className="section-intro">Veja o caminho completo: encontrar uma empresa, criar o projeto, ajustar a oferta e apresentar ao cliente.</p>
+          <div className="video-placeholder"><div className="play">▶</div><span>DEMONSTRAÇÃO DA PLATAFORMA</span></div>
+          <a className="green-btn section-cta" href="#planos">Começar agora <ArrowRight /></a>
+        </div>
+      </section>
+
+      <section className="section journey-section" id="etapas">
+        <div className="valy-container"><div className="eyebrow">DO PRIMEIRO ACESSO À ESCALA</div><h2>Um processo simples para<br /><em>vender de forma repetível</em></h2><p className="section-intro">Cada etapa leva naturalmente à próxima, sem você precisar improvisar.</p></div>
+        <div className="carousel-window"><div className="journey-track">{loopJourney.map(([number, title, description], index) => <article key={`${title}-${index}`}><span>{number}</span><h3>{title}</h3><p>{description}</p></article>)}</div></div>
+      </section>
+
+      <section className="section transformation-section">
+        <div className="valy-container">
+          <div className="eyebrow">ANTES E DEPOIS</div>
+          <h2>O que muda quando você<br /><em>começa a empreender de verdade</em></h2>
+          <p className="section-intro">Você deixa de vender tarefas soltas e passa a construir uma operação com direção.</p>
+          <div className="transformation-grid">
+            <article className="before-card"><span>ANTES DA PRIME</span><h3>Você tenta fazer tudo no improviso</h3><ul><li>Espera uma indicação aparecer</li><li>Demora para montar cada projeto</li><li>Fica inseguro na hora de cobrar</li><li>Não sabe qual é o próximo passo</li></ul></article>
+            <article className="after-card"><span>DEPOIS DA PRIME</span><h3>Você trabalha como uma operação</h3><ul><li>Procura oportunidades todos os dias</li><li>Apresenta uma solução com rapidez</li><li>Precifica para proteger sua margem</li><li>Cria um caminho para crescer e buscar metas maiores</li></ul></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section light offer-section" id="planos">
+        <div className="valy-container">
+          <div className="eyebrow">OFERTA ESPECIAL</div><h2>Comece com a estrutura<br /><em>completa da Prime</em></h2><p className="section-intro">Um único acesso para prospectar, criar, precificar e vender seus projetos.</p>
+          <article className="offer-card"><div className="offer-tag">ACESSO VITALÍCIO</div><h3>Prime Completa</h3><p className="offer-price"><small>R$</small> 297<span>,00</span></p><p className="offer-note">Pagamento único, sem mensalidade</p><ul><li>Sites ilimitados para criar e editar</li><li>Prospecção para qualquer cidade do Brasil</li><li>Calculadora de precificação profissional</li><li>Scripts de abordagem para diferentes canais</li><li>Biblioteca e materiais para acelerar sua operação</li></ul><Link className="green-btn hero-btn" to="/auth">Quero acesso vitalício <ArrowRight /></Link></article>
+        </div>
+      </section>
+
+      <section className="guarantee-section">
+        <div className="valy-container guarantee-inner"><div className="guarantee-seal">7</div><div><div className="eyebrow">GARANTIA INCONDICIONAL</div><h2>Conheça a Prime por 7 dias sem risco</h2><p>Entre, explore as ferramentas e veja se a plataforma faz sentido para o seu momento. Se não fizer, você pode solicitar o reembolso dentro do prazo.</p></div></div>
+      </section>
+
+      <section className="section testimonials-section">
+        <div className="valy-container"><div className="eyebrow">AVALIAÇÕES</div><h2>Quem começou já enxerga<br /><em>um caminho mais claro</em></h2><p className="section-intro">Relatos de quem trocou a improvisação por um processo.</p></div>
+        <div className="carousel-window"><div className="testimonial-track">{loopTestimonials.map(([name, text], index) => <article key={`${name}-${index}`}><Quote /><div className="stars" aria-label="5 estrelas">{[0,1,2,3,4].map(star => <Star key={star} />)}</div><p>“{text}”</p><strong>{name}</strong><span>Cliente Prime</span></article>)}</div></div>
+      </section>
+
+      <section className="section faq-section" id="faq"><div className="valy-container narrow"><div className="eyebrow">PERGUNTAS FREQUENTES</div><h2>Tudo o que você precisa<br /><em>saber antes de começar</em></h2><div className="faq-list">{faqs.map(([question, answer], index) => <div className={`faq-item ${faq === index ? "open" : ""}`} key={question}><Button variant="ghost" className="faq-trigger" onClick={() => setFaq(faq === index ? null : index)}><span>{question}</span><ChevronDown /></Button>{faq === index && <p>{answer}</p>}</div>)}</div></div></section>
+
+      <section className="final-cta" id="final"><div className="valy-container"><div className="eyebrow">COMECE PELO PRIMEIRO</div><h2>Sua próxima oportunidade<br /><em>pode estar na sua cidade</em></h2><p>Abra a Prime, escolha um nicho e transforme uma empresa sem site no começo da sua nova operação.</p><div className="final-actions"><Link className="final-button" to="/auth">Quero começar agora <ArrowRight /></Link></div><div className="final-benefits"><span><Compass /> Processo guiado</span><span><Palette /> Sites profissionais</span><span><CircleDollarSign /> Precificação clara</span><span><TrendingUp /> Estrutura para escalar</span></div></div></section>
+    </main>
+
+    <footer className="valy-footer"><div className="valy-container footer-grid"><div><Logo /><p>Sites prontos. Clientes encontrados. Venda local.</p></div><div><b>PLATAFORMA</b><a href="#ferramentas">Ferramentas</a><a href="#planos">Plano</a><a href="#faq">FAQ</a></div><div><b>JORNADA</b><a href="#como-funciona">Como funciona</a><a href="#etapas">Etapas</a><a href="#final">Começar</a></div><div><b>ACESSO</b><Link to="/auth">Entrar</Link><a href="#planos">Ver oferta</a><a href="#faq">Tirar dúvidas</a></div></div><div className="footer-bottom valy-container"><span>© 2026 Prime. Todos os direitos reservados.</span><span>Feito para quem quer vender sites.</span></div></footer>
+  </div>;
 }
