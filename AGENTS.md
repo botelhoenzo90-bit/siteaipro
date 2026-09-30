@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the public landing page's structure in `src/routes/index.tsx` and its final visual overrides in `src/landing-patch.css` so legacy global styles cannot silently reorder or recreate removed sections.

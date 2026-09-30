@@ -16,6 +16,7 @@ import {
   Target,
   TrendingUp,
   Zap,
+  type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -40,7 +41,7 @@ const painPoints = [
   ["Falta previsibilidade", "Cada novo projeto parece um recomeço e fica difícil transformar freelas em negócio."],
 ];
 
-const solutions = [
+const solutions: Array<[string, string, LucideIcon]> = [
   ["Encontre clientes", "Localize empresas da sua região que ainda não têm site e organize sua prospecção.", Search],
   ["Crie em minutos", "Transforme as informações do negócio em um site profissional pronto para apresentar.", Sparkles],
   ["Venda com clareza", "Use scripts, argumentos e uma apresentação que mostra valor antes de falar em preço.", Target],
@@ -122,7 +123,7 @@ function LandingPage() {
           <div className="eyebrow">A SOLUÇÃO</div>
           <h2>Quatro ferramentas para<br /><em>tirar sua operação do papel</em></h2>
           <p className="section-intro">Tudo o que você precisa para sair da ideia e chegar a uma oferta pronta para vender.</p>
-          <div className="solution-grid">{solutions.map(([title, description, Icon]) => { const SolutionIcon = Icon; return <article key={title as string}><div className="solution-icon"><SolutionIcon /></div><h3>{title as string}</h3><p>{description as string}</p></article>; })}</div>
+          <div className="solution-grid">{solutions.map(([title, description, SolutionIcon]) => <article key={title}><div className="solution-icon"><SolutionIcon /></div><h3>{title}</h3><p>{description}</p></article>)}</div>
           <a className="green-btn section-cta" href="#planos">Quero construir minha operação <ArrowRight /></a>
         </div>
       </section>
