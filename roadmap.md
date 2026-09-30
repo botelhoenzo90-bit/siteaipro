@@ -14,3 +14,4 @@
 - [x] Ampliar scripts por canal e situação até o fechamento; criar referências de R$ 350, R$ 590, R$ 750, R$ 990 e R$ 1.450.
 - [x] Corrigir a apresentação da Academy e preparar trilhas de vídeos/PDFs; acrescentar orientação de escala.
 - [ ] Verificar navegação e visual no desktop e celular.
+- [x] Restaurar a paleta Prime preta, amarela e branca e corrigir contraste dos cartões e textos internos.

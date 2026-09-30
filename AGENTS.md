@@ -13,3 +13,4 @@
 - Keep authentication through Lovable Cloud Auth with email/password and managed Google sign-in, without an application profile table, because the product only needs account access.
 - Keep authenticated product theming in the shared Prime shell with a persisted light/dark preference, so every internal module stays visually consistent.
 - Keep `/project` as a self-contained, locally persisted guided workflow; its steps must render inline instead of navigating to separate tools, so users can finish one project in sequence.
+- Keep authenticated Prime colors exclusively in semantic theme tokens scoped by `.prime-app-shell`; this prevents legacy module colors from breaking light/dark contrast.
