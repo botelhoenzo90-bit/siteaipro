@@ -42,9 +42,9 @@ function AuthPage() {
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const cleanEmail = email.trim().toLowerCase();
-    if (!cleanEmail) return toast.error("Informe seu e-mail.");
-    if (mode !== "forgot" && password.length < 6) return toast.error("A senha precisa ter pelo menos 6 caracteres.");
-    if (mode === "signup" && password !== confirmPassword) return toast.error("As senhas não coincidem.");
+    if (!cleanEmail) { toast.error("Informe seu e-mail."); return; }
+    if (mode !== "forgot" && password.length < 6) { toast.error("A senha precisa ter pelo menos 6 caracteres."); return; }
+    if (mode === "signup" && password !== confirmPassword) { toast.error("As senhas não coincidem."); return; }
     setLoading(true);
     try {
       if (mode === "forgot") {

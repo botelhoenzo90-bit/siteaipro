@@ -26,8 +26,8 @@ function ResetPasswordPage() {
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (password.length < 6) return toast.error("Use pelo menos 6 caracteres.");
-    if (password !== confirmPassword) return toast.error("As senhas não coincidem.");
+    if (password.length < 6) { toast.error("Use pelo menos 6 caracteres."); return; }
+    if (password !== confirmPassword) { toast.error("As senhas não coincidem."); return; }
     setLoading(true);
     const { error } = await supabase.auth.updateUser({ password });
     setLoading(false);
