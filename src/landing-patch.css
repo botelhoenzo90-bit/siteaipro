@@ -1,6 +1,6 @@
 /* Prime Landing — refinamentos da primeira dobra */
 .valy-header .logo-mark{display:none!important}
-.hero-badge,.hero .test-link,.hero-benefits,.hero-screen{display:none!important}
+.hero .test-link,.hero-benefits,.hero-screen{display:none!important}
 .hero{padding-top:92px;padding-bottom:78px}
 .hero h1{max-width:980px}
 .hero h1 em{color:#FFD600!important;text-shadow:0 1px 0 #8d7700}
@@ -8,10 +8,13 @@
 .hero .hero-copy{color:#4d4d4d}
 .hero .hero-btn,.hero .green-btn{background:#FFD600!important;color:#080808!important;box-shadow:0 12px 30px rgba(255,214,0,.24)}
 .hero .hero-btn span{background:#111!important;color:#FFD600!important}
+/* Frase pequena solicitada acima do título */
+.hero-badge{display:inline-flex!important;align-items:center;justify-content:center;background:#FFD600!important;border:0!important;color:#080808!important;border-radius:999px!important;padding:9px 15px!important;box-shadow:none!important;font-size:11px!important;font-weight:900!important;letter-spacing:.08em;text-transform:uppercase}
+.hero-badge span{display:none!important}
+.hero-badge:after{content:'MELHOR SISTEMA DE CRIAÇÃO DE SITES'}
 .industry-strip{background:#FFD600!important;border:0!important;padding:20px 0!important}
 .industry-strip .marquee{animation-duration:25s}
 .industry-strip .marquee span,.industry-strip .marquee b{color:#111!important}
-/* Substitui visualmente os antigos nichos por mensagens comerciais */
 .industry-strip .marquee span{font-size:0}
 .industry-strip .marquee span:after{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em}
 .industry-strip .marquee span:nth-child(1):after{content:'MAIS LUCRO POR PROJETO'}
@@ -32,7 +35,94 @@
 .industry-strip .marquee span:nth-child(16):after{content:'17+ NICHOS'}
 .industry-strip .marquee span:nth-child(17):after{content:'SEM CÓDIGO'}
 .industry-strip .marquee span:nth-child(18):after{content:'VENDA TODOS OS DIAS'}
-.valy-dark .hero .hero-copy{color:#aaa}
-.valy-dark .industry-strip{background:#FFD600!important}
-.valy-dark .industry-strip .marquee span,.valy-dark .industry-strip .marquee b{color:#111!important}
-@media(max-width:600px){.hero{padding-top:62px;padding-bottom:58px}.hero h1{font-size:42px!important}.hero-copy{font-size:16px!important}.industry-strip{padding:17px 0!important}}
+
+/* NOVA SESSÃO 2 — dores de quem quer renda extra, sair do CLT e empreender */
+#dor .eyebrow{font-size:0}
+#dor .eyebrow:after{content:'ANTES DE EMPREENDER';font-size:11px;font-weight:900;letter-spacing:.22em;color:#71807b;text-transform:uppercase}
+#dor h2{font-size:0}
+#dor h2:after{content:'O que está impedindo você de começar?';font-size:clamp(44px,5vw,70px);line-height:.97;letter-spacing:-.065em;font-weight:900}
+#dor .section-intro{font-size:0}
+#dor .section-intro:after{content:'Se você quer uma renda extra, sair do CLT ou começar a empreender, talvez esteja travando nos mesmos pontos.';font-size:17px;line-height:1.7;color:#65716e}
+#dor .pain-list>div:nth-child(n+5){display:none!important}
+#dor .pain-list>div{grid-template-columns:70px 1fr 30px}
+#dor .pain-list>div p{font-size:0}
+#dor .pain-list>div p:after{font-size:18px;font-weight:650}
+#dor .pain-list>div:nth-child(1) p:after{content:'O salário do mês acaba e você queria ter uma segunda fonte de renda.'}
+#dor .pain-list>div:nth-child(2) p:after{content:'Você quer sair do CLT, mas ainda não encontrou uma forma simples de começar.'}
+#dor .pain-list>div:nth-child(3) p:after{content:'Tem vontade de empreender, mas não sabe qual serviço vender nem como encontrar clientes.'}
+#dor .pain-list>div:nth-child(4) p:after{content:'Você vê oportunidades todos os dias, mas falta uma estrutura para transformar isso em negócio.'}
+#dor .pain-list>div span{color:#ff3b30!important}
+#dor .solution-callout{margin-top:34px}
+#dor .solution-callout strong{font-size:0}
+#dor .solution-callout strong:after{content:'Você não precisa começar com uma empresa enorme.';font-size:23px}
+#dor .solution-callout p{font-size:0}
+#dor .solution-callout p:after{content:'Você pode começar vendendo sites profissionais e construir sua operação passo a passo.';font-size:16px;line-height:1.6;color:#5c6c67}
+
+/* NOVA SESSÃO 3 — solução */
+#ferramentas .eyebrow{font-size:0}
+#ferramentas .eyebrow:after{content:'A SOLUÇÃO';font-size:11px;font-weight:900;letter-spacing:.22em;color:#71807b;text-transform:uppercase}
+#ferramentas h2{font-size:0}
+#ferramentas h2:after{content:'Comece com uma estrutura pronta para vender sites';font-size:clamp(44px,5vw,70px);line-height:.97;letter-spacing:-.065em;font-weight:900}
+#ferramentas .section-intro{font-size:0}
+#ferramentas .section-intro:after{content:'A Prime reúne as ferramentas que você precisa para encontrar clientes, criar sites, definir preços e fechar suas primeiras vendas.';font-size:17px;line-height:1.7;color:#65716e}
+#ferramentas .tool-card h3{font-size:0}
+#ferramentas .tool-card p{font-size:0;min-height:88px}
+#ferramentas .tool-card a{font-size:0}
+#ferramentas .tool-card h3:after{font-size:20px}
+#ferramentas .tool-card p:after{font-size:14px;color:#687570;line-height:1.6}
+#ferramentas .tool-card a:after{content:'Quero começar';font-size:12px;color:#008c51;font-weight:850}
+#ferramentas .tool-card:nth-child(1) h3:after{content:'Encontre clientes'}
+#ferramentas .tool-card:nth-child(1) p:after{content:'Encontre negócios da sua cidade que precisam de presença profissional na internet.'}
+#ferramentas .tool-card:nth-child(2) h3:after{content:'Crie sites rapidamente'}
+#ferramentas .tool-card:nth-child(2) p:after{content:'Gere uma estrutura profissional sem começar cada projeto do zero.'}
+#ferramentas .tool-card:nth-child(3) h3:after{content:'Edite sem programar'}
+#ferramentas .tool-card:nth-child(3) p:after{content:'Personalize textos, imagens, cores e seções de forma simples.'}
+#ferramentas .tool-card:nth-child(4) h3:after{content:'Venda e escale'}
+#ferramentas .tool-card:nth-child(4) p:after{content:'Use scripts, precificação, CRM e uma rotina organizada para repetir o processo.'}
+
+/* Remove somente as seções que o usuário pediu para retirar */
+#por-dentro,#modelos,#etapas{display:none!important}
+
+/* Oferta: somente um plano, R$ 297 vitalício */
+#planos .pricing{display:flex;justify-content:center;align-items:center}
+#planos .pricing article.featured{width:min(620px,100%);text-align:center;align-items:center}
+#planos .pricing article:nth-child(2){display:none!important}
+#planos .pricing article.featured .plan-tag{font-size:0}
+#planos .pricing article.featured .plan-tag:after{content:'PRIME · ACESSO VITALÍCIO';font-size:9px;letter-spacing:.16em;color:#008b50;font-weight:900}
+#planos .pricing article.featured h3{font-size:0}
+#planos .pricing article.featured h3:after{content:'Prime Completa';font-size:30px}
+#planos .pricing article.featured>strong{font-size:0}
+#planos .pricing article.featured>strong:after{content:'R$ 297,00';font-size:56px;letter-spacing:-.05em}
+#planos .pricing article.featured>small{font-size:14px;color:#7a8682}
+#planos .pricing article.featured>small:after{content:'Pagamento único · acesso vitalício'}
+#planos .pricing article.featured ul{text-align:left;width:100%;max-width:430px}
+#planos .pricing article.featured .green-btn{margin-left:auto;margin-right:auto}
+#planos .pricing article.featured .green-btn{font-size:0}
+#planos .pricing article.featured .green-btn:after{content:'Quero acesso vitalício';font-size:16px}
+#planos .pricing:after{content:'GARANTIA DE 7 DIAS\A Experimente a Prime com tranquilidade. Se dentro de 7 dias você entender que não é para você, solicite o cancelamento dentro do prazo da garantia.';display:block;width:min(620px,100%);margin:28px auto 0;padding:26px 30px;border:1px solid #dce5e1;border-radius:26px;background:#fff;text-align:center;white-space:pre-line;font-size:15px;line-height:1.65;color:#53615d;font-weight:600}
+#planos .pricing:after::first-line{font-weight:900;color:#080808}
+
+/* ANTES x DEPOIS — reaproveita a seção existente sem alterar a identidade */
+.section:has(.fit-grid) .eyebrow{font-size:0}
+.section:has(.fit-grid) .eyebrow:after{content:'ANTES E DEPOIS';font-size:11px;font-weight:900;letter-spacing:.22em;color:#71807b;text-transform:uppercase}
+.section:has(.fit-grid) h2{font-size:0}
+.section:has(.fit-grid) h2:after{content:'Veja o que muda quando você acessa a Prime';font-size:clamp(44px,5vw,70px);line-height:.97;letter-spacing:-.065em;font-weight:900}
+.section:has(.fit-grid) .section-intro{font-size:0}
+.section:has(.fit-grid) .section-intro:after{content:'Do improviso para uma operação organizada para criar, vender e entregar sites.';font-size:17px;line-height:1.7;color:#65716e}
+.section:has(.fit-grid) .fit-grid>div{min-height:290px;text-align:center}
+.section:has(.fit-grid) .fit-grid>div h3,.section:has(.fit-grid) .fit-grid>div p{font-size:0}
+.section:has(.fit-grid) .fit-grid>div h3:after{font-size:24px;font-weight:900}
+.section:has(.fit-grid) .fit-grid>div p:after{font-size:15px;line-height:1.7;color:#687570}
+.section:has(.fit-grid) .fit-grid>div:first-child h3:after{content:'ANTES DA PRIME'}
+.section:has(.fit-grid) .fit-grid>div:first-child p:nth-of-type(1):after{content:'Você procura clientes no improviso.'}
+.section:has(.fit-grid) .fit-grid>div:first-child p:nth-of-type(2):after{content:'Cada site começa do zero.'}
+.section:has(.fit-grid) .fit-grid>div:first-child p:nth-of-type(3):after{content:'Você calcula preço no achismo.'}
+.section:has(.fit-grid) .fit-grid>div:first-child p:nth-of-type(4):after{content:'Propostas, scripts e processos ficam espalhados.'}
+.section:has(.fit-grid) .fit-grid>div:last-child h3:after{content:'DEPOIS DA PRIME'}
+.section:has(.fit-grid) .fit-grid>div:last-child p:nth-of-type(1):after{content:'Você tem ferramentas para encontrar oportunidades.'}
+.section:has(.fit-grid) .fit-grid>div:last-child p:nth-of-type(2):after{content:'Cria sites com uma estrutura pronta.'}
+.section:has(.fit-grid) .fit-grid>div:last-child p:nth-of-type(3):after{content:'Tem uma base para precificar e apresentar.'}
+
+.valy-dark .hero-badge{background:#FFD600!important;color:#080808!important}
+.valy-dark #dor .section-intro:after,.valy-dark #ferramentas .section-intro:after,.valy-dark .section:has(.fit-grid) .section-intro:after{color:#aaa}
+@media(max-width:600px){.hero{padding-top:62px;padding-bottom:58px}.hero h1{font-size:42px!important}.hero-copy{font-size:16px!important}.industry-strip{padding:17px 0!important}#dor h2:after,#ferramentas h2:after,.section:has(.fit-grid) h2:after{font-size:41px}.pricing:after{padding:22px 18px!important}.section:has(.fit-grid) .fit-grid>div{min-height:0}}
