@@ -188,7 +188,7 @@ function LandingPage() {
       </section>
 
       <section className="guarantee-section">
-        <div className="valy-container guarantee-inner"><div className="guarantee-seal">7</div><div><div className="eyebrow">GARANTIA INCONDICIONAL</div><h2>Conheça a Prime por 7 dias sem risco</h2><p>Entre, explore as ferramentas e veja se a plataforma faz sentido para o seu momento. Se não fizer, você pode solicitar o reembolso dentro do prazo.</p></div></div>
+        <div className="valy-container guarantee-inner"><div className="guarantee-seal">7</div><div><div className="eyebrow">GARANTIA INCONDICIONAL</div><h2>Conheça a Prime por 7 dias sem risco</h2><p>Entre, explore as ferramentas e veja se a plataforma faz sentido para o seu momento. Se não fizer, você pode solicitar o reembolso dentro do prazo.</p><OfferCta label="Quero acessar sem risco" /></div></div>
       </section>
 
       <section className="section faq-section" id="faq"><div className="valy-container narrow"><div className="eyebrow">PERGUNTAS FREQUENTES</div><h2>Tudo o que você precisa<br /><em>saber antes de começar</em></h2><div className="faq-list">{faqs.map(([question, answer], index) => <div className={`faq-item ${faq === index ? "open" : ""}`} key={question}><Button variant="ghost" className="faq-trigger" onClick={() => setFaq(faq === index ? null : index)}><span>{question}</span><ChevronDown /></Button>{faq === index && <p>{answer}</p>}</div>)}</div><OfferCta label="Quero garantir meu acesso" /></div></section>
