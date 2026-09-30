@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -32,6 +33,7 @@ function AuthPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const switchMode = (next: AuthMode) => {
     setMode(next);
@@ -70,9 +72,32 @@ function AuthPage() {
       await navigate({ to: "/dashboard", replace: true });
     } catch (error) {
       const message = error instanceof Error ? error.message : "Não foi possível concluir o acesso.";
-      toast.error(message.includes("Invalid login") ? "E-mail ou senha incorretos." : message);
+      const translatedMessage = message.includes("Invalid login")
+        ? "E-mail ou senha incorretos."
+        : message.includes("Password is known to be weak")
+          ? "Escolha outra senha com pelo menos 6 caracteres."
+          : message;
+      toast.error(translatedMessage);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    setGoogleLoading(true);
+    try {
+      const result = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+        extraParams: { prompt: "select_account" },
+      });
+      if (result.error) throw result.error;
+      if (result.redirected) return;
+      toast.success("Acesso com Google liberado.");
+      await navigate({ to: "/dashboard", replace: true });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Não foi possível entrar com o Google.");
+    } finally {
+      setGoogleLoading(false);
     }
   };
 
@@ -111,6 +136,7 @@ function AuthPage() {
              {loading && <LoaderCircle className="h-4 w-4 animate-spin"/>}{mode === "login" ? "Entrar" : mode === "signup" ? "Criar conta" : "Enviar link de recuperação"}
           </Button>
         </form>
+        {mode !== "forgot" && <><div className="my-6 flex items-center gap-3"><span className="h-px flex-1 bg-border"/><span className="text-xs font-bold uppercase text-muted-foreground">ou</span><span className="h-px flex-1 bg-border"/></div><Button type="button" variant="outline" disabled={googleLoading || loading} onClick={signInWithGoogle} className="h-12 w-full font-bold"><span aria-hidden="true" className="text-lg font-black">G</span>{googleLoading ? "Conectando..." : "Continuar com Google"}</Button></>}
         <div className="mt-6 border-t pt-6 text-center text-sm text-muted-foreground">{mode === "login" ? <>Novo por aqui? <button onClick={()=>switchMode("signup")} className="font-bold text-foreground hover:underline">Criar conta</button></> : <>Já possui acesso? <button onClick={()=>switchMode("login")} className="font-bold text-foreground hover:underline">Fazer login</button></>}</div>
       </motion.div>
       </main>
