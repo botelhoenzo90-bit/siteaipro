@@ -100,7 +100,6 @@
 #planos .pricing article.featured .green-btn{font-size:0}
 #planos .pricing article.featured .green-btn:after{content:'Quero acesso vitalício';font-size:16px}
 #planos .pricing:after{content:'GARANTIA DE 7 DIAS\A Experimente a Prime com tranquilidade. Se dentro de 7 dias você entender que não é para você, solicite o cancelamento dentro do prazo da garantia.';display:block;width:min(620px,100%);margin:28px auto 0;padding:26px 30px;border:1px solid #dce5e1;border-radius:26px;background:#fff;text-align:center;white-space:pre-line;font-size:15px;line-height:1.65;color:#53615d;font-weight:600}
-#planos .pricing:after::first-line{font-weight:900;color:#080808}
 
 /* ANTES x DEPOIS — reaproveita a seção existente sem alterar a identidade */
 .section:has(.fit-grid) .eyebrow{font-size:0}
