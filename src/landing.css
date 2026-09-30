@@ -9,20 +9,3 @@
 @media(max-width:720px){.valy-container,.valy-container.narrow{width:min(100% - 34px,1280px)}.valy-header{height:72px}.valy-nav nav{display:none}.nav-actions{gap:10px}.login-link{display:none}.green-btn.small{padding:12px 15px}.hero{padding:70px 0 65px}.hero h1{font-size:48px}.hero-copy{font-size:16px}.hero-actions,.final-actions{flex-direction:column}.hero-benefits{gap:12px;align-items:flex-start;flex-direction:column;width:max-content;margin-left:auto;margin-right:auto}.screen-inner{height:220px;grid-template-columns:80px 1fr}.screen-side{padding:18px 10px}.screen-main{padding:22px}.screen-main strong{font-size:18px}.screen-cards{margin-top:22px}.section{padding:82px 0}.section h2{font-size:43px}.tools-grid{grid-template-columns:1fr}.tool-card{min-height:270px}.dashboard-showcase{padding:6px}.dash-nav{gap:12px;overflow:hidden}.dash-nav span{display:none}.dash-content{padding:18px}.dash-top{grid-template-columns:1fr}.feature-row{grid-template-columns:1fr}.video-placeholder{height:260px}.fit-grid{grid-template-columns:1fr}.steps article{grid-template-columns:60px 1fr}.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}.footer-bottom{flex-direction:column;gap:8px}.pain-list>div{grid-template-columns:45px 1fr 20px}.pain-list p{font-size:15px}.final-cta{padding:85px 0}.final-cta h2{font-size:45px}}
 @media(prefers-reduced-motion:reduce){.marquee{animation:none}.green-btn{transition:none}}
 #lovable-badge{display:none!important}
-
-/* Landing-only refinements requested: preserve the existing font and system UI. */
-.valy-grid-bg{display:none!important}
-.hero-badge{font-size:0!important;padding:9px 18px!important;background:#fffdf0!important;border-color:#f1d64a!important;color:#111!important}
-.hero-badge span{background:#FFD400!important;color:#111!important}
-.hero-badge:after{content:'O sistema completo para criar e vender sites';font-size:13px;line-height:1;font-weight:900;letter-spacing:.01em}
-/* Remove the requested sections from the public landing page only. */
-#dor,#ferramentas,#por-dentro,#modelos,#etapas{display:none!important}
-/* Remove test prompts and hosting/SSL claim from the landing copy. */
-.hero-actions .test-link,.final-actions .test-link,.final-benefits span:first-child{display:none!important}
-/* Final CTA becomes the strong yellow conversion block. */
-.final-cta{background:#FFD400!important;color:#080808!important;padding:115px 0!important}
-.final-glow{background:radial-gradient(circle,rgba(255,255,255,.52),transparent 66%)!important;opacity:.75}
-.final-cta .eyebrow{color:#080808!important}.final-cta h2{color:#080808!important}.final-cta h2 em{color:#080808!important}.final-cta p{color:#292500!important}.final-actions .green-btn{background:#080808!important;color:#fff!important;box-shadow:0 14px 38px rgba(0,0,0,.22)!important}.final-actions .green-btn:hover{background:#1a1a1a!important}.final-benefits{color:#332f00!important}.final-benefits span{color:#332f00!important}.final-benefits span:first-child{display:none!important}
-/* Remove the old footer logo mark/name while retaining the footer content. */
-.footer-grid>div:first-child .valy-logo{display:none!important}
-@media(max-width:720px){.hero-badge:after{font-size:12px}.final-cta{padding:82px 0!important}}
