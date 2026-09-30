@@ -10,3 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Keep the public landing page's structure in `src/routes/index.tsx` and its final visual overrides in `src/landing-patch.css` so legacy global styles cannot silently reorder or recreate removed sections.
+- Keep authentication email/password-only through Lovable Cloud Auth, with no application profile table, because the product only needs account access.
+- Keep authenticated product theming in the shared Prime shell with a persisted light/dark preference, so every internal module stays visually consistent.

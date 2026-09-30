@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
 
-export const Route=createFileRoute("/_authenticated/prospecting")({component:ProspectingPage});
+export const Route=createFileRoute("/_authenticated/prospecting")({head:()=>({meta:[{title:"Radar de Clientes — Prime"},{name:"description",content:"Encontre e qualifique oportunidades para vender sites."},{property:"og:title",content:"Radar de Clientes — Prime"},{property:"og:description",content:"Transforme pesquisas locais em oportunidades."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:ProspectingPage});
 function ProspectingPage(){
  const [niche,setNiche]=useState(''); const [city,setCity]=useState(''); const [site,setSite]=useState(''); const [instagram,setInstagram]=useState(''); const [rating,setRating]=useState(''); const [size,setSize]=useState('');
  const score=useMemo(()=>{let n=0;if(niche)n+=20;if(city)n+=15;if(site==='Não')n+=30;if(instagram==='Sim')n+=15;if(rating==='3-4')n+=15;if(size==='Médio/alto')n+=5;return Math.min(100,n)},[niche,city,site,instagram,rating,size]);

@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-export const Route=createFileRoute("/_authenticated/pricing-calculator")({component:PricingCalculatorPage});
+export const Route=createFileRoute("/_authenticated/pricing-calculator")({head:()=>({meta:[{title:"Precificação — Prime"},{name:"description",content:"Calcule preço, custos, margem e impostos do projeto."},{property:"og:title",content:"Precificação — Prime"},{property:"og:description",content:"Monte uma proposta segura e lucrativa."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:PricingCalculatorPage});
 function PricingCalculatorPage(){
  const [pages,setPages]=useState(5),[complexity,setComplexity]=useState(2),[hourlyRate,setHourlyRate]=useState(120),[toolCosts,setToolCosts]=useState(250),[taxRate,setTaxRate]=useState(6),[extras,setExtras]=useState<string[]>([]);
  const extraMap:Record<string,number>={Blog:800,Agendamento:900,WhatsApp:300,SEO:700,Ecommerce:2500};
