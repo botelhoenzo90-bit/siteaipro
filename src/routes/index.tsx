@@ -7,18 +7,24 @@ import {
   ChevronDown,
   CircleDollarSign,
   Compass,
+  Moon,
   MessageCircle,
   Palette,
   Quote,
   Search,
   Sparkles,
   Star,
+  Sun,
   Target,
   TrendingUp,
   Zap,
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import lucasAvatar from "@/assets/testimonial-lucas.jpg";
+import marianaAvatar from "@/assets/testimonial-mariana.jpg";
+import rafaelAvatar from "@/assets/testimonial-rafael.jpg";
+import camilaAvatar from "@/assets/testimonial-camila.jpg";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -35,17 +41,17 @@ export const Route = createFileRoute("/")({
 });
 
 const painPoints = [
-  ["Você perde horas", "Montar cada site do zero consome o tempo que deveria ser usado para vender."],
-  ["Você cobra pouco", "Sem um processo profissional, o cliente compara seu trabalho apenas pelo preço."],
-  ["Faltam clientes", "Você não sabe quais empresas abordar nem como iniciar uma conversa que gere interesse."],
-  ["Falta previsibilidade", "Cada novo projeto parece um recomeço e fica difícil transformar freelas em negócio."],
+  ["Preso na rotina CLT", "Você troca tempo por salário, vive esperando o fim de semana e sente que poderia construir algo seu."],
+  ["Quer empreender, mas não sabe como", "A vontade existe, mas falta um caminho simples para começar sem depender de programação ou experiência."],
+  ["Não consegue clientes", "Você até sabe criar, mas não sabe onde encontrar empresas interessadas nem o que falar para fechar."],
+  ["Falta renda e tempo com a família", "As contas apertam e a rotina consome seus dias. Você precisa de uma renda que devolva escolhas à sua vida."],
 ];
 
 const solutions: Array<[string, string, LucideIcon]> = [
-  ["Encontre clientes", "Localize empresas da sua região que ainda não têm site e organize sua prospecção.", Search],
-  ["Crie em minutos", "Transforme as informações do negócio em um site profissional pronto para apresentar.", Sparkles],
-  ["Venda com clareza", "Use scripts, argumentos e uma apresentação que mostra valor antes de falar em preço.", Target],
-  ["Precifique e escale", "Calcule o valor ideal, proteja sua margem e repita o processo para vender mais.", Calculator],
+  ["Comece a empreender", "Siga um processo claro para transformar a criação de sites no seu próprio negócio, mesmo começando do zero.", Sparkles],
+  ["Trabalhe de onde estiver", "Crie e apresente projetos pelo computador, com liberdade para organizar seus horários e estar mais perto da família.", Compass],
+  ["Encontre clientes todos os dias", "Descubra empresas que precisam de site e use abordagens prontas para abrir conversas com confiança.", Search],
+  ["Construa uma nova renda", "Precifique com segurança, venda com valor e repita o processo para crescer sem depender apenas do salário.", TrendingUp],
 ];
 
 const journey = [
@@ -60,10 +66,10 @@ const journey = [
 ];
 
 const testimonials = [
-  ["Lucas M.", "Consegui organizar minha oferta e apresentar meus primeiros sites com muito mais confiança."],
-  ["Mariana S.", "A prospecção me mostrou onde estavam os clientes. Parei de esperar indicação para vender."],
-  ["Rafael P.", "Hoje tenho um processo para criar, precificar e entregar em vez de fazer tudo no improviso."],
-  ["Camila R.", "Eu não sabia programar. Agora consigo mostrar uma solução pronta e conduzir a conversa comercial."],
+  ["Lucas M.", "Consegui organizar minha oferta e apresentar meus primeiros sites com muito mais confiança.", lucasAvatar],
+  ["Mariana S.", "A prospecção me mostrou onde estavam os clientes. Parei de esperar indicação para vender.", marianaAvatar],
+  ["Rafael P.", "Hoje tenho um processo para criar, precificar e entregar em vez de fazer tudo no improviso.", rafaelAvatar],
+  ["Camila R.", "Eu não sabia programar. Agora consigo mostrar uma solução pronta e conduzir a conversa comercial.", camilaAvatar],
 ];
 
 const faqs = [
@@ -80,49 +86,50 @@ const faqs = [
 ];
 
 function Logo() {
-  return <Link to="/" className="valy-logo" aria-label="Prime"><span className="logo-mark"><i /></span><strong>PRIME</strong></Link>;
+  return <Link to="/" className="valy-logo" aria-label="Prime"><strong>PRIME</strong></Link>;
 }
 
 function LandingPage() {
   const [faq, setFaq] = useState<number | null>(null);
+  const [darkMode, setDarkMode] = useState(false);
   const loopJourney = [...journey, ...journey];
   const loopTestimonials = [...testimonials, ...testimonials];
 
-  return <div className="valy-page" id="inicio">
+  return <div className={`valy-page ${darkMode ? "valy-dark" : ""}`} id="inicio">
     <div className="valy-grid-bg" />
     <header className="valy-header">
       <div className="valy-container valy-nav">
         <Logo />
         <nav><a href="#como-funciona">COMO FUNCIONA</a><a href="#planos">PLANOS</a><a href="#faq">FAQ</a></nav>
-        <div className="nav-actions"><Link className="login-link" to="/auth">ENTRAR</Link><a className="green-btn small" href="#planos">VER PLANOS</a></div>
+        <div className="nav-actions"><Button variant="ghost" size="icon" className="theme-btn" onClick={() => setDarkMode((active) => !active)} aria-label={darkMode ? "Ativar fundo claro" : "Ativar fundo escuro"} title={darkMode ? "Fundo claro" : "Fundo escuro"}>{darkMode ? <Sun /> : <Moon />}</Button><Link className="login-link" to="/auth">ENTRAR</Link><a className="green-btn small" href="#planos">VER PLANOS</a></div>
       </div>
     </header>
 
     <main>
       <section className="hero valy-container">
-        <div className="hero-badge">PRIME · PLATAFORMA PARA QUEM VENDE SITES</div>
+        <div className="hero-badge">MELHOR SISTEMA DE CRIAÇÃO DE SITES</div>
         <h1>Venda sites para o comércio<br /><em>da sua cidade</em></h1>
         <p className="hero-copy">Encontre empresas sem site, crie uma apresentação profissional em minutos e tenha um processo claro para transformar oportunidades locais em vendas.</p>
         <div className="hero-actions"><a className="green-btn hero-btn" href="#planos">Quero começar a vender <ArrowRight /></a></div>
         <div className="hero-benefits"><span>Estrutura pronta para começar</span><span>7 dias de garantia</span><span>Sem saber programar</span><span>Criação em minutos</span></div>
       </section>
 
-      <div className="industry-strip"><div className="marquee">{["Barbearia", "Pizzaria", "Clínica", "Academia", "Advocacia", "Estética", "Restaurante", "Imobiliária", "Barbearia", "Pizzaria", "Clínica", "Academia", "Advocacia", "Estética", "Restaurante", "Imobiliária"].map((item, index) => <span key={`${item}-${index}`}>{item} <b>✦</b></span>)}</div></div>
+      <div className="industry-strip"><div className="marquee">{["Encontre clientes", "Crie sites em minutos", "Trabalhe de casa", "Gere uma nova renda", "Venda com confiança", "Tenha mais liberdade", "Encontre clientes", "Crie sites em minutos", "Trabalhe de casa", "Gere uma nova renda", "Venda com confiança", "Tenha mais liberdade"].map((item, index) => <span key={`${item}-${index}`}>{item}</span>)}</div></div>
 
       <section className="section light" id="dor">
         <div className="valy-container">
           <div className="eyebrow">O PROBLEMA</div>
           <h2>O que impede você de<br /><em>transformar sites em renda</em></h2>
           <p className="section-intro">Não é falta de capacidade. É falta de um processo que conecte oportunidade, criação e venda.</p>
-          <div className="pain-cards">{painPoints.map(([title, description], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+          <div className="pain-cards">{painPoints.map(([title, description]) => <article key={title}><h3>{title}</h3><p>{description}</p></article>)}</div>
         </div>
       </section>
 
       <section className="section solution-section" id="ferramentas">
         <div className="valy-container">
           <div className="eyebrow">A SOLUÇÃO</div>
-          <h2>Quatro ferramentas para<br /><em>tirar sua operação do papel</em></h2>
-          <p className="section-intro">Tudo o que você precisa para sair da ideia e chegar a uma oferta pronta para vender.</p>
+          <h2>Quatro caminhos para<br /><em>mudar sua rotina de verdade</em></h2>
+          <p className="section-intro">Transforme sua vontade de empreender em uma operação simples, prática e pronta para gerar renda.</p>
           <div className="solution-grid">{solutions.map(([title, description, SolutionIcon]) => <article key={title}><div className="solution-icon"><SolutionIcon /></div><h3>{title}</h3><p>{description}</p></article>)}</div>
           <a className="green-btn section-cta" href="#planos">Quero construir minha operação <ArrowRight /></a>
         </div>
@@ -149,8 +156,8 @@ function LandingPage() {
           <h2>O que muda quando você<br /><em>começa a empreender de verdade</em></h2>
           <p className="section-intro">Você deixa de vender tarefas soltas e passa a construir uma operação com direção.</p>
           <div className="transformation-grid">
-            <article className="before-card"><span>ANTES DA PRIME</span><h3>Você tenta fazer tudo no improviso</h3><ul><li>Espera uma indicação aparecer</li><li>Demora para montar cada projeto</li><li>Fica inseguro na hora de cobrar</li><li>Não sabe qual é o próximo passo</li></ul></article>
-            <article className="after-card"><span>DEPOIS DA PRIME</span><h3>Você trabalha como uma operação</h3><ul><li>Procura oportunidades todos os dias</li><li>Apresenta uma solução com rapidez</li><li>Precifica para proteger sua margem</li><li>Cria um caminho para crescer e buscar metas maiores</li></ul></article>
+            <article className="before-card"><span>ANTES DA PRIME</span><h3>Sua renda e seu tempo dependem da rotina dos outros</h3><ul><li>Você passa o dia preso ao trabalho e ao salário</li><li>Quer empreender, mas não sabe por onde começar</li><li>Não encontra clientes com frequência</li><li>Chega em casa sem energia e sem tempo</li></ul></article>
+            <article className="after-card"><span>DEPOIS DA PRIME</span><h3>Você começa a construir um negócio que é seu</h3><ul><li>Encontra oportunidades na sua própria cidade</li><li>Cria sites profissionais com muito mais rapidez</li><li>Vende e precifica seguindo um processo claro</li><li>Constrói renda, liberdade e mais tempo para viver</li></ul></article>
           </div>
         </div>
       </section>
@@ -168,7 +175,7 @@ function LandingPage() {
 
       <section className="section testimonials-section">
         <div className="valy-container"><div className="eyebrow">AVALIAÇÕES</div><h2>Quem começou já enxerga<br /><em>um caminho mais claro</em></h2><p className="section-intro">Relatos de quem trocou a improvisação por um processo.</p></div>
-        <div className="carousel-window"><div className="testimonial-track">{loopTestimonials.map(([name, text], index) => <article key={`${name}-${index}`}><Quote /><div className="stars" aria-label="5 estrelas">{[0,1,2,3,4].map(star => <Star key={star} />)}</div><p>“{text}”</p><strong>{name}</strong><span>Cliente Prime</span></article>)}</div></div>
+        <div className="carousel-window"><div className="testimonial-track">{loopTestimonials.map(([name, text, avatar], index) => <article key={`${name}-${index}`}><Quote /><div className="stars" aria-label="5 estrelas">{[0,1,2,3,4].map(star => <Star key={star} />)}</div><p>“{text}”</p><div className="testimonial-author"><img src={avatar} alt="" loading="lazy" width={768} height={768} /><div><strong>{name}</strong><span>Cliente Prime</span></div></div></article>)}</div></div>
       </section>
 
       <section className="section faq-section" id="faq"><div className="valy-container narrow"><div className="eyebrow">PERGUNTAS FREQUENTES</div><h2>Tudo o que você precisa<br /><em>saber antes de começar</em></h2><div className="faq-list">{faqs.map(([question, answer], index) => <div className={`faq-item ${faq === index ? "open" : ""}`} key={question}><Button variant="ghost" className="faq-trigger" onClick={() => setFaq(faq === index ? null : index)}><span>{question}</span><ChevronDown /></Button>{faq === index && <p>{answer}</p>}</div>)}</div></div></section>
@@ -176,6 +183,6 @@ function LandingPage() {
       <section className="final-cta" id="final"><div className="valy-container"><div className="eyebrow">COMECE PELO PRIMEIRO</div><h2>Sua próxima oportunidade<br /><em>pode estar na sua cidade</em></h2><p>Abra a Prime, escolha um nicho e transforme uma empresa sem site no começo da sua nova operação.</p><div className="final-actions"><Link className="final-button" to="/auth">Quero começar agora <ArrowRight /></Link></div><div className="final-benefits"><span><Compass /> Processo guiado</span><span><Palette /> Sites profissionais</span><span><CircleDollarSign /> Precificação clara</span><span><TrendingUp /> Estrutura para escalar</span></div></div></section>
     </main>
 
-    <footer className="valy-footer"><div className="valy-container footer-grid"><div><Logo /><p>Sites prontos. Clientes encontrados. Venda local.</p></div><div><b>PLATAFORMA</b><a href="#ferramentas">Ferramentas</a><a href="#planos">Plano</a><a href="#faq">FAQ</a></div><div><b>JORNADA</b><a href="#como-funciona">Como funciona</a><a href="#etapas">Etapas</a><a href="#final">Começar</a></div><div><b>ACESSO</b><Link to="/auth">Entrar</Link><a href="#planos">Ver oferta</a><a href="#faq">Tirar dúvidas</a></div></div><div className="footer-bottom valy-container"><span>© 2026 Prime. Todos os direitos reservados.</span><span>Feito para quem quer vender sites.</span></div></footer>
+    <footer className="valy-footer"><div className="valy-container footer-grid"><div><b>PLATAFORMA</b><a href="#ferramentas">Ferramentas</a><a href="#planos">Plano</a><a href="#faq">FAQ</a></div><div><b>JORNADA</b><a href="#como-funciona">Como funciona</a><a href="#etapas">Etapas</a><a href="#final">Começar</a></div><div><b>ACESSO</b><Link to="/auth">Entrar</Link><a href="#planos">Ver oferta</a><a href="#faq">Tirar dúvidas</a></div></div><div className="footer-bottom valy-container"><span>© 2026. Todos os direitos reservados.</span><span>Feito para quem quer vender sites.</span></div></footer>
   </div>;
 }
