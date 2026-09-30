@@ -19,7 +19,9 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedLibraryRouteImport } from './routes/_authenticated.library'
 import { Route as AuthenticatedPricingCalculatorRouteImport } from './routes/_authenticated.pricing-calculator'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated.profile'
+import { Route as AuthenticatedProjectRouteImport } from './routes/_authenticated.project'
 import { Route as AuthenticatedProspectingRouteImport } from './routes/_authenticated.prospecting'
+import { Route as AuthenticatedScaleRouteImport } from './routes/_authenticated.scale'
 import { Route as AuthenticatedScriptsRouteImport } from './routes/_authenticated.scripts'
 
 const IndexRoute = IndexRouteImport.update({
@@ -72,12 +74,22 @@ const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedProjectRoute = AuthenticatedProjectRouteImport.update({
+  id: '/project',
+  path: '/project',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 const AuthenticatedProspectingRoute =
   AuthenticatedProspectingRouteImport.update({
     id: '/prospecting',
     path: '/prospecting',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedScaleRoute = AuthenticatedScaleRouteImport.update({
+  id: '/scale',
+  path: '/scale',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 const AuthenticatedScriptsRoute = AuthenticatedScriptsRouteImport.update({
   id: '/scripts',
   path: '/scripts',
@@ -94,7 +106,9 @@ export interface FileRoutesByFullPath {
   '/library': typeof AuthenticatedLibraryRoute
   '/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/project': typeof AuthenticatedProjectRoute
   '/prospecting': typeof AuthenticatedProspectingRoute
+  '/scale': typeof AuthenticatedScaleRoute
   '/scripts': typeof AuthenticatedScriptsRoute
 }
 export interface FileRoutesByTo {
@@ -107,7 +121,9 @@ export interface FileRoutesByTo {
   '/library': typeof AuthenticatedLibraryRoute
   '/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/project': typeof AuthenticatedProjectRoute
   '/prospecting': typeof AuthenticatedProspectingRoute
+  '/scale': typeof AuthenticatedScaleRoute
   '/scripts': typeof AuthenticatedScriptsRoute
 }
 export interface FileRoutesById {
@@ -122,7 +138,9 @@ export interface FileRoutesById {
   '/_authenticated/library': typeof AuthenticatedLibraryRoute
   '/_authenticated/pricing-calculator': typeof AuthenticatedPricingCalculatorRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/project': typeof AuthenticatedProjectRoute
   '/_authenticated/prospecting': typeof AuthenticatedProspectingRoute
+  '/_authenticated/scale': typeof AuthenticatedScaleRoute
   '/_authenticated/scripts': typeof AuthenticatedScriptsRoute
 }
 export interface FileRouteTypes {
@@ -137,7 +155,9 @@ export interface FileRouteTypes {
     | '/library'
     | '/pricing-calculator'
     | '/profile'
+    | '/project'
     | '/prospecting'
+    | '/scale'
     | '/scripts'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -150,7 +170,9 @@ export interface FileRouteTypes {
     | '/library'
     | '/pricing-calculator'
     | '/profile'
+    | '/project'
     | '/prospecting'
+    | '/scale'
     | '/scripts'
   id:
     | '__root__'
@@ -164,7 +186,9 @@ export interface FileRouteTypes {
     | '/_authenticated/library'
     | '/_authenticated/pricing-calculator'
     | '/_authenticated/profile'
+    | '/_authenticated/project'
     | '/_authenticated/prospecting'
+    | '/_authenticated/scale'
     | '/_authenticated/scripts'
   fileRoutesById: FileRoutesById
 }
@@ -247,11 +271,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/project': {
+      id: '/_authenticated/project'
+      path: '/project'
+      fullPath: '/project'
+      preLoaderRoute: typeof AuthenticatedProjectRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/prospecting': {
       id: '/_authenticated/prospecting'
       path: '/prospecting'
       fullPath: '/prospecting'
       preLoaderRoute: typeof AuthenticatedProspectingRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/scale': {
+      id: '/_authenticated/scale'
+      path: '/scale'
+      fullPath: '/scale'
+      preLoaderRoute: typeof AuthenticatedScaleRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/scripts': {
@@ -271,7 +309,9 @@ interface AuthenticatedRouteChildren {
   AuthenticatedLibraryRoute: typeof AuthenticatedLibraryRoute
   AuthenticatedPricingCalculatorRoute: typeof AuthenticatedPricingCalculatorRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedProjectRoute: typeof AuthenticatedProjectRoute
   AuthenticatedProspectingRoute: typeof AuthenticatedProspectingRoute
+  AuthenticatedScaleRoute: typeof AuthenticatedScaleRoute
   AuthenticatedScriptsRoute: typeof AuthenticatedScriptsRoute
 }
 
@@ -282,7 +322,9 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedLibraryRoute: AuthenticatedLibraryRoute,
   AuthenticatedPricingCalculatorRoute: AuthenticatedPricingCalculatorRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedProjectRoute: AuthenticatedProjectRoute,
   AuthenticatedProspectingRoute: AuthenticatedProspectingRoute,
+  AuthenticatedScaleRoute: AuthenticatedScaleRoute,
   AuthenticatedScriptsRoute: AuthenticatedScriptsRoute,
 }
 
