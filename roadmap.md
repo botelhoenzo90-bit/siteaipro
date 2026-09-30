@@ -7,3 +7,4 @@
 - [x] Reformular Scripts de Venda como fluxo guiado por etapas.
 - [x] Revisar e melhorar cada módulo interno, alinhamento e responsividade.
 - [x] Validar os fluxos públicos, proteção de acesso e telas móveis; áreas autenticadas aguardam a primeira conta confirmada.
+- [x] Adicionar acesso com Google e permitir senhas sem bloqueio por lista de vazamentos.
