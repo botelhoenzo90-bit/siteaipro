@@ -4,7 +4,7 @@ import { Play, Lock, CheckCircle2, Clock, Award, ChevronRight, Search } from "lu
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-export const Route=createFileRoute("/_authenticated/academy")({component:AcademyPage});
+export const Route=createFileRoute("/_authenticated/academy")({head:()=>({meta:[{title:"Academy — Prime"},{name:"description",content:"Aprenda criação, prospecção, vendas e entrega de sites."},{property:"og:title",content:"Academy — Prime"},{property:"og:description",content:"Trilhas práticas para sua operação."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:AcademyPage});
 const modules=[
  {title:'Comece aqui: Prime por dentro',tag:'INÍCIO',img:'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=900',lessons:6,done:true},
  {title:'Criação de sites com IA',tag:'CRIAR',img:'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=900',lessons:8,done:true},
