@@ -6,4 +6,4 @@
 - [x] Modernizar navegação e corrigir controles quebrados.
 - [x] Reformular Scripts de Venda como fluxo guiado por etapas.
 - [x] Revisar e melhorar cada módulo interno, alinhamento e responsividade.
-- [ ] Validar os principais fluxos em desktop e celular.
+- [x] Validar os fluxos públicos, proteção de acesso e telas móveis; áreas autenticadas aguardam a primeira conta confirmada.
