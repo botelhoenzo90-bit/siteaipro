@@ -13,8 +13,8 @@
 - [x] Permitir digitar nicho e objetivo; substituir qualificador do Radar.
 - [x] Ampliar scripts por canal e situação até o fechamento; recalibrar precificação para R$ 550–1.200.
 - [x] Corrigir a apresentação da Academy e preparar trilhas de vídeos/PDFs; acrescentar orientação de escala.
-- [ ] Verificar navegação e visual no desktop e celular.
-- [ ] Corrigir Criador com escolha ou digitação no mesmo campo.
-- [ ] Manter todas as etapas do Novo Projeto dentro da mesma tela.
-- [ ] Reorganizar precificação em faixas de R$ 350 a R$ 1.450 e referências por nicho.
-- [ ] Adicionar suporte por WhatsApp e novo selo de 7 dias à página de vendas.
+- [x] Verificar navegação e visual no desktop e celular.
+- [x] Corrigir Criador com escolha ou digitação no mesmo campo.
+- [x] Manter todas as etapas do Novo Projeto dentro da mesma tela.
+- [x] Reorganizar precificação em faixas de R$ 350 a R$ 1.450 e referências por nicho.
+- [x] Adicionar suporte por WhatsApp e novo selo de 7 dias à página de vendas.
