@@ -20,3 +20,7 @@
 - [x] Adicionar suporte por WhatsApp e novo selo de 7 dias à página de vendas.
 - [x] Corrigir o retorno do login para o painel e validar a sessão antes de entrar.
 - [x] Colocar ações práticas no fluxo de Novo Projeto e ampliar os scripts até o fechamento.
+
+- [x] Aplicar a logomarca e o nome Prime Sites em toda a experiência principal.
+- [x] Tornar Novo Projeto um fluxo sequencial completo e equivalente aos módulos individuais.
+- [x] Validar a marca e as cinco etapas no desktop e celular.

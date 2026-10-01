@@ -8,14 +8,15 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
+import { PrimeBrand } from "@/components/PrimeBrand";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Login — Prime" },
-      { name: "description", content: "Acesse ou crie sua conta Prime com e-mail e senha." },
-      { property: "og:title", content: "Login — Prime" },
-      { property: "og:description", content: "Acesse sua central Prime." },
+      { title: "Login — Prime Sites" },
+      { name: "description", content: "Acesse ou crie sua conta Prime Sites com e-mail e senha." },
+      { property: "og:title", content: "Login — Prime Sites" },
+      { property: "og:description", content: "Acesse sua central Prime Sites." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -124,9 +125,9 @@ function AuthPage() {
     <div className="auth-prime min-h-screen bg-background text-foreground lg:grid lg:grid-cols-[1.08fr_.92fr]">
       <section className="relative hidden overflow-hidden bg-foreground p-12 text-background lg:flex lg:flex-col lg:justify-between">
         <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,214,0,.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,214,0,.18)_1px,transparent_1px)] [background-size:48px_48px]" />
-        <Link to="/" className="relative text-2xl font-black tracking-[0]">PRIME</Link>
+        <div className="relative"><PrimeBrand /></div>
         <div className="relative max-w-xl"><span className="inline-flex items-center gap-2 border border-primary/40 bg-primary/10 px-3 py-2 text-[10px] font-black uppercase tracking-[.2em] text-primary"><ShieldCheck className="h-4 w-4"/> Acesso seguro</span><h1 className="mt-7 text-5xl font-black leading-[1.02] tracking-[0]">Sua operação de sites começa aqui.</h1><p className="mt-5 max-w-lg text-base leading-7 text-background/60">Crie projetos, encontre clientes, conduza abordagens e precifique com clareza em um único sistema.</p></div>
-        <p className="relative text-xs text-background/35">PRIME · Criação, prospecção e vendas</p>
+        <p className="relative text-xs text-background/35">PRIME SITES · Criação, prospecção e vendas</p>
       </section>
       <main className="relative flex min-h-screen items-center justify-center p-5 sm:p-10">
         <Link to="/" className="absolute left-5 top-5 inline-flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-foreground sm:left-10 sm:top-8"><ArrowLeft className="h-4 w-4"/> Voltar</Link>
@@ -135,7 +136,7 @@ function AuthPage() {
         animate={{ opacity: 1, scale: 1 }}
         className="w-full max-w-md"
       >
-        <div className="mb-8 lg:hidden"><span className="text-2xl font-black">PRIME</span></div>
+        <div className="mb-8 lg:hidden"><PrimeBrand /></div>
         <div>
           <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground"><LockKeyhole className="h-5 w-5"/></div>
           <h2 className="text-3xl font-black tracking-[0]">{title}</h2>
