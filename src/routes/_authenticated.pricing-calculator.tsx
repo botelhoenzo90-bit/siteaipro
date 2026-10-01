@@ -37,10 +37,11 @@ const niches = [
 ];
 
 const levels = [
-  { name: 'Landing Express', base: 350, ref: '350 - 590' },
-  { name: 'Institucional', base: 750, ref: '750 - 990' },
-  { name: 'Profissional', base: 990, ref: '990 - 1.450' },
-  { name: 'Premium / Catálogo', base: 1450, ref: '1.450+' }
+  { name: 'Entrada', base: 350, ref: 'R$ 350' },
+  { name: 'Simples', base: 590, ref: 'R$ 590' },
+  { name: 'Intermediário', base: 750, ref: 'R$ 750' },
+  { name: 'Profissional', base: 990, ref: 'R$ 990' },
+  { name: 'Premium', base: 1450, ref: 'R$ 1.450' }
 ];
 
 function PricingCalculatorPage() {
@@ -140,7 +141,7 @@ function PricingCalculatorPage() {
 
           <div>
             <p className="mb-3 text-sm font-bold">Nível do Projeto</p>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
               {levels.map((x, i) => (
                 <Button key={x.name} variant={levelIndex === i ? 'default' : 'outline'} className="h-auto min-h-12 flex-col items-start py-2 text-left" onClick={() => setLevelIndex(i)}>
                   <span className="text-xs font-bold">{x.name}</span>

@@ -9,7 +9,6 @@ import {
   Compass,
   Moon,
   Menu,
-  MessageCircle,
   Palette,
   Quote,
   Search,
