@@ -28,14 +28,15 @@ import rafaelAvatar from "@/assets/testimonial-rafael.jpg";
 import camilaAvatar from "@/assets/testimonial-camila.jpg";
 import whatsappSupport from "@/assets/whatsapp-support.png.asset.json";
 import guaranteeSeal from "@/assets/garantia-7-dias.png.asset.json";
+import { PrimeBrand } from "@/components/PrimeBrand";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
   head: () => ({
-    title: "Prime — Venda sites para o comércio da sua cidade",
+    title: "Prime Sites — Venda sites para o comércio da sua cidade",
     meta: [
       { name: "description", content: "Encontre empresas sem site, crie páginas profissionais e transforme oportunidades locais em vendas." },
-      { property: "og:title", content: "Prime — Venda sites para o comércio da sua cidade" },
+      { property: "og:title", content: "Prime Sites — Venda sites para o comércio da sua cidade" },
       { property: "og:description", content: "Da prospecção à entrega: uma operação completa para vender sites." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -91,7 +92,7 @@ const faqs = [
 const marqueeItems = ["Encontre clientes", "Crie sites em minutos", "Trabalhe de casa", "Gere uma nova renda", "Venda com confiança", "Tenha mais liberdade"];
 
 function Logo() {
-  return <Link to="/" className="valy-logo" aria-label="Prime"><strong>PRIME</strong></Link>;
+  return <PrimeBrand />;
 }
 
 function OfferCta({ label = "Quero começar agora" }: { label?: string }) {
@@ -150,7 +151,7 @@ function LandingPage() {
       <section className="section demo" id="como-funciona">
         <div className="valy-container">
           <div className="eyebrow">VEJA NA PRÁTICA</div>
-          <h2>Como funciona a <em>Prime</em></h2>
+          <h2>Como funciona a <em>Prime Sites</em></h2>
           <p className="section-intro">Veja o caminho completo: encontrar uma empresa, criar o projeto, ajustar a oferta e apresentar ao cliente.</p>
           <div className="video-placeholder"><div className="play">▶</div><span>DEMONSTRAÇÃO DA PLATAFORMA</span></div>
           <OfferCta />
@@ -168,8 +169,8 @@ function LandingPage() {
           <h2>O que muda quando você<br /><em>começa a empreender de verdade</em></h2>
           <p className="section-intro">Você deixa de vender tarefas soltas e passa a construir uma operação com direção.</p>
           <div className="transformation-grid">
-            <article className="before-card"><span>ANTES DA PRIME</span><h3>Sua renda e seu tempo dependem da rotina dos outros</h3><ul><li>Você passa o dia preso ao trabalho e ao salário</li><li>Quer empreender, mas não sabe por onde começar</li><li>Não encontra clientes com frequência</li><li>Chega em casa sem energia e sem tempo</li></ul></article>
-            <article className="after-card"><span>DEPOIS DA PRIME</span><h3>Você começa a construir um negócio que é seu</h3><ul><li>Encontra oportunidades na sua própria cidade</li><li>Cria sites profissionais com muito mais rapidez</li><li>Vende e precifica seguindo um processo claro</li><li>Constrói renda, liberdade e mais tempo para viver</li></ul></article>
+            <article className="before-card"><span>ANTES DA PRIME SITES</span><h3>Sua renda e seu tempo dependem da rotina dos outros</h3><ul><li>Você passa o dia preso ao trabalho e ao salário</li><li>Quer empreender, mas não sabe por onde começar</li><li>Não encontra clientes com frequência</li><li>Chega em casa sem energia e sem tempo</li></ul></article>
+            <article className="after-card"><span>DEPOIS DA PRIME SITES</span><h3>Você começa a construir um negócio que é seu</h3><ul><li>Encontra oportunidades na sua própria cidade</li><li>Cria sites profissionais com muito mais rapidez</li><li>Vende e precifica seguindo um processo claro</li><li>Constrói renda, liberdade e mais tempo para viver</li></ul></article>
           </div>
           <OfferCta label="Quero começar a empreender" />
         </div>
@@ -177,24 +178,24 @@ function LandingPage() {
 
       <section className="section testimonials-section">
         <div className="valy-container"><div className="eyebrow">AVALIAÇÕES</div><h2>Quem começou já enxerga<br /><em>um caminho mais claro</em></h2><p className="section-intro">Relatos de quem trocou a improvisação por um processo.</p></div>
-        <div className="carousel-window"><div className="testimonial-track">{loopTestimonials.map(([name, text, avatar], index) => <article key={`${name}-${index}`}><Quote /><div className="stars" aria-label="5 estrelas">{[0,1,2,3,4].map(star => <Star key={star} />)}</div><p>“{text}”</p><div className="testimonial-author"><img src={avatar} alt="" loading="lazy" width={768} height={768} /><div><strong>{name}</strong><span>Cliente Prime</span></div></div></article>)}</div></div>
+        <div className="carousel-window"><div className="testimonial-track">{loopTestimonials.map(([name, text, avatar], index) => <article key={`${name}-${index}`}><Quote /><div className="stars" aria-label="5 estrelas">{[0,1,2,3,4].map(star => <Star key={star} />)}</div><p>“{text}”</p><div className="testimonial-author"><img src={avatar} alt="" loading="lazy" width={768} height={768} /><div><strong>{name}</strong><span>Cliente Prime Sites</span></div></div></article>)}</div></div>
         <OfferCta label="Quero ter esses resultados" />
       </section>
 
       <section className="section light offer-section" id="planos">
         <div className="valy-container">
-          <div className="eyebrow">OFERTA ESPECIAL</div><h2>Comece com a estrutura<br /><em>completa da Prime</em></h2><p className="section-intro">Um único acesso para prospectar, criar, precificar e vender seus projetos.</p>
-          <article className="offer-card"><div className="offer-tag">ACESSO VITALÍCIO</div><h3>Prime Completa</h3><p className="old-price">De R$ 497,00</p><p className="offer-price"><small>R$</small> 297<span>,00</span></p><p className="installments">ou em até 12x de R$ 29,82</p><p className="offer-note">Pagamento único, sem mensalidade</p><ul><li>Sites ilimitados para criar e editar</li><li>Prospecção para qualquer cidade do Brasil</li><li>Calculadora de precificação profissional</li><li>Scripts de abordagem para diferentes canais</li><li>Biblioteca e materiais para acelerar sua operação</li><li>7 dias de garantia incondicional</li></ul><Link className="green-btn hero-btn" to="/auth">Quero acesso vitalício <ArrowRight /></Link><span className="offer-guarantee">7 dias de garantia</span></article>
+          <div className="eyebrow">OFERTA ESPECIAL</div><h2>Comece com a estrutura<br /><em>completa da Prime Sites</em></h2><p className="section-intro">Um único acesso para prospectar, criar, precificar e vender seus projetos.</p>
+          <article className="offer-card"><div className="offer-tag">ACESSO VITALÍCIO</div><h3>Prime Sites Completa</h3><p className="old-price">De R$ 497,00</p><p className="offer-price"><small>R$</small> 297<span>,00</span></p><p className="installments">ou em até 12x de R$ 29,82</p><p className="offer-note">Pagamento único, sem mensalidade</p><ul><li>Sites ilimitados para criar e editar</li><li>Prospecção para qualquer cidade do Brasil</li><li>Calculadora de precificação profissional</li><li>Scripts de abordagem para diferentes canais</li><li>Biblioteca e materiais para acelerar sua operação</li><li>7 dias de garantia incondicional</li></ul><Link className="green-btn hero-btn" to="/auth">Quero acesso vitalício <ArrowRight /></Link><span className="offer-guarantee">7 dias de garantia</span></article>
         </div>
       </section>
 
       <section className="guarantee-section">
-        <div className="valy-container guarantee-inner"><img src={guaranteeSeal.url} alt="Selo de garantia de 7 dias" className="guarantee-seal-image" /><div><div className="eyebrow">GARANTIA INCONDICIONAL</div><h2>Conheça a Prime por 7 dias sem risco</h2><p>Entre, explore as ferramentas e veja se a plataforma faz sentido para o seu momento. Se não fizer, você pode solicitar o reembolso dentro do prazo.</p><OfferCta label="Quero acessar sem risco" /></div></div>
+        <div className="valy-container guarantee-inner"><img src={guaranteeSeal.url} alt="Selo de garantia de 7 dias" className="guarantee-seal-image" /><div><div className="eyebrow">GARANTIA INCONDICIONAL</div><h2>Conheça a Prime Sites por 7 dias sem risco</h2><p>Entre, explore as ferramentas e veja se a plataforma faz sentido para o seu momento. Se não fizer, você pode solicitar o reembolso dentro do prazo.</p><OfferCta label="Quero acessar sem risco" /></div></div>
       </section>
 
       <section className="section faq-section" id="faq"><div className="valy-container narrow"><div className="eyebrow">PERGUNTAS FREQUENTES</div><h2>Tudo o que você precisa<br /><em>saber antes de começar</em></h2><div className="faq-list">{faqs.map(([question, answer], index) => <div className={`faq-item ${faq === index ? "open" : ""}`} key={question}><Button variant="ghost" className="faq-trigger" onClick={() => setFaq(faq === index ? null : index)}><span>{question}</span><ChevronDown /></Button>{faq === index && <p>{answer}</p>}</div>)}</div><OfferCta label="Quero garantir meu acesso" /></div></section>
 
-      <section className="final-cta" id="final"><div className="valy-container"><div className="eyebrow">COMECE PELO PRIMEIRO</div><h2>Sua próxima oportunidade<br /><em>pode estar na sua cidade</em></h2><p>Abra a Prime, escolha um nicho e transforme uma empresa sem site no começo da sua nova operação.</p><div className="final-actions"><Link className="final-button" to="/auth">Quero começar agora <ArrowRight /></Link></div><div className="button-guarantee final-guarantee">7 dias de garantia</div><div className="final-benefits"><span><Compass /> Processo guiado</span><span><Palette /> Sites profissionais</span><span><CircleDollarSign /> Precificação clara</span><span><TrendingUp /> Estrutura para escalar</span></div></div></section>
+      <section className="final-cta" id="final"><div className="valy-container"><div className="eyebrow">COMECE PELO PRIMEIRO</div><h2>Sua próxima oportunidade<br /><em>pode estar na sua cidade</em></h2><p>Abra a Prime Sites, escolha um nicho e transforme uma empresa sem site no começo da sua nova operação.</p><div className="final-actions"><Link className="final-button" to="/auth">Quero começar agora <ArrowRight /></Link></div><div className="button-guarantee final-guarantee">7 dias de garantia</div><div className="final-benefits"><span><Compass /> Processo guiado</span><span><Palette /> Sites profissionais</span><span><CircleDollarSign /> Precificação clara</span><span><TrendingUp /> Estrutura para escalar</span></div></div></section>
     </main>
 
     <footer className="valy-footer"><div className="valy-container footer-grid"><div><b>PLATAFORMA</b><a href="#ferramentas">Ferramentas</a><a href="#planos">Plano</a><a href="#faq">FAQ</a></div><div><b>JORNADA</b><a href="#como-funciona">Como funciona</a><a href="#etapas">Etapas</a><a href="#final">Começar</a></div><div><b>ACESSO</b><Link to="/auth">Entrar</Link><a href="#planos">Ver oferta</a><a href="#faq">Tirar dúvidas</a></div></div><div className="footer-bottom valy-container"><span>© 2026. Todos os direitos reservados.</span><span>Feito para quem quer vender sites.</span></div></footer><a href="https://wa.me/554299787035" target="_blank" rel="noopener noreferrer" className="whatsapp-support" aria-label="Falar com o suporte pelo WhatsApp" title="Suporte pelo WhatsApp"><img src={whatsappSupport.url} alt="" /></a>
