@@ -77,13 +77,13 @@ const testimonials = [
 ];
 
 const faqs = [
-  ["Preciso saber programar ou ter experiência com design?", "Não. A Prime guia a criação e deixa os ajustes visuais acessíveis, sem você escrever código."],
+  ["Preciso saber programar ou ter experiência com design?", "Não. A Prime Sites guia a criação e deixa os ajustes visuais acessíveis, sem você escrever código."],
   ["O resultado tem qualidade profissional?", "Sim. Os projetos seguem estruturas criadas para apresentar empresas com clareza, boa leitura e adaptação ao celular."],
   ["Quanto consigo cobrar por projeto?", "O preço depende do escopo, nicho e região. A calculadora ajuda a formar um valor coerente sem trabalhar no prejuízo."],
   ["Como encontro clientes sem uma carteira de contatos?", "A área de prospecção ajuda a buscar negócios da sua região e organizar uma abordagem personalizada."],
   ["Quanto tempo leva para criar um site?", "Depois de reunir as informações do negócio, você consegue gerar uma primeira versão em poucos minutos."],
   ["Posso editar o site depois de gerar?", "Sim. Você pode ajustar textos, cores, imagens e seções antes de apresentar o projeto."],
-  ["A Prime vende o site por mim?", "Não. A Prime entrega estrutura, ferramentas e direção; a abordagem e o fechamento continuam sendo seus."],
+  ["A Prime Sites vende o site por mim?", "Não. A Prime Sites entrega estrutura, ferramentas e direção; a abordagem e o fechamento continuam sendo seus."],
   ["Funciona para qualquer tipo de empresa?", "Funciona melhor para negócios locais e prestadores de serviço que precisam apresentar serviços e receber contatos."],
   ["Posso usar em qualquer cidade?", "Sim. Você pode prospectar e criar projetos para empresas de qualquer região do Brasil."],
   ["Tenho garantia?", "Sim. Você conta com 7 dias de garantia para conhecer a plataforma com tranquilidade."],

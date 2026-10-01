@@ -23,4 +23,4 @@
 
 - [x] Aplicar a logomarca e o nome Prime Sites em toda a experiência principal.
 - [x] Tornar Novo Projeto um fluxo sequencial completo e equivalente aos módulos individuais.
-- [ ] Validar a marca e as cinco etapas no desktop e celular.
+- [x] Validar a marca e as cinco etapas no desktop e celular.
