@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { ArrowLeft, Eye, EyeOff, LoaderCircle, LockKeyhole, Mail, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -35,6 +35,19 @@ function AuthPage() {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
 
+  useEffect(() => {
+    let active = true;
+    const finishExistingLogin = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (active && data.user) await navigate({ to: "/dashboard", replace: true });
+    };
+    void finishExistingLogin();
+    const { data } = supabase.auth.onAuthStateChange((event, session) => {
+      if (active && event === "SIGNED_IN" && session) void navigate({ to: "/dashboard", replace: true });
+    });
+    return () => { active = false; data.subscription.unsubscribe(); };
+  }, [navigate]);
+
   const switchMode = (next: AuthMode) => {
     setMode(next);
     setPassword("");
@@ -65,9 +78,12 @@ function AuthPage() {
           return;
         }
       } else {
-        const { error } = await supabase.auth.signInWithPassword({ email: cleanEmail, password });
+        const { data, error } = await supabase.auth.signInWithPassword({ email: cleanEmail, password });
         if (error) throw error;
+        if (!data.session) throw new Error("Não foi possível confirmar sua sessão. Tente novamente.");
       }
+      const { data: verified, error: verificationError } = await supabase.auth.getUser();
+      if (verificationError || !verified.user) throw new Error("Não foi possível confirmar sua sessão. Tente novamente.");
       toast.success("Acesso liberado.");
       await navigate({ to: "/dashboard", replace: true });
     } catch (error) {
@@ -87,7 +103,7 @@ function AuthPage() {
     setGoogleLoading(true);
     try {
       const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
+        redirect_uri: `${window.location.origin}/auth`,
         extraParams: { prompt: "select_account" },
       });
       if (result.error) throw result.error;

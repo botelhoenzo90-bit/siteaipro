@@ -18,3 +18,5 @@
 - [x] Manter todas as etapas do Novo Projeto dentro da mesma tela.
 - [x] Reorganizar precificação em faixas de R$ 350 a R$ 1.450 e referências por nicho.
 - [x] Adicionar suporte por WhatsApp e novo selo de 7 dias à página de vendas.
+- [x] Corrigir o retorno do login para o painel e validar a sessão antes de entrar.
+- [x] Colocar ações práticas no fluxo de Novo Projeto e ampliar os scripts até o fechamento.
