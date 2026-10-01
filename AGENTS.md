@@ -13,3 +13,4 @@
 - Keep authentication through Lovable Cloud Auth with email/password and managed Google sign-in, without an application profile table, because the product only needs account access.
 - Keep authenticated product theming in the shared Prime shell with a persisted light/dark preference, so every internal module stays visually consistent.
 - Keep the guided project workflow self-contained on `/project`; users advance between embedded stages instead of navigating to separate modules.
+- Use the shared Prime Sites brand component for public, authentication, and authenticated navigation surfaces so the uploaded logo and product name stay consistent.
