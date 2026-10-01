@@ -54,17 +54,16 @@ function PricingCalculatorPage() {
   const [costs, setCosts] = useState(60);
   const [tax, setTax] = useState(6);
   const [selected, setSelected] = useState<string[]>([]);
+  const activeLevel = levels[levelIndex] ?? levels[0] ?? { name: 'Entrada', base: 350, ref: 'R$ 350' };
+  const activeNiche = niches[nicheIndex] ?? niches[0] ?? { name: 'Padrão', multiplier: 1, suggestion: 'Ideal para negócios locais.' };
 
   const result = useMemo(() => {
     const labor = hours * hourly;
     const extrasTotal = extras.filter(x => selected.includes(x.name)).reduce((n, x) => n + x.price, 0);
     
     // Novo cálculo baseado nos níveis solicitados
-    const currentLevel = levels[levelIndex];
-    const currentNiche = niches[nicheIndex];
-    
-    const baseScope = currentLevel.base + (pages - 1) * 85 + extrasTotal;
-    const scope = baseScope * currentNiche.multiplier;
+    const baseScope = activeLevel.base + (pages - 1) * 85 + extrasTotal;
+    const scope = baseScope * activeNiche.multiplier;
     
     const minimum = (labor + costs) / (1 - tax / 100);
     
@@ -82,9 +81,9 @@ function PricingCalculatorPage() {
       profit: price * (1 - tax / 100) - labor - costs,
       margin: ((price * (1 - tax / 100) - labor - costs) / price) * 100
     };
-  }, [pages, levelIndex, nicheIndex, hours, hourly, costs, tax, selected, model]);
+  }, [pages, activeLevel, activeNiche, hours, hourly, costs, tax, selected, model]);
 
-  const summary = `Proposta de site\n${pages} página(s) · ${levels[levelIndex].name}\nNicho: ${niches[nicheIndex].name}\nAdicionais: ${selected.join(', ') || 'Nenhum'}\nInvestimento sugerido: ${money(result.price)}\nEscopo e prazo devem ser confirmados com o cliente.`;
+  const summary = `Proposta de site\n${pages} página(s) · ${activeLevel.name}\nNicho: ${activeNiche.name}\nAdicionais: ${selected.join(', ') || 'Nenhum'}\nInvestimento sugerido: ${money(result.price)}\nEscopo e prazo devem ser confirmados com o cliente.`;
 
   const copy = async () => {
     try {
@@ -161,7 +160,7 @@ function PricingCalculatorPage() {
               ))}
             </div>
             <p className="mt-2 text-xs text-muted-foreground flex items-center gap-1">
-              <Info className="h-3 w-3" /> {niches[nicheIndex].suggestion}
+              <Info className="h-3 w-3" /> {activeNiche.suggestion}
             </p>
           </div>
 
@@ -210,7 +209,7 @@ function PricingCalculatorPage() {
           </div>
 
           <p className="mt-5 text-xs leading-5 text-muted-foreground">
-            A precificação sugerida considera o nível do projeto ({levels[levelIndex].name}) e o multiplicador de nicho ({niches[nicheIndex].name}).
+            A precificação sugerida considera o nível do projeto ({activeLevel.name}) e o multiplicador de nicho ({activeNiche.name}).
           </p>
 
           <div className="mt-6 space-y-3 border-t border-border pt-5 text-sm">
